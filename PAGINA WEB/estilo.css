@@ -449,16 +449,25 @@ html {
 
 .card-product {
   background-color: #fff;
-  padding: 2rem 3rem;
+  padding: 2rem;
   border-radius: 0.5rem;
   cursor: pointer;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.9);
 }
 
 .container-img {
   position: relative;
   height: 200px;
   width: 70%;
+}
+
+.container-img-product {
+  display: flex;
+}
+
+.container-img-product img {
+  width: 90%;
+  height: 200px;
 }
 
 .container-img img {
@@ -492,9 +501,27 @@ html {
   transition: all 0.4s ease;
 }
 
+.button-group-product {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .button-group span {
   border: 1px solid var(--primary-color);
   padding: 0.8rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.button-group-product span {
+  border: 1px solid var(--primary-color);
+  padding: 0.5rem;
 
   display: flex;
   align-items: center;
@@ -508,12 +535,25 @@ html {
   background-color: var(--primary-color);
 }
 
+.button-group-product span:hover {
+  background-color: var(--primary-color);
+}
+
 .button-group span i {
   font-size: 1.5rem;
   color: var(--primary-color);
 }
 
+.button-group-product span i {
+  font-size: 1rem;
+  color: var(--primary-color);
+}
+
 .button-group span:hover i {
+  color: #fff;
+}
+
+.button-group-product span:hover i {
   color: #fff;
 }
 
@@ -526,6 +566,13 @@ html {
   display: grid;
   justify-items: center;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(4, min-content);
+  row-gap: 1rem;
+}
+.content-card-product-page {
+  display: grid;
+  justify-items: center;
+  grid-template-columns: 1fr;
   grid-template-rows: repeat(4, min-content);
   row-gap: 1rem;
 }
@@ -578,6 +625,55 @@ html {
 
 .add-cart:hover i {
   color: #fff;
+}
+
+.add-producto {
+  border: 1.8px solid var(--primary-color);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.4s ease;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.add-producto:hover {
+  background-color: var(--primary-color);
+}
+.add-producto:hover span {
+  color: #fff;
+}
+.add-producto:hover i {
+  color: #fff;
+}
+
+.add-producto span {
+  font-size: 1.2rem !important;
+  font-weight: 600;
+}
+
+.add-producto i {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+}
+
+.add-producto span {
+  font-size: 1.2rem;
+  color: var(--primary-color);
+}
+
+.add-producto:hover {
+  color: #fff;
+}
+
+.price-product {
+  text-align: center;
+  padding: 1.2rem;
+  font-size: 2.5rem;
+  font-weight: 600;
 }
 
 .content-card-product .price {
