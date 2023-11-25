@@ -35,7 +35,7 @@
 </div>
 
 <li class="nav-item">
-    <a class="nav-link collapsed" href="index.php">
+    <a class="nav-link collapsed" href="CRUDProductos.php">
     <span class="material-icons">pattern</span>
         <span>Productos</span>
     </a>
@@ -75,7 +75,7 @@
     PERFIL
 </div>
 <li class="nav-item">
-    <a class="nav-link collapsed" href="usuariosindex.php">
+    <a class="nav-link collapsed" href="MiPerfil.php">
         <span class="material-icons">people</span>
         <span>Información usuario</span>
     </a>
