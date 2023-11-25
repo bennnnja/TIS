@@ -19,7 +19,7 @@
 
 
 <div class="col-xs-12">
-  		<h1>Bienvenido Administrador <?php echo $_SESSION['nombre']; ?></h1>
+  		<h1>Bienvenido Administrador<?php echo $_SESSION['nombre']; ?></h1>
       <br>
 		<h1>Lista de usuarios</h1>
     <br>
