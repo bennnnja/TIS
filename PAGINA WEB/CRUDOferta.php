@@ -11,7 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <title>Productos</title>
+    <title>Oferta</title>
 </head>
 <br>
 <div class="container is-fluid">
@@ -22,11 +22,11 @@
 <main class="main">
     <article>
         <section class="form-edit">
-            <h4>Buscar Productos</h4>
-                <h5>Ingrese algun dato para buscar el producto</h5>
+            <h4>Buscar Oferta</h4>
+                <h5>Ingrese algun dato para buscar la Oferta</h5>
                 <form class="d-flex">
 			<form action="" method="GET">
-			<input class="controls" type="search" placeholder="Buscar Producto" 
+			<input class="controls" type="search" placeholder="Buscar Oferta" 
 			name="busqueda"> <br>
 			<button class="button" type="submit" name="enviar"> <b>Buscar </b> </button> 
 			</form>
@@ -40,7 +40,7 @@
 
                 if (isset($_GET['busqueda']))
                 {
-                    $where="WHERE CAST(precio AS TEXT) LIKE'%".$busqueda."%' OR nombre_producto  LIKE'%".$busqueda."%' OR CAST(stock AS TEXT)  LIKE'%".$busqueda."%' OR CAST(fecha_vencimiento AS TEXT)  LIKE'%".$busqueda."%' OR cod_producto  LIKE'%".$busqueda."%' OR sabor  LIKE'%".$busqueda."%'";
+                    $where="WHERE CAST(cod_oferta AS TEXT) LIKE'%".$busqueda."%' OR descripcion  LIKE'%".$busqueda."%' OR CAST(descuento AS TEXT)  LIKE'%".$busqueda."%' OR CAST(tiempo_inicio AS TEXT)  LIKE'%".$busqueda."%' OR CAST(tiempo_fin AS TEXT)  LIKE'%".$busqueda."%' OR CAST(empleado_cod_empleado AS TEXT)  LIKE'%".$busqueda."%'";
                 }
             
             }
@@ -50,20 +50,19 @@
                 <table class="styled-table">
                     <thead>
                         <tr>
-                            <th>Nombre Producto</th>
-                            <th>Código Producto</th>
-                            <th>Precio</th>
-                            <th>Sabor</th>
-                            <th>Fecha Vencimiento</th>
-                            <th>Stock</th>
-                            <th>Acciones</th>
+                            <th>Código Oferta</th>
+                            <th>Descripcion</th>
+                            <th>Descuento</th>
+                            <th>Tiempo Inicio</th>
+                            <th>Tiempo Fin</th>
+                            <th>Cod Empleado</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
 
             $conexion=pg_connect("host=magallanes.inf.unap.cl dbname=brojas user=brojas password=Gt95x5cDq1");            
-            $encuentro="SELECT nombre_producto, cod_producto, precio, sabor, fecha_vencimiento,stock FROM producto $where";
+            $encuentro="SELECT cod_oferta, descripcion, descuento, tiempo_inicio, tiempo_fin, empleado_cod_empleado FROM oferta $where";
             $dato=pg_query($conexion,$encuentro);
 
             if(pg_num_rows($dato) >0){
@@ -71,12 +70,12 @@
                 
             ?>
             <tr>
-                        <td><?php echo $fila->nombre_producto; ?></td>
-                        <td><?php echo $fila->cod_producto; ?></td>
-                        <td><?php echo $fila->precio; ?></td>
-                        <td><?php echo $fila->sabor; ?></td>
-                        <td><?php echo $fila->fecha_vencimiento; ?></td>
-                        <td><?php echo $fila->stock; ?></td>
+                        <td><?php echo $fila->cod_oferta; ?></td>
+                        <td><?php echo $fila->descripcion; ?></td>
+                        <td><?php echo $fila->descuento; ?></td>
+                        <td><?php echo $fila->tiempo_inicio; ?></td>
+                        <td><?php echo $fila->tiempo_fin; ?></td>
+                        <td><?php echo $fila->empleado_cod_empleado; ?></td>
 
 
 

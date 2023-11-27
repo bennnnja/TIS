@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <?php require '_header.php' ?>
 <html lang="en">
@@ -26,10 +27,15 @@
                             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
                                 <img src="undraw_profile.svg" alt="Profile" class="rounded-circle">
-                                <!-- <h2><?php echo $fila['nombre']; ?></h2> -->
-                                <!-- <h3><?php echo $fila['rut']; ?></h3> -->
-                                  <h2>Nombre Perfil</h2>
-                                    <h3>RUT</h3>
+                                <?php
+                                if(isset($_SESSION['nombre'])) {
+                                    // Si el email está definido en la sesión, lo puedes usar en esta página
+                                    $nombre = $_SESSION['nombre'];
+                                    echo "<h2>$nombre</h2>";
+                                } else {
+                                    echo "<h2>No se ha proporcionado un email</h2>";
+                                }
+                                ?>
                                 <div class="social-links mt-2">
                                     <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
                                     <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -62,40 +68,33 @@
                                 <div class="tab-content pt-2">
 
                                     <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                                        <br>
-                                        <h5 class="card-title">About</h5>
-                                        <p class="small fst-italic">Sistema de Inventario 2.0</p>
-                                        <br>
                                         <h5 class="card-title">Detalles de Perfil</h5>
 
                                         <div class="row">
                                             <div class="col-lg-3 col-md-4 label ">Nombre</div>
-                                            <div class="col-lg-9 col-md-8"><?php echo $fila['nombre']; ?></div>
+                                            <div class="col-lg-9 col-md-8"><?php echo $_SESSION['nombre']; ?></div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col-lg-3 col-md-4 label">RUT</div>
-                                            <div class="col-lg-9 col-md-8"><?php echo $fila['rut']; ?></div>
+                                            <div class="col-lg-9 col-md-8"><?php echo $_SESSION['rut']; ?></div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col-lg-3 col-md-4 label">Email</div>
-                                            <div class="col-lg-9 col-md-8"><?php echo $fila['email']; ?></div>
+                                            <div class="col-lg-9 col-md-8"><?php echo $_SESSION['email']; ?></div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col-lg-3 col-md-4 label">Telefono</div>
-                                            <div class="col-lg-9 col-md-8"><?php echo $fila['telefono']; ?></div>
+                                            <div class="col-lg-9 col-md-8"><?php echo $_SESSION['telefono']; ?></div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col-lg-3 col-md-4 label">Fecha nacimiento</div>
-                                            <div class="col-lg-9 col-md-8"><?php echo $fila['fecha_nacimiento']; ?></div>
+                                            <div class="col-lg-9 col-md-8"><?php echo $_SESSION['fecha_nacimiento']; ?></div>
                                         </div>
 
-
-
-                                    </div>
 
                                     <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
@@ -140,9 +139,4 @@
 <script src="../js/user.js"></script>
 <script src="../js/acciones.js"></script>
 <script src="../js/buscador.js"></script>
-
-
-
-
-		<?php include('../index.php'); ?>
 </html>

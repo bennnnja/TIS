@@ -11,7 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <title>Productos</title>
+    <title>Pedidos</title>
 </head>
 <br>
 <div class="container is-fluid">
@@ -22,13 +22,13 @@
 <main class="main">
     <article>
         <section class="form-edit">
-            <h4>Buscar Productos</h4>
-                <h5>Ingrese algun dato para buscar el producto</h5>
+            <h4>Buscar Pedidos</h4>
+                <h5>Ingrese algun dato para buscar el pedidos</h5>
                 <form class="d-flex">
 			<form action="" method="GET">
-			<input class="controls" type="search" placeholder="Buscar Producto" 
+			<input class="controls" type="search" placeholder="Buscar pedido" 
 			name="busqueda"> <br>
-			<button class="button" type="submit" name="enviar"> <b>Buscar </b> </button> 
+			<button class="button" type="submit" name="enviar"> <b>Buscar</b> </button> 
 			</form>
             <?php
             $conexion=pg_connect("host=magallanes.inf.unap.cl dbname=brojas user=brojas password=Gt95x5cDq1");
@@ -40,7 +40,7 @@
 
                 if (isset($_GET['busqueda']))
                 {
-                    $where="WHERE CAST(precio AS TEXT) LIKE'%".$busqueda."%' OR nombre_producto  LIKE'%".$busqueda."%' OR CAST(stock AS TEXT)  LIKE'%".$busqueda."%' OR CAST(fecha_vencimiento AS TEXT)  LIKE'%".$busqueda."%' OR cod_producto  LIKE'%".$busqueda."%' OR sabor  LIKE'%".$busqueda."%'";
+                    $where="WHERE CAST(monto AS TEXT) LIKE'%".$busqueda."%' OR tipo_pago  LIKE'%".$busqueda."%' OR CAST(cliente_cod_cliente AS TEXT)  LIKE'%".$busqueda."%' OR CAST(fecha_pedido AS TEXT)  LIKE'%".$busqueda."%' OR cod_pedido  LIKE'%".$busqueda."%' OR cliente_cod_cliente  LIKE'%".$busqueda."%'";
                 }
             
             }
@@ -50,12 +50,12 @@
                 <table class="styled-table">
                     <thead>
                         <tr>
-                            <th>Nombre Producto</th>
-                            <th>Código Producto</th>
-                            <th>Precio</th>
-                            <th>Sabor</th>
-                            <th>Fecha Vencimiento</th>
-                            <th>Stock</th>
+                            <th>Código pedido</th>
+                            <th>Monto</th>
+                            <th>Tipo Pago</th>
+                            <th>Fecha Pedido</th>
+                            <th>Email</th>
+                            <th>Cod cliente</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -63,7 +63,7 @@
                         <?php
 
             $conexion=pg_connect("host=magallanes.inf.unap.cl dbname=brojas user=brojas password=Gt95x5cDq1");            
-            $encuentro="SELECT nombre_producto, cod_producto, precio, sabor, fecha_vencimiento,stock FROM producto $where";
+            $encuentro="SELECT cod_pedido, monto, tipo_pago, fecha_pedido, cliente_cod_cliente FROM pedido $where";
             $dato=pg_query($conexion,$encuentro);
 
             if(pg_num_rows($dato) >0){
@@ -71,12 +71,11 @@
                 
             ?>
             <tr>
-                        <td><?php echo $fila->nombre_producto; ?></td>
-                        <td><?php echo $fila->cod_producto; ?></td>
-                        <td><?php echo $fila->precio; ?></td>
-                        <td><?php echo $fila->sabor; ?></td>
-                        <td><?php echo $fila->fecha_vencimiento; ?></td>
-                        <td><?php echo $fila->stock; ?></td>
+                        <td><?php echo $fila->cod_pedido; ?></td>
+                        <td><?php echo $fila->monto; ?></td>
+                        <td><?php echo $fila->tipo_pago; ?></td>
+                        <td><?php echo $fila->fecha_pedido; ?></td>
+                        <td><?php echo $fila->cliente_cod_cliente; ?></td>
 
 
 

@@ -120,6 +120,32 @@ html {
   cursor: pointer;
 }
 
+.container-user a{
+  text-decoration: none;
+  font-size: 1.3rem;
+  color: var(--dark-color);
+  font-weight: 600;
+  text-transform: uppercase;
+  position: relative;
+  padding-top: -10px;
+}
+
+.btn__quote {
+  color: #ff5800; /* Color blanco */
+  padding: 10px 20px; /* Espacio alrededor del texto */
+  border-radius: 8px; /* Bordes redondeados */
+  border: 2px solid #ff5800; /* Sin borde */
+  font-size: 18px; /* Tamaño del texto */
+  text-decoration: none; /* Sin subrayado */
+  cursor: pointer; /* Cursor de mano */
+}
+
+/* Estilos del botón al pasar el cursor */
+.btn__quote:hover {
+    color: white;
+    background: #ff5800;
+}
+
 .container-user .fa-user {
   font-size: 3rem;
   color: var(--primary-color);

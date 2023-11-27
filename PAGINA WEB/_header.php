@@ -18,14 +18,14 @@
 <div id="wrapper">
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="MiPerfil.php">
     <div class="sidebar-brand-icon rotate-n-15">
     </div>
     <div class="sidebar-brand-text mx-3">ADMIN</div>
 </a>
 <hr class="sidebar-divider my-0">
 <li class="nav-item active">
-    <a class="nav-link" href="index.php">
+    <a class="nav-link" href="index.html">
         <i class="material-icons-outlined"></i>
         <span>Dashboard</span></a>
 </li>
@@ -41,31 +41,31 @@
     </a>
 </li>
 <li class="nav-item">
-    <a class="nav-link collapsed" href="categorias.php">
+    <a class="nav-link collapsed" href="CRUDProveedor.php">
         <span class="material-icons">category</span>
         <span>Proveedor</span>
     </a>
 </li>
 <li class="nav-item">
-    <a class="nav-link collapsed" href="index.php">
+    <a class="nav-link collapsed" href="CRUDOrdenCompra.php">
     <span class="material-icons">pattern</span>
         <span>Orden de compra</span>
     </a>
 </li>
 <li class="nav-item">
-    <a class="nav-link collapsed" href="index.php">
+    <a class="nav-link collapsed" href="CRUDIngrediente.php">
     <span class="material-icons">pattern</span>
         <span>Ingrediente</span>
     </a>
 </li>
 <li class="nav-item">
-    <a class="nav-link collapsed" href="index.php">
+    <a class="nav-link collapsed" href="CRUDOferta.php">
     <span class="material-icons">pattern</span>
         <span>Oferta</span>
     </a>
 </li>
 <li class="nav-item">
-    <a class="nav-link collapsed" href="index.php">
+    <a class="nav-link collapsed" href="CRUDPedido.php">
     <span class="material-icons">pattern</span>
         <span>Pedido</span>
     </a>
@@ -121,7 +121,15 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $actualsesion?> </span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php
+                                if(isset($_SESSION['email'])) {
+                                    // Si el email está definido en la sesión, lo puedes usar en esta página
+                                    $email = $_SESSION['email'];
+                                    echo "<span>$email</span>";
+                                } else {
+                                    echo "<span>No se ha proporcionado un email</span>";
+                                }
+                                ?> </span>
                                 <span class="material-icons">account_circle</span>
                             </a>
                         </li>

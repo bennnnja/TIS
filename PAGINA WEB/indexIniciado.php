@@ -1,3 +1,5 @@
+<?php session_start();?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -22,9 +24,21 @@
 						<i class="fa-solid fa-ice-cream"></i>
 						<h1 class="logo"><a href="index.html">GELATERIA MILANO</a></h1>
 					</div>
-						
-					<a href="LoginRegistro.html" class="btn__quote">Iniciar Sesion</a>
 
+					<div class="container-user">
+						<?php
+						if(isset($_SESSION['nombre'])) {
+							// Si el email está definido en la sesión, lo puedes usar en esta página
+							$nombre = $_SESSION['nombre'];
+							echo "<a>$nombre</a>";
+						}	
+						?>	
+						<a href="MiPerfil.php"><i class="fa-solid fa-user"></i></a>
+						<i class="fa-solid fa-basket-shopping"></i>
+						<div class="content-shopping-cart">
+							<span class="text">Carrito</span>
+						</div>
+					</div>
 				</div>
 			</div>
 

@@ -1,4 +1,5 @@
 <?php
+session_start(); // Iniciar la sesión
 
 $host = 'magallanes.inf.unap.cl'; // Normalmente es localhost
 $port = '5432'; // Por defecto es 5432
@@ -24,14 +25,21 @@ try {
 
     // Verificar si se encontró un usuario con las credenciales proporcionadas
     if ($stmt->rowCount() > 0) {
-        echo'
-            <script>
-                alert("Bienvenido a Gelateria Milano");
-                window.location = "index.html";
-            </script>
-        ';
+        // Obtener los datos del usuario
+        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Guardar los datos en variables de sesión
+        $_SESSION['nombre'] = $usuario['nombre'];
+        $_SESSION['rut'] = $usuario['rut'];
+        $_SESSION['email'] = $usuario['email'];
+        $_SESSION['telefono'] = $usuario['telefono'];
+        $_SESSION['fecha_nacimiento'] = $usuario['fecha_nacimiento'];
+
+        // Redirigir a MiPerfil.php
+        header("Location: indexIniciado.php");
+        exit;
     } else {
-        echo'
+        echo '
             <script>
                 alert("Usuario no existe, por favor verifique los datos introducidos");
                 window.location = "LoginRegistro.html";
