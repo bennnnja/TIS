@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <?php require '_header.php' ?>
 <html lang="en">
