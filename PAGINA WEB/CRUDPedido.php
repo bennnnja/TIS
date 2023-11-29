@@ -31,6 +31,10 @@
 			name="busqueda"> <br>
 			<button class="button" type="submit" name="enviar"> <b>Buscar</b> </button> 
 			</form>
+            <br>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#create">
+				<span class="glyphicon glyphicon-plus"></span> Nuevo Pedido   <i class="fa fa-plus"></i> </a></button>
+            <br>
             <?php
             $conexion=pg_connect("host=magallanes.inf.unap.cl dbname=brojas user=brojas password=Gt95x5cDq1");
             $where="";
@@ -111,9 +115,11 @@
   </table>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
-<script src="../js/user.js"></script>
-<script src="../js/acciones.js"></script>
-<script src="../js/buscador.js"></script>
+<script src="../package/dist/sweetalert2.all.js"></script>
+<script src="../package/dist/sweetalert2.all.min.js"></script>
+<script src="../package/jquery-3.6.0.min.js"></script>
 
+
+    <?php include('InsertarPedido.php'); ?>
 
 </html>

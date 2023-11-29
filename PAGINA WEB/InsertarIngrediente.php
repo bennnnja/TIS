@@ -17,7 +17,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title" id="exampleModalLabel">Registro de Producto</h3>
+                    <h3 class="modal-title" id="exampleModalLabel">Registro de Ingrediente</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -26,29 +26,21 @@
 <form  action="" method="POST">
 
                             <div class="form-group">
-                            <label for="nombre_producto" class="form-label">Nombre Producto:</label>
-                            <input type="text"  id="nombre_producto" name="nombre_producto" class="form-control" required>
+                            <label for="nombre_ingrediente" class="form-label">Nombre Ingrediente:</label>
+                            <input type="text"  id="nombre_ingrediente" name="nombre_ingrediente" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label for="cod_producto">Codigo Producto:</label><br>
-                                <input type="text" name="cod_producto" id="cod_producto" class="form-control" placeholder="">
+                                <label for="cod_ingrediente">Codigo Ingrediente:</label><br>
+                                <input type="text" name="cod_ingrediente" id="cod_ingrediente" class="form-control" placeholder="">
                             </div>
                             <div class="form-group">
-                                  <label for="precio" class="form-label">Precio:</label>
-                                <input type="number"  id="precio" name="precio" class="form-control" required>
-                                
+                                <label for="detalle">Detalle:</label><br>
+                                <input type="text" name="detalle" id="detalle" class="form-control" placeholder="">
                             </div>
-                            <div class="form-group">
-                                <label for="sabor">Sabor:</label><br>
-                                <input type="text" name="sabor" id="sabor" class="form-control" required>
-                            </div>
-                            
                             <div class="form-group">
                                   <label for="fecha_vencimiento" class="form-label">Fecha Vencimiento:</label>
                                 <input type="date"  id="fecha_vencimiento" name="fecha_vencimiento" class="form-control">
-                             
                             </div>
-
                             <div class="form-group">
                                   <label for="stock" class="form-label">Stock:</label>
                                 <input type="number"  id="stock" name="stock" class="form-control">
@@ -82,10 +74,9 @@
 			if(valid){
 
 
-			var nombre_producto = $('#nombre_producto').val();
-			var cod_producto = $('#cod_producto').val();
-			var precio = $('#precio').val();
-			var sabor 	= $('#sabor').val();
+			var nombre_ingrediente = $('#nombre_ingrediente').val();
+			var cod_ingrediente = $('#cod_ingrediente').val();
+			var detalle 	= $('#detalle').val();
 			var fecha_vencimiento	= $('#fecha_vencimiento').val();
             var stock	= $('#stock').val();
 			
@@ -94,8 +85,8 @@
 
 				$.ajax({
 					type: 'POST',
-					url: 'validarProducto.php',
-					data: {nombre_producto: nombre_producto,cod_producto: cod_producto, precio: precio,sabor: sabor, fecha_vencimiento: fecha_vencimiento, stock: stock},
+					url: '../validar/validarIngrediente.php',
+					data: {nombre_ingrediente: nombre_ingrediente,cod_ingrediente: cod_ingrediente, detalle: detalle, fecha_vencimiento: fecha_vencimiento, stock: stock},
 					success: function(data){
 					Swal.fire({
 								'title': '¡Mensaje!',
@@ -104,7 +95,7 @@
                                 'showConfirmButton': 'false',
                                 'timer': '1500'
 								}).then(function() {
-                window.location = "CRUDProductos.php";
+                window.location = "CRUDIngrediente.php";
             });
 							
 					} ,

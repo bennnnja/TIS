@@ -94,7 +94,7 @@
 
 				$.ajax({
 					type: 'POST',
-					url: 'validarProducto.php',
+					url: 'validar.php',
 					data: {nombre_producto: nombre_producto,cod_producto: cod_producto, precio: precio,sabor: sabor, fecha_vencimiento: fecha_vencimiento, stock: stock},
 					success: function(data){
 					Swal.fire({

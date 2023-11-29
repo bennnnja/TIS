@@ -26,12 +26,8 @@
 <form  action="" method="POST">
 
                             <div class="form-group">
-                            <label for="nombre_producto" class="form-label">Nombre Producto:</label>
-                            <input type="text"  id="nombre_producto" name="nombre_producto" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="cod_producto">Codigo Producto:</label><br>
-                                <input type="text" name="cod_producto" id="cod_producto" class="form-control" placeholder="">
+                                <label for="cod_oferta">Codigo Oferta:</label><br>
+                                <input type="text" name="cod_oferta" id="cod_oferta" class="form-control" placeholder="">
                             </div>
                             <div class="form-group">
                                   <label for="precio" class="form-label">Precio:</label>
@@ -83,7 +79,7 @@
 
 
 			var nombre_producto = $('#nombre_producto').val();
-			var cod_producto = $('#cod_producto').val();
+			var cod_oferta = $('#cod_oferta').val();
 			var precio = $('#precio').val();
 			var sabor 	= $('#sabor').val();
 			var fecha_vencimiento	= $('#fecha_vencimiento').val();
@@ -94,8 +90,8 @@
 
 				$.ajax({
 					type: 'POST',
-					url: 'validarProducto.php',
-					data: {nombre_producto: nombre_producto,cod_producto: cod_producto, precio: precio,sabor: sabor, fecha_vencimiento: fecha_vencimiento, stock: stock},
+					url: 'validar.php',
+					data: {nombre_producto: nombre_producto,cod_oferta: cod_oferta, precio: precio,sabor: sabor, fecha_vencimiento: fecha_vencimiento, stock: stock},
 					success: function(data){
 					Swal.fire({
 								'title': '¡Mensaje!',

@@ -70,6 +70,12 @@
         <span>Pedido</span>
     </a>
 </li>
+<li class="nav-item">
+    <a class="nav-link collapsed" href="CRUDEmpleado.php">
+    <span class="material-icons">pattern</span>
+        <span>Empleado</span>
+    </a>
+</li>
 <hr class="sidebar-divider">
 <div class="sidebar-heading">
     PERFIL

@@ -31,6 +31,10 @@
 			name="busqueda"> <br>
 			<button class="button" type="submit" name="enviar"> <b>Buscar </b> </button> 
 			</form>
+            <br>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#create">
+				<span class="glyphicon glyphicon-plus"></span> Nuevo Ingrediente   <i class="fa fa-plus"></i> </a></button>
+            <br>
             <?php
             $conexion=pg_connect("host=magallanes.inf.unap.cl dbname=brojas user=brojas password=Gt95x5cDq1");
             $where="";
@@ -41,7 +45,7 @@
 
                 if (isset($_GET['busqueda']))
                 {
-                    $where="WHERE CAST(cod_ingrediente AS TEXT) LIKE'%".$busqueda."%' OR CAST(fecha_vencimiento AS TEXT)  LIKE'%".$busqueda."%' OR nombre_ingreiente  LIKE'%".$busqueda."%' OR detalle  LIKE'%".$busqueda."%' OR CAST(stock AS TEXT)  LIKE'%".$busqueda."%'";
+                    $where="WHERE CAST(cod_ingrediente AS TEXT) LIKE'%".$busqueda."%' OR CAST(fecha_vencimiento AS TEXT)  LIKE'%".$busqueda."%' OR nombre_ingrediente  LIKE'%".$busqueda."%' OR detalle  LIKE'%".$busqueda."%' OR CAST(stock AS TEXT)  LIKE'%".$busqueda."%'";
                 }
             
             }
@@ -62,7 +66,7 @@
                         <?php
 
             $conexion=pg_connect("host=magallanes.inf.unap.cl dbname=brojas user=brojas password=Gt95x5cDq1");            
-            $encuentro="SELECT nombre_ingrediente, cod_ingreiente, detalle, fecha_vencimiento, stock FROM Ingrediente $where";
+            $encuentro="SELECT nombre_ingrediente, cod_ingrediente, detalle, fecha_vencimiento, stock FROM Ingrediente $where";
             $dato=pg_query($conexion,$encuentro);
 
             if(pg_num_rows($dato) >0){
@@ -71,7 +75,7 @@
             ?>
             <tr>
                         <td><?php echo $fila->nombre_ingrediente; ?></td>
-                        <td><?php echo $fila->cod_ingreiente; ?></td>
+                        <td><?php echo $fila->cod_ingrediente; ?></td>
                         <td><?php echo $fila->fecha_vencimiento; ?></td>
                         <td><?php echo $fila->detalle; ?></td>
                         <td><?php echo $fila->stock; ?></td>
@@ -109,9 +113,12 @@
   </table>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
-<script src="../js/user.js"></script>
-<script src="../js/acciones.js"></script>
-<script src="../js/buscador.js"></script>
+<script src="../package/dist/sweetalert2.all.js"></script>
+<script src="../package/dist/sweetalert2.all.min.js"></script>
+<script src="../package/jquery-3.6.0.min.js"></script>
+
+
+    <?php include('InsertarIngrediente.php'); ?>
 
 
 </html>
