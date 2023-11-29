@@ -25,7 +25,7 @@
 </a>
 <hr class="sidebar-divider my-0">
 <li class="nav-item active">
-    <a class="nav-link" href="index.html">
+    <a class="nav-link" href="Graficos.php">
         <i class="material-icons-outlined"></i>
         <span>Graficos</span></a>
 </li>
