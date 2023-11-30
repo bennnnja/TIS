@@ -12,7 +12,7 @@ class PDF extends FPDF
 
       //$consulta_info = $conexion->query(" select *from hotel ");//traemos datos de la empresa desde BD
       //$dato_info = $consulta_info->fetch_object();
-      $this->Image('logo.png', 185, 5, 20); //logo de la empresa,moverDerecha,moverAbajo,tamañoIMG
+      $this->Image('logo milano.png', 185, 5, 20); //logo de la empresa,moverDerecha,moverAbajo,tamañoIMG
       $this->SetFont('Arial', 'B', 19); //tipo fuente, negrita(B-I-U-BIU), tamañoTexto
       $this->Cell(45); // Movernos a la derecha
       $this->SetTextColor(0, 0, 0); //color
@@ -50,7 +50,7 @@ class PDF extends FPDF
       $this->SetTextColor(228, 100, 0);
       $this->Cell(50); // mover a la derecha
       $this->SetFont('Arial', 'B', 15);
-      $this->Cell(100, 10, utf8_decode("REPORTE DE HABITACIONES "), 0, 1, 'C', 0);
+      $this->Cell(100, 10, utf8_decode("REPORTE DE PROVEEDORES "), 0, 1, 'C', 0);
       $this->Ln(7);
 
       /* CAMPOS DE LA TABLA */
@@ -59,12 +59,11 @@ class PDF extends FPDF
       $this->SetTextColor(255, 255, 255); //colorTexto
       $this->SetDrawColor(163, 163, 163); //colorBorde
       $this->SetFont('Arial', 'B', 11);
-      $this->Cell(18, 10, utf8_decode('N°'), 1, 0, 'C', 1);
-      $this->Cell(20, 10, utf8_decode('NÚMERO'), 1, 0, 'C', 1);
-      $this->Cell(30, 10, utf8_decode('TIPO'), 1, 0, 'C', 1);
-      $this->Cell(25, 10, utf8_decode('PRECIO'), 1, 0, 'C', 1);
-      $this->Cell(70, 10, utf8_decode('CARACTERÍSTICAS'), 1, 0, 'C', 1);
-      $this->Cell(25, 10, utf8_decode('ESTADO'), 1, 1, 'C', 1);
+      $this->Cell(18, 10, utf8_decode('NOMBRE'), 1, 0, 'C', 1);
+      $this->Cell(20, 10, utf8_decode('CÓDIGO'), 1, 0, 'C', 1);
+      $this->Cell(30, 10, utf8_decode('TELEFONO'), 1, 0, 'C', 1);
+      $this->Cell(25, 10, utf8_decode('EMAIL'), 1, 0, 'C', 1);
+      $this->Cell(70, 10, utf8_decode('UBICACIÓN'), 1, 0, 'C', 1);
    }
 
    // Pie de página
