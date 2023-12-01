@@ -33,7 +33,7 @@
 							echo "<a>$nombre</a>";
 						}	
 						?>	
-						<a href="MiPerfil.php"><i class="fa-solid fa-user"></i></a>
+						<a href="Graficos.php"><i class="fa-solid fa-user"></i></a>
 						<i class="fa-solid fa-basket-shopping"></i>
 						<div class="content-shopping-cart">
 							<span class="text">Carrito</span>

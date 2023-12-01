@@ -17,7 +17,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title" id="exampleModalLabel">Registro de Producto</h3>
+                    <h3 class="modal-title" id="exampleModalLabel">Registro de Proveedor</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -26,32 +26,26 @@
 <form  action="" method="POST">
 
                             <div class="form-group">
-                            <label for="nombre_producto" class="form-label">Nombre Producto:</label>
-                            <input type="text"  id="nombre_producto" name="nombre_producto" class="form-control" required>
+                            <label for="nombre_proveedor" class="form-label">Nombre Proveedor:</label>
+                            <input type="text"  id="nombre_proveedor" name="nombre_proveedor" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label for="cod_producto">Codigo Producto:</label><br>
-                                <input type="text" name="cod_producto" id="cod_producto" class="form-control" placeholder="">
+                                <label for="cod_proveedor">Codigo Proveedor:</label><br>
+                                <input type="number" name="cod_proveedor" id="cod_proveedor" class="form-control" placeholder="">
                             </div>
                             <div class="form-group">
-                                  <label for="precio" class="form-label">Precio:</label>
-                                <input type="number"  id="precio" name="precio" class="form-control" required>
+                                  <label for="telefono" class="form-label">Telefono:</label>
+                                <input type="number"  id="telefono" name="telefono" class="form-control" required>
                                 
                             </div>
                             <div class="form-group">
-                                <label for="sabor">Sabor:</label><br>
-                                <input type="text" name="sabor" id="sabor" class="form-control" required>
+                                <label for="email_proveedor">Correo:</label><br>
+                                <input type="email" name="email_proveedor" id="email_proveedor" class="form-control" required>
                             </div>
                             
                             <div class="form-group">
-                                  <label for="fecha_vencimiento" class="form-label">Fecha Vencimiento:</label>
-                                <input type="date"  id="fecha_vencimiento" name="fecha_vencimiento" class="form-control">
-                             
-                            </div>
-
-                            <div class="form-group">
-                                  <label for="stock" class="form-label">Stock:</label>
-                                <input type="number"  id="stock" name="stock" class="form-control">
+                                  <label for="ubicacion" class="form-label">Ubicacion:</label>
+                                <input type="text"  id="ubicacion" name="ubicacion" class="form-control">
                              
                             </div>
                       
@@ -61,7 +55,7 @@
                                     
                                <input type="submit" value="Guardar" id="register" class="btn btn-success" 
                                name="registrar">
-                               <a href="user.php" class="btn btn-danger">Cancelar</a>
+                               <a href="CRUDProveedor.php" class="btn btn-danger">Cancelar</a>
                                
                             </div>
                         
@@ -82,20 +76,19 @@
 			if(valid){
 
 
-			var nombre_producto = $('#nombre_producto').val();
-			var cod_producto = $('#cod_producto').val();
-			var precio = $('#precio').val();
-			var sabor 	= $('#sabor').val();
-			var fecha_vencimiento	= $('#fecha_vencimiento').val();
-            var stock	= $('#stock').val();
+			var nombre_proveedor = $('#nombre_proveedor').val();
+			var cod_proveedor = $('#cod_proveedor').val();
+			var telefono = $('#telefono').val();
+			var email_proveedor 	= $('#email_proveedor').val();
+			var ubicacion	= $('#ubicacion').val();
 			
 
 				e.preventDefault();	
 
 				$.ajax({
 					type: 'POST',
-					url: 'validar.php',
-					data: {nombre_producto: nombre_producto,cod_producto: cod_producto, precio: precio,sabor: sabor, fecha_vencimiento: fecha_vencimiento, stock: stock},
+					url: 'validarProveedor.php',
+					data: {nombre_proveedor: nombre_proveedor,cod_proveedor: cod_proveedor, telefono: telefono,email_proveedor: email_proveedor, ubicacion: ubicacion},
 					success: function(data){
 					Swal.fire({
 								'title': '¡Mensaje!',

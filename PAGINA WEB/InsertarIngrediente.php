@@ -31,7 +31,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="cod_ingrediente">Codigo Ingrediente:</label><br>
-                                <input type="text" name="cod_ingrediente" id="cod_ingrediente" class="form-control" placeholder="">
+                                <input type="number" name="cod_ingrediente" id="cod_ingrediente" class="form-control" placeholder="">
                             </div>
                             <div class="form-group">
                                 <label for="detalle">Detalle:</label><br>
@@ -53,7 +53,7 @@
                                     
                                <input type="submit" value="Guardar" id="register" class="btn btn-success" 
                                name="registrar">
-                               <a href="user.php" class="btn btn-danger">Cancelar</a>
+                               <a href="CRUDIngrediente.php" class="btn btn-danger">Cancelar</a>
                                
                             </div>
                         
@@ -85,7 +85,7 @@
 
 				$.ajax({
 					type: 'POST',
-					url: '../validar/validarIngrediente.php',
+					url: 'validarIngrediente.php',
 					data: {nombre_ingrediente: nombre_ingrediente,cod_ingrediente: cod_ingrediente, detalle: detalle, fecha_vencimiento: fecha_vencimiento, stock: stock},
 					success: function(data){
 					Swal.fire({

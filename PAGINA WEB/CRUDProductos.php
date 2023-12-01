@@ -68,28 +68,24 @@
                         <?php
 
             $conexion=pg_connect("host=magallanes.inf.unap.cl dbname=brojas user=brojas password=Gt95x5cDq1");            
-            $encuentro=pg_query($conexion,"SELECT nombre_producto, cod_producto, precio, sabor, fecha_vencimiento,stock FROM producto");
-
-
-                while($fila=pg_fetch_assoc($encuentro)):
-                
+            $encuentro=pg_query($conexion,"SELECT nombre_producto, cod_producto, precio, sabor, fecha_vencimiento,stock FROM producto $where");
+            while($fila=pg_fetch_assoc($encuentro)):    
             ?>
             <tr>
-            <td><?php echo $fila['nombre_producto']; ?></td>
-            <td><?php echo $fila['cod_producto']; ?></td>
-            <td><?php echo $fila['precio']; ?></td>
-            <td><?php echo $fila['sabor']; ?></td>
-            <td><?php echo $fila['fecha_vencimiento']; ?></td>
-            <td><?php echo $fila['stock']; ?></td>
+                <td><?php echo $fila['nombre_producto']; ?></td>
+                <td><?php echo $fila['cod_producto']; ?></td>
+                <td><?php echo $fila['precio']; ?></td>
+                <td><?php echo $fila['sabor']; ?></td>
+                <td><?php echo $fila['fecha_vencimiento']; ?></td>
+                <td><?php echo $fila['stock']; ?></td>
 
 
 
             <td>
 
-
-            <a class="btn btn-warning" href="editar_producto.php?codigo_producto=<?php echo $fila['cod_producto']; ?>">
+            <a class="btn btn-warning" href="editar_producto.php?cod_producto=<?php echo $fila['cod_producto']?> ">
             <i class="fa fa-edit"></i> Editar </a>
-
+            </button>
 
             <a class="btn btn-danger btn-del" href="eliminar_producto.php?codigo_producto=<?php echo $fila['cod_producto']; ?>">
             <i class="fa fa-trash"></i> Eliminar </a>
@@ -115,7 +111,7 @@ $('.btn-del').on('click', function(e){
   const href = $(this).attr('href')
 
   Swal.fire({
-  title: 'Estas seguro de eliminar este usuario?',
+  title: 'Estas seguro de eliminar este producto?',
   text: "¡No podrás revertir esto!!",
   icon: 'warning',
   showCancelButton: true,
@@ -145,5 +141,4 @@ $('.btn-del').on('click', function(e){
 
 
     <?php include('InsertarProducto.php'); ?>
-    <?php include('editar_producto.php'); ?>
 </html>

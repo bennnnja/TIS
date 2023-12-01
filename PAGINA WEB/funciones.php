@@ -1,61 +1,37 @@
-<!-- Agrega la biblioteca de SweetAlert -->
-
-
 <?php
 
-if (isset($_POST['accion'])) {
-    switch ($_POST['accion']) {
-            //casos de registros
-        case 'editar':
-            editar();
-            break;
+function editar_registro_producto()
+{
+    $conexion = pg_connect("host=magallanes.inf.unap.cl dbname=brojas user=brojas password=Gt95x5cDq1");
+
+    // Obtener los valores del formulario
+    $nombre_producto = $_POST['nombre_producto'];
+    $sabor = $_POST['sabor'];
+    $precio = $_POST['precio'];
+    $fecha_vencimiento = $_POST['fecha_vencimiento'];
+    $cod_producto = $_POST['cod_producto'];
+    $stock = $_POST['stock'];
+
+    $consulta = "UPDATE producto SET cod_producto='$cod_producto', nombre_producto='$nombre_producto', sabor='$sabor', precio='$precio', fecha_vencimiento='$fecha_vencimiento' , stock='$stock'WHERE cod_producto='$cod_producto'";
+
+    $resultado = pg_query($conexion, $consulta);
+
+    if ($resultado) {
+        // La consulta se ejecutó correctamente
+        header('Location: CRUDProductos.php');
+    } else {
+        // Error en la consulta
+        echo "Error al actualizar los datos: " . pg_last_error($conexion);
     }
 }
 
-function editar()
-{
 
-    extract($_POST);
-    require_once("db.php");
+if (isset($_POST['accion'])) {
+    switch ($_POST['accion']) {
+        //casos de registros
 
-    $consulta = "UPDATE producto SET nombre_producto = '$nombre_producto', cod_producto = '$cod_producto', 
-    precio = '$precio' , sabor = '$sabor', fecha_vencimiento = '$fecha_vencimiento', stock = '$stock'WHERE cod_producto = '$cod_producto' ";
-
-    $resultado = mysqli_query($conexion, $consulta);
-
-    if ($resultado) {
-        echo "
-        <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
-        <script language='JavaScript'>
-        document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                icon: 'success',
-                title: 'El registro fue actualizado correctamente',
-                showCancelButton: false,
-                confirmButtonColor: '#3085d6',
-                confirmButtonText: 'OK',
-                timer: 1500
-              }).then(() => {
-                location.assign('CRUDProductos.php');
-              });
-    });
-        </script>";
-    } else {
-        echo "
-        <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
-        <script language='JavaScript'>
-        document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                icon: 'error',
-                title: 'Algo salio mal. Intenta de nuevo',
-                showCancelButton: false,
-                confirmButtonColor: '#3085d6',
-                confirmButtonText: 'OK',
-                timer: 1500
-              }).then(() => {
-                location.assign('CRUDProductos.php');
-              });
-    });
-        </script>";
+        case 'editar_registro_producto':
+            editar_registro_producto();
+            break; 
     }
 }
