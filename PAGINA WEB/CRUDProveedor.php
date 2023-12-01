@@ -34,6 +34,7 @@
             <br>
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#create">
 				<span class="glyphicon glyphicon-plus"></span> Nuevo Proveedor   <i class="fa fa-plus"></i> </a></button>
+                <a href="fpdf/PdfProveedor.php" class="btn btn-success"><i class="fas fa-file-pdf"></i>Generar Reportes</a>
             <br>
             <?php
             $conexion=pg_connect("host=magallanes.inf.unap.cl dbname=brojas user=brojas password=Gt95x5cDq1");
