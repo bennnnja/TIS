@@ -1,3 +1,5 @@
+<?php session_start();?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -22,9 +24,21 @@
 						<i class="fa-solid fa-ice-cream"></i>
 						<h1 class="logo"><a href="index.html">GELATERIA MILANO</a></h1>
 					</div>
-						
-					<a href="LoginRegistro.html" class="btn__quote">Iniciar Sesion</a>
 
+					<div class="container-user">
+						<?php
+						if(isset($_SESSION['nombre'])) {
+							// Si el email está definido en la sesión, lo puedes usar en esta página
+							$nombre = $_SESSION['nombre'];
+							echo "<a>$nombre</a>";
+						}	
+						?>	
+						<a href="Graficos.php"><i class="fa-solid fa-user"></i></a>
+						<i class="fa-solid fa-basket-shopping"></i>
+						<div class="content-shopping-cart">
+							<span class="text">Carrito</span>
+						</div>
+					</div>
 				</div>
 			</div>
 
@@ -85,32 +99,31 @@
 				<div class="container-categories">
 					<div class="card-category category-moca">
 						<p>BOTES</p>
-						<span>Ver más</span>
+						<a href="Productos.html">Ver más</a>
 					</div>
 					<div class="card-category category-expreso">
 						<p>PALETAS</p>
-						<span>Ver más</span>
+						<a href="Productos.html">Ver más</a>
 					</div>
 					<div class="card-category category-capuchino">
 						<p>VARIOS</p>
-						<span>Ver más</span>
+						<a href="Productos.html">Ver más</a>
 					</div>
 				</div>
 			</section>
 
 			<section class="container top-products">
 				<h1 class="heading-1">Mejores Productos</h1>
-			
+
 				<div class="container-options">
-					<button class="category-btn" data-category="destacados">Destacados</button>
-					<button class="category-btn" data-category="recientes">Más recientes</button>
-					<button class="category-btn" data-category="vendidos">Mejores Vendidos</button>
-					<button class="category-btn" data-category="todos">Todos</button>
+					<span class="active">Destacados</span>
+					<span id="masRecientesTab">Más recientes</span>
+					<span id="mejoresVendidosTab">Mejores Vendidos</span>
 				</div>
-			
+
 				<div class="container-products">
 					<!-- Producto 1 -->
-					<div class="card-product destacados">
+					<div class="card-product">
 						<div class="container-img">
 							<img src="bote helado.png" alt="Bote de Helado 1KG" />
 							<div class="button-group">
@@ -141,7 +154,7 @@
 						</div>
 					</div>
 					<!-- Producto 2 -->
-					<div class="card-product destacados">
+					<div class="card-product">
 						<div class="container-img">
 							<img
 								src="bote helado.png"
@@ -174,10 +187,13 @@
 							<p class="price">$10.000</p>
 						</div>
 					</div>
-					<!-- Producto 3 -->
-					<div class="card-product recientes">
+					<!--  -->
+					<div class="card-product">
 						<div class="container-img">
-							<img src="paletas.png" alt="Pack 50 Paletas" />
+							<img
+								src="paletas.png"
+								alt="Paleta pack 25"
+							/>
 							<div class="button-group">
 								<span>
 									<i class="fa-regular fa-eye"></i>
@@ -196,79 +212,17 @@
 								<i class="fa-solid fa-star"></i>
 								<i class="fa-solid fa-star"></i>
 								<i class="fa-solid fa-star"></i>
-								<i class="fa-regular fa-star"></i>
+								<i class="fa-solid fa-star"></i>
 							</div>
-							<h3>Pack 50 Paletas</h3>
+							<h3>Pack 25 Paletas</h3>
 							<span class="add-cart">
 								<i class="fa-solid fa-basket-shopping"></i>
 							</span>
-							<p class="price">$27.500</p>
+							<p class="price">$14.000</p>
 						</div>
 					</div>
-					<!-- Producto 4 -->
-					<div class="card-product recientes">
-						<div class="container-img">
-							<img src="paletas.png" alt="Pack 50 Paletas" />
-							<div class="button-group">
-								<span>
-									<i class="fa-regular fa-eye"></i>
-								</span>
-								<span>
-									<i class="fa-regular fa-heart"></i>
-								</span>
-								<span>
-									<i class="fa-solid fa-code-compare"></i>
-								</span>
-							</div>
-						</div>
-						<div class="content-card-product">
-							<div class="stars">
-								<i class="fa-solid fa-star"></i>
-								<i class="fa-solid fa-star"></i>
-								<i class="fa-solid fa-star"></i>
-								<i class="fa-solid fa-star"></i>
-								<i class="fa-regular fa-star"></i>
-							</div>
-							<h3>Pack 50 Paletas</h3>
-							<span class="add-cart">
-								<i class="fa-solid fa-basket-shopping"></i>
-							</span>
-							<p class="price">$27.500</p>
-						</div>
-					</div>
-					<!-- Producto 5 -->
-					<div class="card-product vendidos">
-						<div class="container-img">
-							<img src="paletas.png" alt="Pack 50 Paletas" />
-							<div class="button-group">
-								<span>
-									<i class="fa-regular fa-eye"></i>
-								</span>
-								<span>
-									<i class="fa-regular fa-heart"></i>
-								</span>
-								<span>
-									<i class="fa-solid fa-code-compare"></i>
-								</span>
-							</div>
-						</div>
-						<div class="content-card-product">
-							<div class="stars">
-								<i class="fa-solid fa-star"></i>
-								<i class="fa-solid fa-star"></i>
-								<i class="fa-solid fa-star"></i>
-								<i class="fa-solid fa-star"></i>
-								<i class="fa-regular fa-star"></i>
-							</div>
-							<h3>Pack 50 Paletas</h3>
-							<span class="add-cart">
-								<i class="fa-solid fa-basket-shopping"></i>
-							</span>
-							<p class="price">$27.500</p>
-						</div>
-					</div>
-					<!-- Producto 6 -->
-					<div class="card-product vendidos">
+					<!--  -->
+					<div class="card-product">
 						<div class="container-img">
 							<img src="paletas.png" alt="Pack 50 Paletas" />
 							<div class="button-group">
@@ -300,8 +254,6 @@
 					</div>
 				</div>
 			</section>
-			
-			<button id="filter-btn">Mostrar Todos</button>
 
 			<section class="gallery">
 				<img
@@ -527,48 +479,5 @@
 			src="https://kit.fontawesome.com/81581fb069.js"
 			crossorigin="anonymous"
 		></script>
-		<script>
-			document.addEventListener("DOMContentLoaded", function () {
-    const filterButton = document.getElementById("filter-btn");
-    const categoryButtons = document.querySelectorAll(".category-btn");
-    const products = document.querySelectorAll(".card-product");
-
-    // Ocultar todos los productos
-    function hideAllProducts() {
-        products.forEach(function (product) {
-            product.style.display = "none";
-        });
-    }
-
-    // Mostrar productos de una categoría específica
-    function showProducts(category) {
-        hideAllProducts();
-        if (category === "todos") {
-            products.forEach(function (product) {
-                product.style.display = "block";
-            });
-        } else {
-            const selectedProducts = document.querySelectorAll(`.${category}`);
-            selectedProducts.forEach(function (product) {
-                product.style.display = "block";
-            });
-        }
-    }
-
-    // Manejar clic en botones de categoría
-    categoryButtons.forEach(function (button) {
-        button.addEventListener("click", function () {
-            const category = button.getAttribute("data-category");
-            showProducts(category);
-        });
-    });
-
-    // Manejar clic en el botón "Mostrar Todos"
-    filterButton.addEventListener("click", function () {
-        showProducts("todos");
-    });
-});
-
-		</script>
 	</body>
 </html>
