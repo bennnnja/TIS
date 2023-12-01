@@ -59,13 +59,10 @@ class PDF extends FPDF
       $this->SetTextColor(255, 255, 255); //colorTexto
       $this->SetDrawColor(163, 163, 163); //colorBorde
       $this->SetFont('Arial', 'B', 11);
-      $this->Cell(35, 10, utf8_decode('NOMBRE'), 1, 0, 'C', 1);
-      $this->Cell(20, 10, utf8_decode('CÓDIGO'), 1, 0, 'C', 1);
+      $this->Cell(35, 10, utf8_decode('CODIGO'), 2, 0, 'C', 1);
+      $this->Cell(20, 10, utf8_decode('NOMBRE'), 1, 0, 'C', 1);
       $this->Cell(30, 10, utf8_decode('PRECIO'), 1, 0, 'C', 1);
-      $this->Cell(25, 10, utf8_decode('SABOR'), 1, 0, 'C', 1);
-      $this->Cell(35, 10, utf8_decode('FECHA VENC.'), 1, 0, 'C', 1);
       $this->Cell(25, 10, utf8_decode('STOCK'), 1, 0, 'C', 1);
-      $this->Cell(25, 10, utf8_decode('ACCIONES'), 1, 1, 'C', 1);
    }
 
    // Pie de página
@@ -102,13 +99,10 @@ $pdf->SetDrawColor(163, 163, 163); //colorBorde
    }*/
 $i = $i + 1;
 /* TABLA */
-$pdf->Cell(35, 10, utf8_decode("Bote de helado"), 1, 0, 'C', 0);
-$pdf->Cell(20, 10, utf8_decode("#345"), 1, 0, 'C', 0);
-$pdf->Cell(30, 10, utf8_decode("$11.000"), 1, 0, 'C', 0);
-$pdf->Cell(25, 10, utf8_decode("Fresa"), 1, 0, 'C', 0);
-$pdf->Cell(35, 10, utf8_decode("24/12/23"), 1, 0, 'C', 0);
-$pdf->Cell(25, 10, utf8_decode("15 uni."), 1, 0, 'C', 0);
-$pdf->Cell(25, 10, utf8_decode("total"), 1, 1, 'C', 0);
+$pdf->Cell(35, 10, utf8_decode("2"), 2, 0, 'C', 0);
+$pdf->Cell(20, 10, utf8_decode("Paleta"), 1, 0, 'C', 0);
+$pdf->Cell(30, 10, utf8_decode("$8.000"), 1, 0, 'C', 0);
+$pdf->Cell(25, 10, utf8_decode("10"), 1, 0, 'C', 0);
 
 
 $pdf->Output('reporteProductos.pdf', 'I');//nombreDescarga, Visor(I->visualizar - D->descargar)

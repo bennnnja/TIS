@@ -2,8 +2,39 @@
 <!DOCTYPE html>
 <?php require '_header.php' ?>
 <html lang="en">
-    
+<?php
+// Incluir el archivo de conexión
+include('conexion.php');
+
+// Continuar con el resto del código
+$sql = "SELECT nombre_producto, stock FROM producto ORDER BY stock DESC LIMIT 5";
+$result = $conn->query($sql);
+
+// Verificar si la consulta fue exitosa
+if ($result) {
+    // Crear arrays para almacenar datos
+    $labels = [];
+    $data = [];
+
+    // Procesar resultados de la consulta
+    foreach ($result as $row) {
+        $labels[] = $row['nombre_producto'];
+        $data[] = $row['stock'];
+    }
+} else {
+    // Manejar el error si la consulta falla
+    echo "Error en la consulta: " . $conn->errorInfo();
+}
+
+// Cerrar la conexión
+$conn = null;
+?>
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráfico de Donut con Chart.js</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -112,81 +143,54 @@
                 <div class="d-flex align-items-center">
                     <div>
                         <h6 class="mb-0">Productos más vendidos</h6>
+                        <html>
+
                     </div>
                 </div>
             </div>
             <div class="card-body">
                 <div class="chart-container-1">
+                <body>
+                    
+                    <canvas id="donutChart" width="100" height="100"></canvas>
+                    <script>
+                        // Datos para el gráfico (usando datos de PHP)
+                        var data = {
+                            labels: <?php echo json_encode($labels); ?>,
+                            datasets: [{
+                                data: <?php echo json_encode($data); ?>,
+                                backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF'],
+                                hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF']
+                               
+
+                            }]
+                        };
+
+                        // Opciones del gráfico
+                        var options = {
+                            cutoutPercentage: 50,
+                            responsive: true,
+                            maintainAspectRatio: true
+                        };
+
+                        // Obtener el contexto del canvas
+                        var ctx = document.getElementById('donutChart').getContext('2d');
+
+                        // Crear el gráfico de donut
+                        var myDonutChart = new Chart(ctx, {
+                            type: 'doughnut',
+                            data: data,
+                            options: options
+                        });
+                    </script>
+                </body>
+                </html>
                     <canvas id="topProductos"></canvas>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<?php include_once 'footer-admin.php'; ?>
-
-<script src="<?php echo BASE_URL; ?>assets/js/index.js"></script>
-
-<script>
-    // chart 2
-
-    var ctx = document.getElementById("reportePedidos").getContext('2d');
-
-    var gradientStroke1 = ctx.createLinearGradient(0, 0, 0, 300);
-    gradientStroke1.addColorStop(0, '#fc4a1a');
-    gradientStroke1.addColorStop(1, '#f7b733');
-
-    var gradientStroke2 = ctx.createLinearGradient(0, 0, 0, 300);
-    gradientStroke2.addColorStop(0, '#4776e6');
-    gradientStroke2.addColorStop(1, '#8e54e9');
-
-
-    var gradientStroke3 = ctx.createLinearGradient(0, 0, 0, 300);
-
-    gradientStroke3.addColorStop(0, '#42e695');
-    gradientStroke3.addColorStop(1, '#3bb2b8');
-
-    var myChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ["Pendientes", "Proceso", "Finalizados"],
-            datasets: [{
-                backgroundColor: [
-                    gradientStroke1,
-                    gradientStroke2,
-                    gradientStroke3
-                ],
-                hoverBackgroundColor: [
-                    gradientStroke1,
-                    gradientStroke2,
-                    gradientStroke3
-                ],
-                data: [<?php echo $data['pendientes']['total']; ?>,
-                    <?php echo $data['procesos']['total']; ?>,
-                    <?php echo $data['finalizados']['total']; ?>
-                ],
-                borderWidth: [1, 1, 1]
-            }]
-        },
-        options: {
-            maintainAspectRatio: false,
-            cutoutPercentage: 75,
-            legend: {
-                position: 'bottom',
-                display: false,
-                labels: {
-                    boxWidth: 8
-                }
-            },
-            tooltips: {
-                displayColors: false,
-            }
-        }
-    });
-</script>
-
-<script src="<?php echo BASE_URL; ?>assets/js/index.js"></script>
 
 </body>
 
