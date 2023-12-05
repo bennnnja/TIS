@@ -5,12 +5,12 @@ class Query extends Conexion {
         $this->pdo = new Conexion();
         $this->con = $this->pdo->conect();
     }
-    public function select(string $sql)
+    public function select($sql)
     {
         $this->sql = $sql;
         $resul = $this->con->prepare($this->sql);
         $resul->execute();
-        $data = $resul->fetch(PDO::FETCH_ASSOC);
+        $data = $resul->fetchAll(PDO::FETCH_ASSOC);
         return $data;
     }
     public function selectAll(string $sql)
