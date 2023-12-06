@@ -31,7 +31,7 @@ if (file_exists($dirControllers)) {
         echo "no existe metodo";
     }
 } else {
-    echo "no existe controlador";
+    echo "No existe controlador";
     //header('Location: ' . BASE_URL . 'errors');
 }
 ?>

@@ -1,5 +1,5 @@
 <?php
-const BASE_URL = "http://localhost/TIS/milano_mvc/";
+const BASE_URL = "https://acinfo.inf.unap.cl/~brojas/interfaz2/milano_mvc/";
 const HOST = "magallanes.inf.unap.cl";
 const USER = "brojas";
 const PASS = "Gt95x5cDq1";

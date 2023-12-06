@@ -1,18 +1,14 @@
 <?php
 class Vistas {
  
-
-    public function getView($controlador, $vista)
+    public function getView($ruta, $vista)
     {
-        $controlador = get_class($controlador);
-        if ($controlador == "Home") {
+        if ($ruta == "Home") {
             $vista = "Views/".$vista.".php";
-        } else {
-            $vista = "Views/".$controlador."/".$vista.".php";
+        }else{
+            $vista = "Views/".$ruta."/".$vista.".php";
         }
         require $vista;
     }
 }
-
-
 ?>

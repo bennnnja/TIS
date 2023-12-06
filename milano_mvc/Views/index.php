@@ -8,14 +8,14 @@
 			content="width=device-width, initial-scale=1.0"
 		/>
 		<title>Gelateria Milano</title>
-		<link rel="stylesheet" href="Views/estilo.css" />
+		<link rel="stylesheet" href="<?php echo BASE_URL; ?>Assets/css/estilo.css" />
 	</head>
 	<body>
 		<header>
 			<div class="container-hero">
 				<div class="container hero">
 					<div class="customer-support">
-						<img src="logo milano.png" alt="">
+						<img src="<?php echo BASE_URL; ?>Assets/imgs/logo milano.png" alt="">
 					</div>
 
 					<div class="container-logo">
@@ -112,7 +112,7 @@
 					<!-- Producto 1 -->
 					<div class="card-product destacados">
 						<div class="container-img">
-							<img src="bote helado.png" alt="Bote de Helado 1KG" />
+							<img src="<?php echo BASE_URL; ?>Assets/imgs/bote helado.png" alt="Bote de Helado 1KG" />
 							<div class="button-group">
 								<span>
 									<i class="fa-regular fa-eye"></i>
@@ -144,7 +144,7 @@
 					<div class="card-product destacados">
 						<div class="container-img">
 							<img
-								src="bote helado.png"
+								src="<?php echo BASE_URL; ?>Assets/imgs/bote helado.png"
 								alt="Bote de helado 750Gr"
 							/>
 							<div class="button-group">
@@ -177,7 +177,7 @@
 					<!-- Producto 3 -->
 					<div class="card-product recientes">
 						<div class="container-img">
-							<img src="paletas.png" alt="Pack 50 Paletas" />
+							<img src="<?php echo BASE_URL; ?>Assets/imgs/paletas.png" alt="Pack 50 Paletas" />
 							<div class="button-group">
 								<span>
 									<i class="fa-regular fa-eye"></i>
@@ -208,7 +208,7 @@
 					<!-- Producto 4 -->
 					<div class="card-product recientes">
 						<div class="container-img">
-							<img src="paletas.png" alt="Pack 50 Paletas" />
+							<img src="<?php echo BASE_URL; ?>Assets/imgs/paletas.png" alt="Pack 50 Paletas" />
 							<div class="button-group">
 								<span>
 									<i class="fa-regular fa-eye"></i>
@@ -239,7 +239,7 @@
 					<!-- Producto 5 -->
 					<div class="card-product vendidos">
 						<div class="container-img">
-							<img src="paletas.png" alt="Pack 50 Paletas" />
+							<img src="<?php echo BASE_URL; ?>Assets/imgs/paletas.png" alt="Pack 50 Paletas" />
 							<div class="button-group">
 								<span>
 									<i class="fa-regular fa-eye"></i>
@@ -270,7 +270,7 @@
 					<!-- Producto 6 -->
 					<div class="card-product vendidos">
 						<div class="container-img">
-							<img src="paletas.png" alt="Pack 50 Paletas" />
+							<img src="<?php echo BASE_URL; ?>Assets/imgs/paletas.png" alt="Pack 50 Paletas" />
 							<div class="button-group">
 								<span>
 									<i class="fa-regular fa-eye"></i>
@@ -305,23 +305,23 @@
 
 			<section class="gallery">
 				<img
-					src="imagen 1.webp"
+					src="<?php echo BASE_URL; ?>Assets/imgs/imagen 1.webp"
 					alt="Gallery Img1"
 					class="gallery-img-1"
 				/><img
-					src="imagen 2.jpg"
+					src="<?php echo BASE_URL; ?>Assets/imgs/imagen 2.jpg"
 					alt="Gallery Img2"
 					class="gallery-img-2"
 				/><img
-					src="imagen 3.jpg"
+					src="<?php echo BASE_URL; ?>Assets/imgs/imagen 3.jpg"
 					alt="Gallery Img3"
 					class="gallery-img-3"
 				/><img
-					src="imagen 4.jpg"
+					src="<?php echo BASE_URL; ?>Assets/imgs/imagen 4.jpg"
 					alt="Gallery Img4"
 					class="gallery-img-4"
 				/><img
-					src="imagen 5.jpg"
+					src="<?php echo BASE_URL; ?>Assets/imgs/imagen 5.jpg"
 					alt="Gallery Img5"
 					class="gallery-img-5"
 				/>
@@ -334,7 +334,7 @@
 					<!-- Producto 1 -->
 					<div class="card-product">
 						<div class="container-img">
-							<img src="paletas.png" alt="Cafe Irish" />
+							<img src="<?php echo BASE_URL; ?>Assets/imgs/paletas.png" alt="Cafe Irish" />
 							<span class="discount">-15%</span>
 							<div class="button-group">
 								<span>
@@ -367,7 +367,7 @@
 					<div class="card-product">
 						<div class="container-img">
 							<img
-								src="paletas.png"
+								src="<?php echo BASE_URL; ?>Assets/imgs/paletas.png"
 								alt="Cafe incafe-ingles.jpg"
 							/>
 							<span class="discount">-18%</span>
@@ -401,7 +401,7 @@
 					<!--  -->
 					<div class="card-product">
 						<div class="container-img">
-							<img src="bote helado.png" alt="Cafe Viena" />
+							<img src="<?php echo BASE_URL; ?>Assets/imgs/bote helado.png" alt="Cafe Viena" />
 							<span class="discount">-25%</span>
 							<div class="button-group">
 								<span>
@@ -433,7 +433,7 @@
 					<!--  -->
 					<div class="card-product">
 						<div class="container-img">
-							<img src="bote helado.png" alt="Cafe Liqueurs" />
+							<img src="<?php echo BASE_URL; ?>Assets/imgs/bote helado.png" alt="Cafe Liqueurs" />
 							<span class="discount">-23%</span>
 							<div class="button-group">
 								<span>
