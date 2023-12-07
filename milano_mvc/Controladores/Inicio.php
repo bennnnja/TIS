@@ -17,10 +17,13 @@ class Inicio extends Controlador
     }
 
     public function shop()
-    { $data['title'] = 'Productos';
+    { 
+        $data['title'] = 'Productos';
         $this->views->getView('inicial', "shop", $data);
     }
      public function detalle($id_producto)
-    { $data['title'] = '-----------';
+    { 
+        $data['title'] = $this->model->getProductos($id_producto);
+        $data['title'] =  $data['producto'];
         $this->views->getView('inicial', "detalle", $data);}
 }

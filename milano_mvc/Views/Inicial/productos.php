@@ -1,4 +1,4 @@
-<?php include_once 'Plantillas/header-inicio.php'; ?>
+<?php include_once __DIR__ . '/../Plantillas/header-inicio.php'; ?>
 
 <section class="container top-products">
       <div class="bgh-producto">
@@ -134,7 +134,7 @@
         <!--  -->
       </div>
 </section>
-    <?php include_once 'Views/Plantillas/footer-inicio.php'; ?>
+<?php include_once __DIR__ . '/../Plantillas/footer-inicio.php'; ?>
     <script
       src="https://kit.fontawesome.com/81581fb069.js"
       crossorigin="anonymous"

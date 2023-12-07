@@ -8,7 +8,7 @@
 			content="width=device-width, initial-scale=1.0"
 		/>
 		<title>Gelateria Milano</title>
-		<link rel="stylesheet" href="<?php echo BASE_URL; ?>Assets/css/estilo.css" />
+		<link rel="stylesheet" href="https://acinfo.inf.unap.cl/~brojas/interfaz2/milano_mvc/Assets/css/estilo" />
 </head>
 <body>
 		<header>
