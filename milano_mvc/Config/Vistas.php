@@ -1,7 +1,7 @@
 <?php
 class Vistas {
  
-    public function getView($ruta, $vista)
+    public function getView($ruta, $vista, $data)
     {
         if ($ruta == "Home") {
             $vista = "Views/".$vista.".php";

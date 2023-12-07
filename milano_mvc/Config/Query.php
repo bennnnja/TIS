@@ -13,7 +13,7 @@ class Query extends Conexion {
         $data = $resul->fetchAll(PDO::FETCH_ASSOC);
         return $data;
     }
-    public function selectAll(string $sql)
+    public function selectAll($sql)
     {
         $this->sql = $sql;
         $resul = $this->con->prepare($this->sql);

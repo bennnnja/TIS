@@ -1,13 +1,13 @@
 <?php
-class HomeModel extends Query{
+class InicioModel extends Query{
  
     public function __construct()
     {
         parent::__construct();
     }
-    public function getTopProductos()
+    public function getCategorias()
     {
-        $sql = "SELECT * FROM producto ORDER BY stock DESC LIMIT 4";
+        $sql = "SELECT * FROM productos";
         return $this->selectAll($sql);
     }
 }

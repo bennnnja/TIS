@@ -8,6 +8,7 @@ class Home extends Controlador
     public function index()
     {
         $data['title'] = 'Pagina Principal';
+        $data['topProductos'] = $this->model->getTopProductos();
         $this->views->getView('Home', "index", $data);
     }
 }
