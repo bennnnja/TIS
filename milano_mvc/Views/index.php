@@ -66,7 +66,7 @@
 					<?php foreach ($data['topProductos'] as $producto) { ?>
 					<div class="card-product destacados">
 						<div class="container-img">
-							<img src="<?php echo BASE_URL; ?>Assets/imgs/bote helado.png" alt="<?php echo $producto['nombre_producto'] ?>" />
+							<img src="<?php echo $producto['imagen'] ?>" alt="<?php echo $producto['nombre_producto'] ?>" />
 							<div class="button-group">
 								<span>
 									<i class="fa-regular fa-eye"></i>
@@ -91,7 +91,7 @@
 							<span class="add-cart">
 								<i class="fa-solid fa-basket-shopping"></i>
 							</span>
-							<p class="price">$<?php echo $producto['precio'] ?><</p>
+							<p class="price">$<?php echo $producto['precio'] ?></p>
 						</div>
 					</div>
 					<?php } ?>

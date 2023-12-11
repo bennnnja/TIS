@@ -1,4 +1,4 @@
-<?php include_once 'Views/Plantillas/header-inicio.php'; ?>
+<?php include_once __DIR__ . '/../Plantillas/header-inicio.php'; ?>
 
     <!-- Open Content -->
     <section class="bg-light">
@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-lg-5 mt-5">
                     <div class="card mb-3">
-                        <img class="card-img img-fluid" src="<?php echo $data['producto']['imagen']; ?>" alt="Card image cap" id="product-detail">
+                        <img class="card-img img-fluid" src="<?php echo isset($data['producto']['imagen']) ? $data['producto']['imagen'] : ''; ?>" alt="Card image cap" id="product-detail">
                     </div>
                     
                 </div>
@@ -14,8 +14,8 @@
                 <div class="col-lg-7 mt-5">
                     <div class="card">
                         <div class="card-body">
-                            <h1 class="h2"><?php echo $data['producto']['nombre_producto']; ?></h1>
-                            <p class="h3 py-2">$<?php echo $data['producto']['precio']; ?></p>
+                            <h1 class="h2"><?php echo isset($data['producto']['nombre_producto']) ? $data['producto']['nombre_producto'] : ''; ?></h1>
+                            <p class="h3 py-2">$<?php echo isset($data['producto']['precio']) ? $data['producto']['precio'] : ''; ?></p>
                             <p class="py-2">
                                 <i class="fa fa-star text-warning"></i>
                                 <i class="fa fa-star text-warning"></i>
@@ -26,10 +26,10 @@
                             </p>
                             <ul class="list-inline">
                                 <li class="list-inline-item">
-                                    <h6>Categoria</h6>
+                                    <h6>Categoría</h6>
                                 </li>
                                 <li class="list-inline-item">
-                                    <p class="text-muted"><strong><?php echo $data['producto']['categoria']; ?></strong></p>
+                                    <p class="text-muted"><strong><?php echo isset($data['producto']['categoria']) ? $data['producto']['categoria'] : ''; ?></strong></p>
                                 </li>
                         
                             <form action="" method="GET">
@@ -65,7 +65,7 @@
     </section>
     <!-- Close Content -->
 
-    <?php include_once 'Views/Plantillas/header-footer.php'; ?>
+    <?php include_once __DIR__ . '/../Plantillas/footer-inicio.php'; ?>
 </body>
 
 </html>
