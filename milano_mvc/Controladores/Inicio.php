@@ -12,7 +12,7 @@ class Inicio extends Controlador
     public function productos()
     {
         $data['title'] = 'Productos';
-        $data['categorias'] = $this->model->getCategorias();
+        $data['productoss'] = $this->model->getProducto();
         $this->views->getView('inicial', "productos", $data);
     }
 
@@ -21,11 +21,6 @@ class Inicio extends Controlador
         $data['title'] = 'Productos';
         $this->views->getView('inicial', "shop", $data);
     }
-    public function detalle($cod_producto)
-    { 
-        $data['producto'] = $this->model->getProductos($cod_producto)[0];
-        $data['title'] = $data['producto']['nombre_producto'];
-        $this->views->getView('inicial', 'detalle', $data);
-    }
+    
     
 }

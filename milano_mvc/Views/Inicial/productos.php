@@ -1,4 +1,5 @@
-<?php include_once __DIR__ . '/../Plantillas/header-inicio.php'; ?>
+<?php include_once __DIR__ . '/../Plantillas/header-inicio.php';
+ ?>
 
 <section class="container top-products">
       <div class="bgh-producto">
@@ -33,106 +34,39 @@
 
       <!-- FILTRACION DE PRODUCTOS -->
 
-      <div class="container-products">
-        <!-- Producto 1 -->
-        <div class="card-product">
-          <div class="container-img-product">
-            <img src="bote helado.png" alt="Bote de Helado 1KG" />
-            <div class="button-group-product">
-              <span>
-                <i class="fa-regular fa-eye"></i>
-              </span>
-              <span>
-                <i class="fa-regular fa-heart"></i>
-              </span>
-              <span>
-                <i class="fa-solid fa-code-compare"></i>
-              </span>
-            </div>
-          </div>
-          <p class="price-product">$11.000</p>
-          <div class="content-card-product-page">
-            <div class="stars">
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-regular fa-star"></i>
-            </div>
-            <h3>Bote de Helado 1KG</h3>
-            <button class="add-producto">
-              <i class="fa-solid fa-basket-shopping"></i>
-              <span>Agregar al carrito</span>
-            </button>
-          </div>
-        </div>
-        <!-- Producto 2 -->
-        <div class="card-product">
-          <div class="container-img-product">
-            <img src="bote helado.png" alt="Bote de Helado 1KG" />
-            <div class="button-group-product">
-              <span>
-                <i class="fa-regular fa-eye"></i>
-              </span>
-              <span>
-                <i class="fa-regular fa-heart"></i>
-              </span>
-              <span>
-                <i class="fa-solid fa-code-compare"></i>
-              </span>
-            </div>
-          </div>
-          <p class="price-product">$8.500</p>
-          <div class="content-card-product-page">
-            <div class="stars">
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-regular fa-star"></i>
-            </div>
-            <h3>Bote de Helado 750gr</h3>
-            <button class="add-producto">
-              <i class="fa-solid fa-basket-shopping"></i>
-              <span>Agregar al carrito</span>
-            </button>
-          </div>
-        </div>
-        <!--  -->
-
-        <div class="card-product">
-          <div class="container-img-product">
-            <img src="paletas.png" alt="Pack 25 Paletas" />
-            <div class="button-group-product">
-              <span>
-                <i class="fa-regular fa-eye"></i>
-              </span>
-              <span>
-                <i class="fa-regular fa-heart"></i>
-              </span>
-              <span>
-                <i class="fa-solid fa-code-compare"></i>
-              </span>
-            </div>
-          </div>
-          <p class="price-product">$6.000</p>
-          <div class="content-card-product-page">
-            <div class="stars">
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-regular fa-star"></i>
-            </div>
-            <h3>Bote de helado 500gr</h3>
-            <button class="add-producto">
-              <i class="fa-solid fa-basket-shopping"></i>
-              <span>Agregar al carrito</span>
-            </button>
-          </div>
-        </div>
-        <!--  -->
-      </div>
+      <?php foreach ($data['losProductos'] as $producto) { ?>
+					<div class="card-product destacados">
+						<div class="container-img">
+							<img src="<?php echo $producto['imagen'] ?>" alt="<?php echo $producto['nombre_producto'] ?>" />
+							<div class="button-group">
+								<span>
+									<i class="fa-regular fa-eye"></i>
+								</span>
+								<span>
+									<i class="fa-regular fa-heart"></i>
+								</span>
+								<span>
+									<i class="fa-solid fa-code-compare"></i>
+								</span>
+							</div>
+						</div>
+						<div class="content-card-product">
+							<div class="stars">
+								<i class="fa-solid fa-star"></i>
+								<i class="fa-solid fa-star"></i>
+								<i class="fa-solid fa-star"></i>
+								<i class="fa-solid fa-star"></i>
+								<i class="fa-regular fa-star"></i>
+							</div>
+							<h3><?php echo $producto['nombre_producto'] ?></h3>
+							<span class="add-cart">
+								<i class="fa-solid fa-basket-shopping"></i>
+							</span>
+							<p class="price">$<?php echo $producto['precio'] ?></p>
+						</div>
+					</div>
+					<?php } ?>
+				</div>
 </section>
 <?php include_once __DIR__ . '/../Plantillas/footer-inicio.php'; ?>
     <script

@@ -10,10 +10,10 @@ class InicioModel extends Query{
         $sql = "SELECT * FROM productos";
         return $this->selectAll($sql);
     }
-    public function getProductos($cod_producto)
+    public function getProducto()
     {
-        $sql = "SELECT * FROM productos WHERE cod_producto = $cod_producto";
-        return $this->select($sql);
+        $sql = "SELECT * FROM producto";
+        return $this->selectAll($sql);
     }
 }
  
