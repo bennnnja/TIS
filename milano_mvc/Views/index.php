@@ -72,7 +72,9 @@
 									<i class="fa-regular fa-eye"></i>
 								</span>
 								<span>
-									<i class="fa-regular fa-heart"></i>
+									<a class="btn btn-util text-white btnAddDeseo " href="">
+										<i class="fa-regular fa-heart"></i>
+										</a>
 								</span>
 								<span>
 									<i class="fa-solid fa-code-compare"></i>
@@ -89,7 +91,9 @@
 							</div>
 							<h3><?php echo $producto['nombre_producto'] ?></h3>
 							<span class="add-cart">
-								<i class="fa-solid fa-basket-shopping"></i>
+								<a class="btn btn-util text-white btnAddCarrito " href="#" prod='<?php echo $producto['cod_producto'] ?>'>
+									<i class="fa-solid fa-basket-shopping"></i>
+								</a>
 							</span>
 							<p class="price">$<?php echo $producto['precio'] ?></p>
 						</div>
