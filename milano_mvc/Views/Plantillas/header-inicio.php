@@ -15,7 +15,7 @@
 			<div class="container-hero">
 				<div class="container hero">
 					<div class="customer-support">
-						<img src="<?php echo BASE_URL; ?>Assets/imgs/logo milano.png" alt="">
+						<img src="https://acinfo.inf.unap.cl/~brojas/interfaz2/milano_mvc\Assets\imgs\logomilano.png" alt="">
 					</div>
 
 					<div class="container-logo">
@@ -32,7 +32,7 @@
 				<nav class="navbar container">
 					<i class="fa-solid fa-bars"></i>
 					<ul class="menu">
-						<li><a href="index.html">Inicio</a></li>
+						<li><a href="<?php echo BASE_URL . 'Views/index.php' ?>">Inicio</a></li>
 						<li><a href="<?php echo BASE_URL . 'Views/inicial/productos.php' ?>">Productos</a></li>
 						<li><a href="SobreNosotros.html">Sobre Nosotros</a></li>
 					</ul>

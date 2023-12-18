@@ -1,6 +1,5 @@
 <?php include_once __DIR__ . '/../Plantillas/header-inicio.php';
  ?>
-
 <section class="container top-products">
       <div class="bgh-producto">
         <h1 class="heading-producto" style="color: white">Productos</h1>
