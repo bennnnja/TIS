@@ -10,6 +10,7 @@ class HomeModel extends Query{
         $sql = "SELECT * FROM producto ORDER BY stock DESC LIMIT 4";
         return $this->selectAll($sql);
     }
+    
 }
  
 ?>

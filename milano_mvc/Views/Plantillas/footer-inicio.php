@@ -54,3 +54,39 @@
 				</div>
 			</div>
 		</footer>
+
+<script>
+  const base_url = '<?php echo BASE_URL; ?>';
+
+  function alertaPerzanalizada(mensaje, type, titulo = '') {
+    toastr[type](mensaje, titulo)
+
+    toastr.options = {
+      "closeButton": true,
+      "debug": false,
+      "newestOnTop": false,
+      "progressBar": true,
+      "positionClass": "toast-top-right",
+      "preventDuplicates": false,
+      "onclick": null,
+      "showDuration": "300",
+      "hideDuration": "1000",
+      "timeOut": "5000",
+      "extendedTimeOut": "1000",
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+    }
+  }
+
+  function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+  }
+
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+  }
+</script>
+<script src="<?php echo BASE_URL; ?>Assets/js/carrito.js"></script>
+<!-- <script src="<?php echo BASE_URL; ?>Assets/js/login.js"></script>-->
