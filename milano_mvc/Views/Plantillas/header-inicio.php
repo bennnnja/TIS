@@ -37,8 +37,8 @@
 				<nav class="navbar container">
 					<i class="fa-solid fa-bars"></i>
 					<ul class="menu">
-						<li><a href="<?php echo BASE_URL?>">Inicio</a></li>
-						<li><a href="<?php echo BASE_URL . 'principal/productos'; ?>">Productos</a></li>
+						<li><a href="index.html">Inicio</a></li>
+						<li><a href="<?php echo BASE_URL . 'Views/inicial/productos.php' ?>">Productos</a></li>
 						<li><a href="SobreNosotros.html">Sobre Nosotros</a></li>
 					</ul>
 
