@@ -1,3 +1,29 @@
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header bg-primary text-white">
+				<h5 class="modal-title"><i class="fas fa-solid fa-basket-shopping">Carrito</h5>
+				<button class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+				</button>
+			</div>
+			<div class="modal-body">
+				<table class="table table-bordered table-striped table-hover">
+					<thead>
+						<tr>
+							<th>#</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
 <footer class="footer">
 			<div class="container container-footer">
 				<div class="menu-footer">
@@ -89,4 +115,5 @@
   }
 </script>
 <script src="<?php echo BASE_URL; ?>Assets/js/carrito.js"></script>
+<script src="<?php echo BASE_URL; ?>Assets/js/sweetalert2.all.min"></script>
 <!-- <script src="<?php echo BASE_URL; ?>Assets/js/login.js"></script>-->

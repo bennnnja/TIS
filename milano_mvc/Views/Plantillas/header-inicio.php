@@ -25,10 +25,11 @@
 						
 					<a href="Views/LoginRegistro.html" class="btn__quote">Iniciar Sesion</a>
 
+					<div class="container-user">
 					<a href="#" id="verCarrito">
-                              <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                              <span class="padding_10" id="btnCantidadCarrito">Cart</span></a>
-
+                              <i class="fa-solid fa-basket-shopping" aria-hidden="false"></i>
+                              <span class="padding_10" id="btnCantidadCarrito"></span></a>
+					</div>		
 				</div>
 			</div>
 

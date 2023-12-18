@@ -38,7 +38,7 @@
         <?php foreach ($data['losProductos'] as $producto) { ?>
             <div class="card-product destacados">
               <div class="container-img">
-                <img src="<?php echo $producto['imagen'] ?>" alt="<?php echo $producto['nombre_producto'] ?>" />
+               <img src="<?php echo $producto['imagen'] ?>" alt="<?php echo $producto['nombre_producto'] ?>" />
                 <div class="button-group">
                   <span>
                     <i class="fa-regular fa-eye"></i>
@@ -61,11 +61,10 @@
                 </div>
                 <h3><?php echo $producto['nombre_producto'] ?></h3>
                 <span class="add-cart">
-								<a class="btn btn-util text-white btnAddCarrito " href="#" prod='<?php echo $producto['cod_producto'] ?>'>
-									<i class="fa-solid fa-basket-shopping"></i>
-								</a>
-							</span>
-                
+                  <a class="btn btn-util text-white btnAddcarrito" href="#" prod='<?php echo $producto['cod_producto'] ?>'>
+                    <i class="fa-solid fa-basket-shopping"></i>
+                  </a>
+                </span>
                 <p class="price">$<?php echo $producto['precio'] ?></p>
               </div>
             </div>

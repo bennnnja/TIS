@@ -62,7 +62,7 @@
 				</div>
 			
 				<div class="container-products">
-					<!-- Producto 1 -->
+					<!-- Productos -->
 					<?php foreach ($data['topProductos'] as $producto) { ?>
 					<div class="card-product destacados">
 						<div class="container-img">
@@ -91,7 +91,7 @@
 							</div>
 							<h3><?php echo $producto['nombre_producto'] ?></h3>
 							<span class="add-cart">
-								<a class="btn btn-util text-white btnAddCarrito " href="#" prod='<?php echo $producto['cod_producto'] ?>'>
+								<a class="btn btn-util text-white btnAddcarrito" href="#" prod='<?php echo $producto['cod_producto'] ?>'>
 									<i class="fa-solid fa-basket-shopping"></i>
 								</a>
 							</span>
