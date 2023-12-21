@@ -1,18 +1,15 @@
 <?php
-class ClientesModelo extends Query{
+class ClientesModel extends Query{
  
     public function __construct()
     {
         parent::__construct();
     }
-    public function getCategorias() {
-        $sql = "SELECT * FROM categorias WHERE estado = 1";
-        return $this->selectAll($sql);
-    }
-    public function registroDirecto($nombre, $correo, $clave, $token)
+
+    public function registroDirecto($nombre, $nom_usuario, $rut, $telefono, $fdn, $email, $contrasena)
     {
-        $sql = "INSERT INTO clientes (nombre, correo, clave, token) VALUES (?,?,?,?)";
-        $datos = array($nombre, $correo, $clave, $token);
+        $sql = "INSERT INTO cliente (nombre, nom_usuario, rut, telefono, fecha_nacimiento, email, contrasena) VALUES (?,?,?,?,?,?,?)";
+        $datos = array($nombre, $nom_usuario, $rut, $telefono, $fdn, $email, $contrasena);
         $data = $this->insertar($sql, $datos);
         if ($data > 0) {
             $res = $data;
@@ -21,26 +18,10 @@ class ClientesModelo extends Query{
         }
         return $res;
     }
-    public function getToken($token)
+
+    public function getVerificar()
     {
-        $sql = "SELECT * FROM clientes WHERE token = '$token'";
-        return $this->select($sql);
-    }
-    public function actualizarVerify($id)
-    {
-        $sql = "UPDATE clientes SET token=?, verify=? WHERE id=?";
-        $datos = array(null, 1, $id);
-        $data = $this->save($sql, $datos);
-        if ($data == 1) {
-            $res = $data;
-        } else {
-            $res = 0;
-        }
-        return $res;
-    }
-    public function getVerificar($correo)
-    {
-        $sql = "SELECT * FROM clientes WHERE correo = '$correo'";
+        $sql = "SELECT estado FROM cliente WHERE estado = 1";
         return $this->select($sql);
     }
 
