@@ -3,6 +3,7 @@ const btnCarrito = document.querySelector("#btnCantidadCarrito");
 const verCarrito = document.querySelector("#verCarrito");
 const tableListaCarrito = document.querySelector("#tableListaCarrito tbody");
 
+
 let listaCarrito;
 document.addEventListener("DOMContentLoaded", function () {
   if (localStorage.getItem("listaCarrito") != null) {
@@ -21,7 +22,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const myModal = new bootstrap.Modal(document.getElementById('myModal'))
   verCarrito.addEventListener("click", function () {
     getListaCarrito();
-    $("#modalCarrito").modal("show");
+    myModal.show();
+
   });
 });
 
@@ -57,8 +59,10 @@ function cantidadCarrito() {
   }
 }
 
-//ver carrito
+//ver carrito  
 function getListaCarrito() {
+  
+
   const url = base_url + "principal/listaProductos";
   const http = new XMLHttpRequest();
   http.open("POST", url, true);
@@ -66,32 +70,42 @@ function getListaCarrito() {
   http.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       const res = JSON.parse(this.responseText);
+      console.log("Contenido de res.producto:", res.producto);
       let html = "";
-      res.productos.forEach((producto) => {
+      if (res && res.producto && Array.isArray(res.producto)) {
+
+        res.producto.forEach((producto) => {
         html += `<tr>
                     <td>
                     <img class="img-thumbnail" src="${
                       base_url + producto.imagen
                     }" alt="" width="100">
                     </td>
-                    <td>${producto.nombre}</td>
-                    <td><span class="badge bg-warning">${
+                    <td>${producto.nombre_producto}</td>
+                    <td><span class="badge bg-custom-orange text-white">${
                       res.moneda + " " + producto.precio
                     }</span></td>
                     <td width="100">
                     <input type="number" class="form-control agregarCantidad" id="${
-                      producto.id
-                    }" value="${producto.cantidad}">
+                      producto.cod_producto
+                    }" value="${producto.cantidad}" step="1">
+                    <button class="btn btn-custom-orange btnReloadPage" type="button" onclick="location.reload();">
+                      <i class="fas fa-sync-alt"></i>
+                    </button>
                     </td>
                     <td>${producto.subTotal}</td>
                     <td>
-                    <button class="btn btn-danger btnDeletecart" type="button" prod="${
-                      producto.id
+                    <button class="btn btn-custom-orange btn-lg btnDeletecart" type="button" prod="${
+                      producto.cod_producto
                     }"><i class="fas fa-times-circle"></i></button>
                     </td>
                 </tr>`;
       });
-      tableListaCarrito.innerHTML = html;
+    }else {
+      console.error("La respuesta no tiene la estructura esperada:", res);
+    }
+    console.log("HTML generado:", tableListaCarrito.innerHTML);  
+    tableListaCarrito.innerHTML = html;
       document.querySelector("#totalGeneral").textContent = res.total;
       btnEliminarCarrito();
       cambiarCantidad();
@@ -118,7 +132,7 @@ function eliminarListaCarrito(cod_producto) {
   localStorage.setItem("listaCarrito", JSON.stringify(listaCarrito));
   getListaCarrito();
   cantidadCarrito();
-  Swal.fire("PRODUCTO ELIMINADO DEL CARRITO", "success");
+  Swal.fire("¡Aviso!","Se eliminara el producto del carrito", "error");
 }
 //cambiar la cantidad
 function cambiarCantidad() {

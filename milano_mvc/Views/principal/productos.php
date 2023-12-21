@@ -38,18 +38,8 @@
         <?php foreach ($data['losProductos'] as $producto) { ?>
             <div class="card-product destacados">
               <div class="container-img">
-               <img src="<?php echo $producto['imagen'] ?>" alt="<?php echo $producto['nombre_producto'] ?>" />
-                <div class="button-group">
-                  <span>
-                    <i class="fa-regular fa-eye"></i>
-                  </span>
-                  <span>
-                    <i class="fa-regular fa-heart"></i>
-                  </span>
-                  <span>
-                    <i class="fa-solid fa-code-compare"></i>
-                  </span>
-                </div>
+               <img src="/../~brojas/interfaz2/milano_mvc/<?php echo $producto['imagen'] ?>" alt="<?php echo $producto['nombre_producto'] ?>" />
+                
               </div>
               <div class="content-card-product">
                 <h3><?php echo $producto['nombre_producto'] ?></h3>

@@ -9,61 +9,59 @@ class Clientes extends Controlador
     }
     public function index()
     {
-        if (empty($_SESSION['email'])) {
-            header('Location: ' . BASE_URL);
+        if(empty($_SESSION["emailCliente"])) {
+            header("Location: ". BASE_URL);
         }
-        $data['perfil'] = 'si';
         $data['title'] = 'Tu Perfil';
-        $data['categorias'] = $this->model->getCategorias();
-        $data['verificar'] = $this->model->getVerificar($_SESSION['email']);
+        $data['verificar'] = $this->model->getVerificar($_SESSION["emailCliente"]);
         $this->views->getView('principal', "perfil", $data);
     }
-    public function registrarse()
+    public function registroDirecto()
     {
         if (isset($_POST['nombre']) && isset($_POST['contrasena'])) {
-            if (empty($_POST['nombre']) || empty($_POST['email']) || empty($_POST['contrasena'])) {
-                $mensaje = array('msg' => 'TODOS LOS CAMPOS SON REQUERIDOS', 'icono' => 'warning');
+            $nombre = $_POST['nombre'];
+            $nom_usuario = $_POST['nom_usuario'];
+            $rut = $_POST['rut'];
+            $telefono = $_POST['telefono'];
+            $fdn = $_POST['fecha_nacimiento'];
+            $email = $_POST['email'];
+            $contrasena = $_POST['contrasena'];
+            $hash = password_hash($contrasena,PASSWORD_DEFAULT);
+            $data = $this->model->registroDirecto($nombre, $nom_usuario, $rut, $telefono, $fdn, $email, $hash)+1;
+
+            if ($data > 0) {
+                $_SESSION['emailCliente'] = $email;
+                $_SESSION['nombreCliente'] = $nombre;
+                $mensaje = array('msg' => 'registrado con éxito', 'icono' => 'success');
             } else {
-                $nombre = $_POST['nombre'];
-                $correo = $_POST['email'];
-                $clave = $_POST['contrasena'];
-                $verificar = $this->model->getVerificar($correo);
-                if (empty($verificar)) {
-                    $token = md5($correo);
-                    $hash = password_hash($clave, PASSWORD_DEFAULT);
-                    $data = $this->model->registroDirecto($nombre, $correo, $hash, $token);
-                    if ($data > 0) {
-                        $_SESSION['RUT'] = $data;
-                        $_SESSION['email'] = $correo;
-                        $_SESSION['nombre'] = $nombre;
-                        $mensaje = array('msg' => 'registrado con éxito', 'icono' => 'success', 'token' => $token);
-                    } else {
-                        $mensaje = array('msg' => 'error al registrarse', 'icono' => 'error');
-                    } 
-                } else {
-                    $mensaje = array('msg' => 'YA TIENES UNA CUENTA', 'icono' => 'warning');
-                }
+                $mensaje = array('msg' => 'error al registrarse', 'icono' => 'error');
             }
+            
             echo json_encode($mensaje, JSON_UNESCAPED_UNICODE);
             die();
         }
-    }
 
-    //login directo
+        #else {
+        #   $mensaje = array('msg' => 'YA TIENES UNA CUENTA', 'icono' => 'warning');
+        #}
+    }
     public function loginDirecto()
     {
-        if (isset($_POST['email']) && isset($_POST['contrasena'])) {
-            if (empty($_POST['email']) || empty($_POST['contrasena'])) {
+        if (isset($_POST['correoLogin']) && isset($_POST['contrasenaLogin'])) {
+            if (empty($_POST['correoLogin']) || empty($_POST['contrasenaLogin'])) {
                 $mensaje = array('msg' => 'TODOS LOS CAMPOS SON REQUERIDOS', 'icono' => 'warning');
             } else {
-                $correo = $_POST['email'];
-                $clave = $_POST['contrasena'];
-                $verificar = $this->model->getVerificar($correo);
+                $email = $_POST['correoLogin'];
+                $contrasena = $_POST['contrasenaLogin'];
+                
+                $verificar = $this->model->getVerificar($email);
+                
+                $usuarioData= $verificar[0];
+                
                 if (!empty($verificar)) {
-                    if (password_verify($clave, $verificar['contrasena'])) {
-                        $_SESSION['RUT'] = $verificar['RUT'];
-                        $_SESSION['email'] = $verificar['email'];
-                        $_SESSION['nombre'] = $verificar['nombre'];
+                    if (password_verify($contrasena, $usuarioData['contrasena'])) {
+                        $_SESSION['emailCliente'] = $usuarioData['email'];
+                        $_SESSION['nombreCliente'] = $usuarioData['nombre'];
                         $mensaje = array('msg' => 'OK', 'icono' => 'success');
                     } else {
                         $mensaje = array('msg' => 'CONTRASEÑA INCORRECTA', 'icono' => 'error');
@@ -75,6 +73,10 @@ class Clientes extends Controlador
             echo json_encode($mensaje, JSON_UNESCAPED_UNICODE);
             die();
         }
+
+        #else {
+        #   $mensaje = array('msg' => 'YA TIENES UNA CUENTA', 'icono' => 'warning');
+        #}
     }
-   
+    
 }

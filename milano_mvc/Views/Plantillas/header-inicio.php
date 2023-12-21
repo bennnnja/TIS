@@ -8,8 +8,11 @@
 			content="width=device-width, initial-scale=1.0"
 		/>
 		<title>Gelateria Milano</title>
-		<link rel="stylesheet" href="https://acinfo.inf.unap.cl/~brojas/interfaz2/milano_mvc/Assets/css/estilo" />
+
+		<link rel="stylesheet" href="<?php echo BASE_URL; ?>Assets/css/estilo">
+
 </head>
+   
 <body>
 		<header>
 			<div class="container-hero">
@@ -23,9 +26,10 @@
 						<h1 class="logo"><a href="index.php">GELATERIA MILANO</a></h1>
 					</div>
 						
-					<a href="Views/LoginRegistro.html" class="btn__quote">Iniciar Sesion</a>
+					
 
 					<div class="container-user">
+					<a href="#" data-toggle="modal" data-target="#modalLogin"><i class="fa-solid fa-user"></i></a>
 					<a href="#" id="verCarrito">
                               <i class="fa-solid fa-basket-shopping" aria-hidden="false"></i>
                               <span class="padding_10" id="btnCantidadCarrito"></span></a>
@@ -37,8 +41,8 @@
 				<nav class="navbar container">
 					<i class="fa-solid fa-bars"></i>
 					<ul class="menu">
-						<li><a href="index.html">Inicio</a></li>
-						<li><a href="<?php echo BASE_URL . 'Views/inicial/productos.php' ?>">Productos</a></li>
+						<li><a href="<?php echo BASE_URL ?>">Inicio</a></li>
+						<li><a href="<?php echo BASE_URL . 'principal/productos' ?>">Productos</a></li>
 						<li><a href="SobreNosotros.html">Sobre Nosotros</a></li>
 					</ul>
 

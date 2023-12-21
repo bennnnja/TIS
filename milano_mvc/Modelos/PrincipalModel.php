@@ -26,6 +26,14 @@ class PrincipalModel extends Query{
         $sql = "SELECT * FROM producto WHERE categoria = 'Bote' ";
         return $this->selectAll($sql);
     }
+
+    public function getListaProducto($cod_producto)
+    {
+        $sql = "SELECT cod_producto,nombre_producto,precio,imagen FROM producto WHERE cod_producto = $cod_producto";
+        return $this->select($sql);
+    }
+
+
 }
  
 ?>
