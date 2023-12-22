@@ -42,8 +42,6 @@
                 
               </div>
               <div class="content-card-product">
-                <div class="stars">
-                </div>
                 <h3><?php echo $producto['nombre_producto'] ?></h3>
                 <span class="add-cart">
                   <a class="btn btn-util text-white btnAddcarrito" href="#" prod='<?php echo $producto['cod_producto'] ?>'>

@@ -475,7 +475,7 @@ html {
 /* Products */
 .container-products {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 3rem;
 }
 
@@ -622,7 +622,7 @@ html {
 .content-card-product h3 {
   grid-row: 2/3;
   grid-column: 1/-1;
-
+  margin-top: 10px;
   font-weight: 400;
   font-size: 1.6rem;
   margin-bottom: 1rem;

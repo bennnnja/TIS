@@ -21,7 +21,7 @@ class Query extends Conexion {
         $data = $resul->fetchAll(PDO::FETCH_ASSOC);
         return $data;
     }
-    public function save(string $sql, array $datos)
+    public function save($sql, array $datos)
     {
         $this->sql = $sql;
         $this->datos = $datos;
@@ -34,7 +34,7 @@ class Query extends Conexion {
         }
         return $res;
     }
-    public function insertar(string $sql, array $datos)
+    public function insertar($sql, $datos)
     {
         $this->sql = $sql;
         $this->datos = $datos;
