@@ -3,6 +3,8 @@ const btnCarrito = document.querySelector("#btnCantidadCarrito");
 const verCarrito = document.querySelector("#verCarrito");
 const tableListaCarrito = document.querySelector("#tableListaCarrito tbody");
 
+  //ver carrito
+  const myModal = new bootstrap.Modal(document.getElementById('myModal'))
 
 let listaCarrito;
 document.addEventListener("DOMContentLoaded", function () {
@@ -18,8 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
   cantidadCarrito();
 
 
-  //ver carrito
-  const myModal = new bootstrap.Modal(document.getElementById('myModal'))
+
   verCarrito.addEventListener("click", function () {
     getListaCarrito();
     myModal.show();

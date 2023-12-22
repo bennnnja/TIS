@@ -159,6 +159,12 @@ html {
   padding-left: 1rem;
 }
 
+.container-user .fa-cogs {
+  font-size: 3rem;
+  color: var(--primary-color);
+  padding-left: 1rem;
+}
+
 .content-shopping-cart {
   display: flex;
   flex-direction: column;
@@ -497,8 +503,8 @@ html {
 }
 
 .container-img img {
-  width: auto;
-  height: auto;
+  width: 225px;
+  height: 215px;
 }
 
 .container-img .discount {

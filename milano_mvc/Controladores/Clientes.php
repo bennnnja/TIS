@@ -16,7 +16,7 @@ class Clientes extends Controlador
         $data['verificar'] = $this->model->getVerificar($_SESSION["emailCliente"]);
         $this->views->getView('principal', "perfil", $data);
     }
-    public function registroDirecto()
+    public function registrarse()
     {
         if (isset($_POST['nombre']) && isset($_POST['contrasena'])) {
             $nombre = $_POST['nombre'];
@@ -45,7 +45,7 @@ class Clientes extends Controlador
         #   $mensaje = array('msg' => 'YA TIENES UNA CUENTA', 'icono' => 'warning');
         #}
     }
-    public function loginDirecto()
+    public function iniciar_sesion()
     {
         if (isset($_POST['correoLogin']) && isset($_POST['contrasenaLogin'])) {
             if (empty($_POST['correoLogin']) || empty($_POST['contrasenaLogin'])) {
@@ -53,13 +53,13 @@ class Clientes extends Controlador
             } else {
                 $email = $_POST['correoLogin'];
                 $contrasena = $_POST['contrasenaLogin'];
-                
                 $verificar = $this->model->getVerificar($email);
                 
                 $usuarioData= $verificar[0];
                 
                 if (!empty($verificar)) {
                     if (password_verify($contrasena, $usuarioData['contrasena'])) {
+                        $_SESSION['rutCliente'] = $usuarioData['rut'];
                         $_SESSION['emailCliente'] = $usuarioData['email'];
                         $_SESSION['nombreCliente'] = $usuarioData['nombre'];
                         $mensaje = array('msg' => 'OK', 'icono' => 'success');
@@ -78,5 +78,51 @@ class Clientes extends Controlador
         #   $mensaje = array('msg' => 'YA TIENES UNA CUENTA', 'icono' => 'warning');
         #}
     }
-    
+    public function registrar_pedido()
+{
+    // Verificar que la solicitud sea de tipo POST
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Obtener los datos del pedido desde la solicitud
+        $datos = json_decode(file_get_contents("php://input"), true);
+
+        // Realizar el registro del pedido en la base de datos
+        $resultado = $this->model->registrarPedido(
+            $datos['cod_pedido'],
+            $datos['monto'],
+            $datos['estado'],
+            $datos['fecha_pedido'],
+            $datos['cliente_rut']
+        );
+
+        // Responder con el resultado
+        if ($resultado > 0) {
+            $mensaje = array('msg' => 'OK', 'icono' => 'success');
+        } else {
+            $mensaje = array('msg' => 'Error al registrar el pedido', 'icono' => 'error');
+        }
+
+        echo json_encode($mensaje, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+}
+
+    //listar productos pendientes
+    public function listarPendientes()
+    {
+        $id_cliente = $_SESSION['idCliente'];
+        $data = $this->model->getPedidos($id_cliente);
+        for ($i = 0; $i < count($data); $i++) {
+            $data[$i]['accion'] = '<div class="text-center"><button class="btn btn-primary" type="button" onclick="verPedido(' . $data[$i]['id'] . ')"><i class="fas fa-eye"></i></button></div>';
+        }
+        echo json_encode($data);
+        die();
+    }
+    public function verPedido($idPedido)
+    {
+        $data['pedido'] = $this->model->getPedido($idPedido);
+        $data['productos'] = $this->model->verPedidos($idPedido);
+        $data['moneda'] = MONEDA;
+        echo json_encode($data);
+        die();
+    }
 }

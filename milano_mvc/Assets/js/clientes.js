@@ -11,9 +11,10 @@ function cantidadProducto() {
       btnCarrito.textContent = 0;
     }
   }
+
+let totalCarrito = 0;
+
 function getListaProducto() {
-
-
     const url = base_url + "principal/listaProductos";
     const http = new XMLHttpRequest();
     http.open("POST", url, true);
@@ -47,7 +48,7 @@ function getListaProducto() {
                         }" ><i class="fas fa-times-circle"></i></button>
                       </td>
                   </tr>`;
-                });
+                }); totalCarrito = res.total;
             } else {
                 console.error("La respuesta no tiene la estructura esperada:", res);
             }
@@ -102,3 +103,79 @@ function btnEliminarCarrito() {
     localStorage.setItem("listaCarrito", JSON.stringify(listaCarrito));
   }
   
+  function registrarPedido(datos){
+    const url = base_url + "clientes/hacer_pedido";
+    const http = new XMLHttpRequest();
+    http.open("POST", url, true);
+    http.send(JSON.stringify(datos));
+    http.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          console.log(this.responseText)
+            //const res = JSON.parse(this.responseText);
+            
+        }
+    };
+  }
+  
+document.querySelector("#btnPagar").addEventListener("click", function () {
+  // Obtener información del carrito
+  console.log("Botón Pagar clicado");
+  const listaCarrito = JSON.parse(localStorage.getItem("listaCarrito"));
+
+  // Verificar que haya productos en el carrito
+  if (listaCarrito && listaCarrito.length > 0) {
+    const fechaPedido = new Date().toISOString().slice(0, 19).replace("T", " ");
+    const datosPedido = {
+      cod_pedido: generarCodigoPedido(), // Implementa esta función para generar un código único
+      monto: totalCarrito,
+      estado: "Pendiente", // Puedes establecer un estado inicial
+      fecha_pedido: fechaPedido,
+      cliente_rut: obtenerRutCliente(), // Implementa esta función para obtener el RUT del cliente
+    };
+
+    // Realizar la solicitud para registrar el pedido en la base de datos
+    registrarPedido(datosPedido);
+  } else {
+    Swal.fire("¡Aviso!", "No hay productos en el carrito", "warning");
+  }
+});
+
+// Implementa las funciones adicionales necesarias
+function generarCodigoPedido() {
+  const fechaActual = new Date();
+  const codigoUnico =
+    fechaActual.getFullYear().toString().slice(-2) + // Tomar solo los últimos 2 dígitos del año
+    ('0' + (fechaActual.getMonth() + 1)).slice(-2) +
+    ('0' + fechaActual.getDate()).slice(-2) +
+    ('000' + Math.floor(Math.random() * 1000)).slice(-4) - 1000000000;
+
+  return parseInt(codigoUnico); // Convierte a número
+}
+
+
+
+function obtenerRutCliente() {
+  return rutCliente;
+}
+
+
+// Esta función enviará la solicitud para registrar el pedido en la base de datos
+function registrarPedido(datos) {
+const url = base_url + "clientes/registrar_pedido";
+const http = new XMLHttpRequest();
+http.open("POST", url, true);
+http.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+http.onreadystatechange = function () {
+  if (this.readyState == 4 && this.status == 200) {
+    const respuesta = JSON.parse(this.responseText);
+    if (respuesta.msg === "OK") {
+      Swal.fire("¡Éxito!", "Pedido registrado correctamente", "success");
+      // Puedes realizar acciones adicionales después de registrar el pedido
+    } else {
+      Swal.fire("¡Error!", "Error al registrar el pedido", "error");
+    }
+  }
+};
+
+http.send(JSON.stringify(datos));
+}

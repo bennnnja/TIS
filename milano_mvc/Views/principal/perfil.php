@@ -26,8 +26,12 @@
                 </div>
                 <div class="card-footer">
                     <h3 id="totalProducto"></h3>
+                    <button id="btnPagar" class="btn btn-success">Pagar</button>
                 </div>
             </div>
+                    <script>
+                        const rutCliente = '<?php echo isset($_SESSION["rutCliente"]) ? $_SESSION["rutCliente"] : ""; ?>';
+                    </script>
 
 
         </div>
@@ -37,8 +41,9 @@
                     <img class="img-thumbnail rounded-circle" src="https://st3.depositphotos.com/11742109/36001/v/450/depositphotos_360013274-stock-illustration-anonymous-gender-neutral-face-avatar.jpg" alt="" width="150">
                     <hr>
                     <p><p><?php echo $_SESSION['nombreCliente']; ?></p></p>
+                    <p><p><?php echo $_SESSION['rutCliente']; ?></p></p>
                     <p><i class="fas fa-envelope"></i> <?php echo $_SESSION['emailCliente']; ?></p>
-                    <p>Boton modificar usuario</p>
+                    <p>Boton pagar</p>
                 </div>
             </div>
 

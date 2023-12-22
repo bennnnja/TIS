@@ -67,28 +67,8 @@
 					<div class="card-product destacados">
 						<div class="container-img">
 							<img src="<?php echo $producto['imagen'] ?>" alt="<?php echo $producto['nombre_producto'] ?>" />
-							<div class="button-group">
-								<span>
-									<i class="fa-regular fa-eye"></i>
-								</span>
-								<span>
-									<a class="btn btn-util text-white btnAddDeseo " href="">
-										<i class="fa-regular fa-heart"></i>
-										</a>
-								</span>
-								<span>
-									<i class="fa-solid fa-code-compare"></i>
-								</span>
-							</div>
 						</div>
 						<div class="content-card-product">
-							<div class="stars">
-								<i class="fa-solid fa-star"></i>
-								<i class="fa-solid fa-star"></i>
-								<i class="fa-solid fa-star"></i>
-								<i class="fa-solid fa-star"></i>
-								<i class="fa-regular fa-star"></i>
-							</div>
 							<h3><?php echo $producto['nombre_producto'] ?></h3>
 							<span class="add-cart">
 								<a class="btn btn-util text-white btnAddcarrito" href="#" prod='<?php echo $producto['cod_producto'] ?>'>

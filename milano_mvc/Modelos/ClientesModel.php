@@ -19,19 +19,16 @@ class ClientesModel extends Query{
         return $res;
     }
 
-    public function getVerificar()
+    public function getVerificar($email)
     {
-        $sql = "SELECT estado FROM cliente WHERE estado = 1";
+        $sql = "SELECT * FROM cliente WHERE email = '$email'";
         return $this->select($sql);
     }
 
-    public function registrarPedido($id_transaccion, $monto, $estado, $fecha, $email,
-    $nombre, $apellido, $direccion, $ciudad, $id_cliente)
+    public function registrarPedido($cod_pedido, $monto, $estado, $fecha_pedido, $cliente_rut)
     {
-        $sql = "INSERT INTO pedidos (id_transaccion, monto, estado, fecha, email,
-        nombre, apellido, direccion, ciudad, id_cliente) VALUES (?,?,?,?,?,?,?,?,?,?)";
-        $datos = array($id_transaccion, $monto, $estado, $fecha, $email,
-        $nombre, $apellido, $direccion, $ciudad, $id_cliente);
+        $sql = "INSERT INTO pedido (cod_pedido, monto, estado, fecha_pedido, cliente_rut) VALUES (?,?,?,?,?)";
+        $datos = array($cod_pedido, $monto, $estado, $fecha_pedido, $cliente_rut);
         $data = $this->insertar($sql, $datos);
         if ($data > 0) {
             $res = $data;

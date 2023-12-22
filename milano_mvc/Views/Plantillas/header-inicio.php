@@ -23,14 +23,22 @@
 
 					<div class="container-logo">
 						<i class="fa-solid fa-ice-cream"></i>
-						<h1 class="logo"><a href="index.php">GELATERIA MILANO</a></h1>
+						<h1 class="logo"><a href="<?php echo BASE_URL ?>">GELATERIA MILANO</a></h1>
 					</div>
 						
 					
 
 					<div class="container-user">
-					<a href="#" data-toggle="modal" data-target="#modalLogin"><i class="fa-solid fa-user"></i></a>
-					<a href="#" id="verCarrito">
+					
+					<?php if(empty($_SESSION["emailCliente"])) { ?>
+						<a href="#" data-toggle="modal" data-target="#modalLogin"><i class="fa-solid fa-user"></i></a>
+					
+					<?php }else { ?>
+						<a href="clientes" ><i class="fa-solid fa-cogs"></i></a>
+					
+					<?php } ?>
+						
+						<a href="#" id="verCarrito">
                               <i class="fa-solid fa-basket-shopping" aria-hidden="false"></i>
                               <span class="padding_10" id="btnCantidadCarrito"></span></a>
 					</div>		
