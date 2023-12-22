@@ -9,10 +9,10 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Nombres</th>
-                        <th>Correo</th>
-                        <th>Nombres Usuarios</th>
-                        <th>Telefono</th>
+                        <th>Nombre Producto</th>
+                        <th>Stock</th>
+                        <th>Precio</th>
+                        <th>Imagen</th>
                         <th>Accion</th>
                     </tr>
                 </thead>
@@ -81,6 +81,6 @@
 
     </html>
 
-    <script src="<?php echo BASE_URL . 'Assets/js/modulos/usuarios.js'; ?>"></script>
+    <script src="<?php echo BASE_URL . 'Assets/js/modulos/productos.js'; ?>"></script>
     <script src="<?php echo BASE_URL . 'Assets/js/es-ES.js'; ?>"></script>
     <script type="text/javascript" src="<?php echo BASE_URL . 'Assets/DataTables/datatables.min.js'; ?>"></script>

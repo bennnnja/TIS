@@ -1,5 +1,5 @@
 <?php
-class UsuariosModel extends Query
+class ProductosModel extends Query
 {
 
     public function __construct()

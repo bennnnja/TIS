@@ -1,5 +1,5 @@
 <?php
-class Usuarios extends Controlador
+class Productos extends Controlador
 {
     public function __construct()
     {
@@ -16,9 +16,10 @@ class Usuarios extends Controlador
     {
         $data = $this->model->getProductos(1);
         for ($i = 0; $i < count($data); $i++) {
-            $data[$i]['accion'] = '    <div class="d-flex">
-            <button class="btn btn-primary" type="button" onclick="editUser(' . $data[$i]['rut'] . ')"><i class="fas fa-edit"></i></button>
-            <button class="btn btn-danger" type="button" onclick="eliminarUser(' . $data[$i]['rut'] . ')"><i class="fas fa-trash"></i></button>
+            $data[$i]['imagen'] = '<img class="img-thumbnail" src="' . $data[$i]['imagen']. '" alt="'. $data[$i]['nombre_producto'].'" width="50">';
+            $data[$i]['accion'] = '<img class="d-flex">
+            <button class="btn btn-primary" type="button" onclick="editProducto(' . $data[$i]['cod_producto'] . ')"><i class="fas fa-edit"></i></button>
+            <button class="btn btn-danger" type="button" onclick="eliminarProducto(' . $data[$i]['cod_producto'] . ')"><i class="fas fa-trash"></i></button>
         </div>';
         }
         echo json_encode($data);
