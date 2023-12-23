@@ -74,7 +74,7 @@ class Principal extends Controlador
             }
         }        
 
-        $array['total'] = number_format($total);
+        $array['total'] = $total;
         $array['moneda'] = MONEDA;
         echo json_encode($array, JSON_UNESCAPED_UNICODE);
         die();
