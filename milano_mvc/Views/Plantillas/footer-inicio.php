@@ -82,11 +82,11 @@
 					<div class="row">
 						<div class="col-md-12" id="frmLogin">
 							<div class="form-group mb-3">
-								<label for="correoLogin"><i class="fas fa-envelope"></i>  Correo</label>
+								<label for="correoLogin"><i class="fas fa-envelope"></i> Correo</label>
 								<input id="correoLogin" class="form-control" type="text" name="correoLogin" placeholder="Email">
 							</div>
 							<div class="form-group mb-3">
-								<label for="contrasenaLogin"><i class="fas fa-key"></i>  Contraseña</label>
+								<label for="contrasenaLogin"><i class="fas fa-key"></i> Contraseña</label>
 								<input id="contrasenaLogin" class="form-control" type="text" name="contrasenaLogin" placeholder="Contraseña">
 							</div>
 							<a href="#" id="btnRegister">No tienes una cuenta? Registrate aquí</a>
@@ -96,32 +96,32 @@
 						</div>
 						<!-- registro cliente -->
 						<div class="col-md-12 d-none" id="frmRegister">
-						<div class="form-group mb-3">
-								<label for="nombreRegistro"><i class="fas fa-user"></i>  Nombre</label>
+							<div class="form-group mb-3">
+								<label for="nombreRegistro"><i class="fas fa-user"></i> Nombre</label>
 								<input id="nombreRegistro" class="form-control" type="text" name="nombreRegistro" placeholder="Nombre Completo">
 							</div>
 							<div class="form-group mb-3">
-								<label for="nom_usuarioRegistro"><i class="fas fa-user"></i>  Nombre de usuario</label>
+								<label for="nom_usuarioRegistro"><i class="fas fa-user"></i> Nombre de usuario</label>
 								<input id="nom_usuarioRegistro" class="form-control" type="text" name="nom_usuarioRegistro" placeholder="Nombre de usuario">
 							</div>
 							<div class="form-group mb-3">
-								<label for="rutRegistro"><i class="fas fa-passport"></i>  RUT</label>
+								<label for="rutRegistro"><i class="fas fa-passport"></i> RUT</label>
 								<input id="rutRegistro" class="form-control" type="number" name="rutRegistro" placeholder="RUT">
 							</div>
 							<div class="form-group mb-3">
-								<label for="telefonoRegistro"><i class="fas fa-phone"></i>  Telefono</label>
+								<label for="telefonoRegistro"><i class="fas fa-phone"></i> Telefono</label>
 								<input id="telefonoRegistro" class="form-control" type="number" name="telefonoRegistro" placeholder="Telefono">
 							</div>
 							<div class="form-group mb-3">
-								<label for="fdnRegistro"><i class="fas fa-calendar"></i>  Fecha de nacimiento</label>
+								<label for="fdnRegistro"><i class="fas fa-calendar"></i> Fecha de nacimiento</label>
 								<input id="fdnRegistro" class="form-control" type="date" name="fdnRegistro" placeholder="Fecha de nacimiento">
 							</div>
 							<div class="form-group mb-3">
-								<label for="correoRegistro"><i class="fas fa-envelope"></i>  Correo</label>
+								<label for="correoRegistro"><i class="fas fa-envelope"></i> Correo</label>
 								<input id="correoRegistro" class="form-control" type="email" name="correoRegistro" placeholder="Email">
 							</div>
 							<div class="form-group mb-3">
-								<label for="contrasenaRegistro"><i class="fas fa-key"></i>  Contraseña</label>
+								<label for="contrasenaRegistro"><i class="fas fa-key"></i> Contraseña</label>
 								<input id="contrasenaRegistro" class="form-control" type="password" name="contrasenaRegistro" placeholder="Contraseña">
 							</div>
 							<a href="#" id="btnLogin">Si ya tienes una cuenta, logeate aquí</a>
@@ -130,10 +130,10 @@
 							</div>
 						</div>
 					</div>
-					
+
 				</form>
 			</div>
-			
+
 
 		</div>
 	</div>
@@ -154,27 +154,21 @@
 					<li>Email: info@gelateriamilano.cl</li>
 				</ul>
 				<div class="social-icons">
-					<span class="facebook">
-						<i class="fa-brands fa-facebook-f"></i>
-					</span>
-					<span class="twitter">
-						<i class="fa-brands fa-twitter"></i>
-					</span>
-					<span class="youtube">
-						<i class="fa-brands fa-youtube"></i>
-					</span>
-					<span class="instagram">
-						<i class="fa-brands fa-instagram"></i>
-					</span>
+					<a href="https://web.facebook.com/gelateria.milano.iqq"><span class="facebook">
+							<i class="fa-brands fa-facebook-f"></i>
+						</span></a>
+					<a href="https://www.instagram.com/gelateriamilano.iqq/"><span class="instagram">
+							<i class="fa-brands fa-instagram"></i>
+						</span></a>
 				</div>
 			</div>
 
 			<div class="information">
 				<p class="title-footer">Información</p>
 				<ul>
-					<li><a href="#">Acerca de Nosotros</a></li>
-					<li><a href="#">Politicas de Privacidad</a></li>
-					<li><a href="#">Términos y condiciones</a></li>
+					<li><a href="<?php echo BASE_URL . 'principal/sobre_nosotros' ?>">Sobre Nosotros</a></li>
+					<li><a href="<?php echo BASE_URL . 'docs/gm_pdp.pdf' ?>" target="_blank">Politicas de Privacidad</a></li>
+					<li><a href="<?php echo BASE_URL . 'docs/gm_tyc.pdf' ?>" target="_blank">Términos y condiciones</a></li>
 				</ul>
 			</div>
 
@@ -182,9 +176,8 @@
 				<p class="title-footer">Mi cuenta</p>
 
 				<ul>
-					<li><a href="#">Mi cuenta</a></li>
-					<li><a href="#">Historial de ordenes</a></li>
-					<li><a href="#">Lista de deseos</a></li>
+					<li><a href="<?php echo BASE_URL . 'clientes' ?>">Historial de pedidos</a></li>
+					<li><a href="<?php echo BASE_URL . 'admin' ?>">Iniciar sesion como administrador</a></li>
 				</ul>
 			</div>
 		</div>

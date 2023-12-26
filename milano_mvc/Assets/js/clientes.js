@@ -1,6 +1,35 @@
 const tableLista = document.querySelector("#tableListaProductos tbody");
+const tblPedidos = document.querySelector("#tblPedidos");
+
+const estadoEnviado = document.querySelector('#estadoEnviado');
+const estadoProceso = document.querySelector('#estadoProceso');
+const estadoCompletado = document.querySelector('#estadoCompletado');
+
 document.addEventListener("DOMContentLoaded", function () {
-  getListaProducto();
+  if (tableLista) {
+    getListaProducto();
+  }
+  $.ajax({
+    url: base_url + 'clientes/listarPedidos',
+    method: 'GET', // o 'POST' dependiendo de tu implementación
+    dataType: 'json',
+    success: function (data) {
+      $('#tblPedidos').DataTable({
+        data: data,
+        columns: [
+          { data: 'cod_pedido' },
+          { data: 'monto' },
+          { data: 'fecha_pedido' },
+          { data: 'estado' },
+          { data: 'accion' }
+        ],
+        language, dom, buttons
+      });
+    },
+    error: function (error) {
+      console.error('Error al obtener los datos:', error);
+    }
+  });
 });
 
 function cantidadProducto() {
@@ -28,27 +57,23 @@ function getListaProducto() {
         res.producto.forEach((producto) => {
           html += `<tr>
                       <td>
-                      <img class="img-thumbnail" src="${
-                        base_url + producto.imagen
-                      }" alt="" width="100">
+                      <img class="img-thumbnail" src="${base_url + producto.imagen
+            }" alt="" width="100">
                       </td>
                       <td>${producto.nombre_producto}</td>
-                      <td><span class="badge bg-custom-orange text-white">${
-                        res.moneda + " " + producto.precio
-                      }</span></td>
+                      <td><span class="badge bg-custom-orange text-white">${res.moneda + " " + producto.precio
+            }</span></td>
                       <td width="100">
-                      <input type="number" class="form-control agregarCantidad" id="${
-                        producto.cod_producto
-                      }" value="$${producto.cantidad}" step="1">
+                      <input type="number" class="form-control agregarCantidad" id="${producto.cod_producto
+            }" value="$${producto.cantidad}" step="1">
                       <button class="btn btn-custom-orange btnReloadPage" type="button" onclick="location.reload();">
                         <i class="fas fa-sync-alt"></i>
                       </button>
                       </td>
                       <td>$${producto.subTotal}</td>
                       <td>
-                      <button class="btn btn-custom-orange btn-lg btnDeletecart" type="button" prod="${
-                        producto.cod_producto
-                      }" ><i class="fas fa-times-circle"></i></button>
+                      <button class="btn btn-custom-orange btn-lg btnDeletecart" type="button" prod="${producto.cod_producto
+            }" ><i class="fas fa-times-circle"></i></button>
                       </td>
                   </tr>`;
         });
@@ -150,30 +175,75 @@ function obtenerRutCliente() {
 
 // Esta función enviará la solicitud para registrar el pedido en la base de datos
 function registrarPedido(datos) {
-  const url = base_url + "clientes/registrar_pedido";
+  Swal.fire({
+    title: '🤤 Estamos casi listos! 😈',
+    text: "Debes realizar la transferencia del monto a estos datos, luego tu pedido quedara en un estado pendiente, nosotros la verificaremos y dejaremos el pedido como aceptado si la transferencia es correcta. Luego para retirar debes venir a la heladeria y te haremos entrega de tu pedido 🥵🍦 ",
+    imageUrl: base_url + "Assets/imgs/Datos-transferencia.png",
+    imageWidth: 800,
+    imageHeight: 260,
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Listo, Pagado!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      const url = base_url + "clientes/registrar_pedido";
+      const http = new XMLHttpRequest();
+      http.open("POST", url, true);
+      http.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+      http.send(
+        JSON.stringify({
+          pedidos: datos,
+          productos: listaCarrito,
+        })
+      );
+      http.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          const respuesta = JSON.parse(this.responseText);
+          if (respuesta.msg === "OK") {
+            Swal.fire("¡Error!", "Error al registrar el pedido", "error");
+            // Puedes realizar acciones adicionales después de registrar el pedido
+          } else {
+            Swal.fire("¡Éxito!", "Pedido registrado correctamente", "success");
+            localStorage.removeItem('listaCarrito');
+            setTimeout(() => {
+              window.location.reload();
+            }, 1000);
+          }
+        }
+
+      };
+    }
+  }
+  )
+}
+
+function verPedido(cod_pedido) {
+  const mPedido = new bootstrap.Modal(document.getElementById('modalPedido'));
+  const url = base_url + 'clientes/verPedido/' + cod_pedido;
   const http = new XMLHttpRequest();
-  http.open("POST", url, true);
-  http.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-  http.send(
-    JSON.stringify({
-      pedidos: datos,
-      productos: listaCarrito,
-    })
-  );
+  http.open('GET', url, true);
+  http.send();
   http.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-      const respuesta = JSON.parse(this.responseText);
-      if (respuesta.msg === "OK") {
-        Swal.fire("¡Error!", "Error al registrar el pedido", "error");
-        // Puedes realizar acciones adicionales después de registrar el pedido
+      const res = JSON.parse(this.responseText);
+      console.log(this.responseText);
+      let html = "";
+      if (res && res.producto && Array.isArray(res.producto)) {
+        res.producto.forEach(row => {
+          let subTotal = row.precio * row.cantidad;
+          html += `<tr>
+                   <td>${row.producto}</td>
+                   <td><span class="badge bg-custom-orange text-white">${"$" + row.precio}</span></td>
+                   <td><span class="badge bg-custom-orange text-white">${row.cantidad}</span></td>
+                   <td>${subTotal}</td>
+               </tr>`;
+        });
+        document.querySelector('#tablePedidos tbody').innerHTML = html;
+        mPedido.show();
       } else {
-        Swal.fire("¡Éxito!", "Pedido registrado correctamente", "success");
-        localStorage.removeItem('listaCarrito');
-        setTimeout(() => {
-          window.location.reload();
-        }, 1000);
+        console.error("La respuesta no tiene la estructura esperada:", res);
       }
     }
-    
   };
 }

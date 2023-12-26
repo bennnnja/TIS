@@ -54,21 +54,28 @@ class ClientesModel extends Query{
         }
         return $res;
     }
-    public function getPedidos($id_cliente)
+
+    public function actualizarStock($cod_producto, $cantidadVendida)
+{
+    // Realiza la lógica para actualizar el stock en la base de datos
+    $sql = "UPDATE producto SET stock = stock - '$cantidadVendida' WHERE cod_producto = '$cod_producto'";
+    
+    $datos = array($cod_producto,$cantidadVendida);
+    return $this->save($sql, $datos);
+}
+
+
+    public function getPedidos($cliente_rut)
     {
-        $sql = "SELECT * FROM pedidos WHERE id_cliente = $id_cliente";
+        $sql = "SELECT * FROM pedido WHERE cliente_rut = '$cliente_rut'";
         return $this->selectAll($sql);
     }
-    public function getPedido($idPedido)
-    {
-        $sql = "SELECT * FROM pedidos WHERE id = $idPedido";
-        return $this->select($sql);
-    }
-    public function verPedidos($idPedido)
-    {
-        $sql = "SELECT d.* FROM pedidos p INNER JOIN detalle_pedidos d ON p.id = d.id_pedido WHERE p.id = $idPedido";
-        return $this->selectAll($sql);
-    }
+
+     public function verPedidos($cod_pedido)
+     {
+         $sql = "SELECT * FROM pedido p INNER JOIN detalle_pedido d ON p.cod_pedido = d.pedido_cod_pedido WHERE p.cod_pedido = $cod_pedido";
+         return $this->selectAll($sql);
+     }
 }
  
 ?>

@@ -11,4 +11,5 @@ class Home extends Controlador
         $data['topProductos'] = $this->model->getTopProductos();
         $this->views->getView('Home', "index", $data);
     }
+
 }

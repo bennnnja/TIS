@@ -171,18 +171,22 @@ html {
 }
 
 /* ************* NAVBAR ************* */
-.container-navbar {
+#miContenedor .container-navbar {
   background-color: var(--primary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px; /* Ajusta la altura según tus necesidades */
 }
 
-.navbar {
+#miContenedor .navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 1rem 0;
 }
 
-.navbar .fa-bars {
+#miContenedor .navbar .fa-bars {
   display: none;
 }
 
@@ -193,9 +197,10 @@ html {
 
 .menu li {
   list-style: none;
+  margin-right: 15px;
 }
 
-.menu a {
+#miContenedor .menu a {
   text-decoration: none;
   font-size: 1.3rem;
   color: var(--dark-color);
@@ -204,7 +209,7 @@ html {
   position: relative;
 }
 
-.menu a::after {
+#miContenedor .menu a::after {
   content: "";
   width: 1.5rem;
   height: 1px;
@@ -217,11 +222,11 @@ html {
   transition: all 0.3s ease;
 }
 
-.menu a:hover::after {
+#miContenedor .menu a:hover::after {
   opacity: 1;
 }
 
-.menu a:hover {
+#miContenedor .menu a:hover {
   color: #fff;
 }
 
@@ -442,7 +447,7 @@ html {
 .top-products {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 4rem;
   margin-bottom: 3rem;
 }
 
@@ -477,6 +482,7 @@ html {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 3rem;
+  margin-bottom: 3rem;
 }
 
 .card-product {
@@ -620,16 +626,16 @@ html {
 }
 
 .content-card-product h3 {
-  grid-row: 2/3;
   grid-column: 1/-1;
-  margin-top: 10px;
-  font-weight: 400;
-  font-size: 1.6rem;
+  margin-top: 25px;
+  font-weight: 500;
+  font-size: 1.8rem;
   margin-bottom: 1rem;
   cursor: pointer;
 }
 
 .content-card-product h3:hover {
+  font-size: 1.6rem;
   color: var(--primary-color);
 }
 
@@ -651,7 +657,7 @@ html {
 }
 
 .add-cart i {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   color: var(--primary-color);
 }
 
@@ -1248,7 +1254,7 @@ body {
   background: url(../imgs/fondo\ inicio.webp) no-repeat center top;
   background-size: cover;
   font-family: sans-serif;
-  height: 100vh;
+  height: 120vh;
 }
 
 .login-box {
@@ -1341,7 +1347,7 @@ body {
 .about-us {
   background-image: linear-gradient(100deg, #000000, #00000020),
     url("../imgs/banner\ helado.jpg");
-  height: 60rem;
+  height: 80rem;
   background-size: cover;
   background-position: center;
 }

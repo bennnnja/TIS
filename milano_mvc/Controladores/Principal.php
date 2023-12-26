@@ -16,6 +16,11 @@ class Principal extends Controlador
         $this->views->getView('principal', "productos", $data);
     }
     
+    public function sobre_nosotros(){
+        $data['title'] = 'Sobre Nosotros';
+        $this->views->getView('principal', "sobre_nosotros", $data);
+    }
+
     public function categoriaPal()
     {
         $data['title'] = 'Paletas';

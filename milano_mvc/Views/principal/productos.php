@@ -2,17 +2,18 @@
  ?>
 
 <section class="container top-products">
-      <div class="bgh-producto">
+     <!-- <div class="bgh-producto">
         <h1 class="heading-producto" style="color: white">Productos</h1>
-      </div>
+      </div>-->
+      <br>
     
 
       <div class="container-options">
         <a href= "<?php echo BASE_URL . 'principal/productos' ?>"><span class="active">Todos</span></a>
         <a href= "<?php echo BASE_URL . 'principal/categoriaBot' ?>"><span class="">Botes</span></a>
-        <a href= "<?php echo BASE_URL . 'principal/categoriaPal' ?>"><span class="">Paleta</span></a>
+        <a href= "<?php echo BASE_URL . 'principal/categoriaPal' ?>"><span class="">Paletas</span></a>
 
-        <!-- FILTRACION DE PRODUCTOS -->
+        <!-- 
         <div>
           <label for="filtro" class="label-categoria"
             >Filtrar por categoría:</label
@@ -30,10 +31,10 @@
             <option value="menorPrecio">Fecha ascentente</option>
             <option value="electronica">Fecha descentente</option>
           </select>
-        </div>
+        </div>-->
       </div>
-
-      <!-- FILTRACION DE PRODUCTOS -->
+              
+              
       <div class="container-products">
         <?php foreach ($data['losProductos'] as $producto) { ?>
             <div class="card-product destacados">
