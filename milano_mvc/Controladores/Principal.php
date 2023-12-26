@@ -16,6 +16,11 @@ class Principal extends Controlador
         $this->views->getView('principal', "productos", $data);
     }
     
+    public function sobre_nosotros(){
+        $data['title'] = 'Sobre Nosotros';
+        $this->views->getView('principal', "sobre_nosotros", $data);
+    }
+
     public function categoriaPal()
     {
         $data['title'] = 'Paletas';
@@ -74,7 +79,7 @@ class Principal extends Controlador
             }
         }        
 
-        $array['total'] = number_format($total);
+        $array['total'] = $total;
         $array['moneda'] = MONEDA;
         echo json_encode($array, JSON_UNESCAPED_UNICODE);
         die();

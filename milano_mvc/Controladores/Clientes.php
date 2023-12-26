@@ -55,7 +55,8 @@ class Clientes extends Controlador
                 $contrasena = $_POST['contrasenaLogin'];
                 $verificar = $this->model->getVerificar($email);
                 
-                $usuarioData= $verificar[0];
+                if (!empty($verificar)) {
+                    $usuarioData = $verificar[0];
                 
                 if (!empty($verificar)) {
                     if (password_verify($contrasena, $usuarioData['contrasena'])) {
@@ -66,6 +67,7 @@ class Clientes extends Controlador
                     } else {
                         $mensaje = array('msg' => 'CONTRASEÑA INCORRECTA', 'icono' => 'error');
                     }
+                } 
                 } else {
                     $mensaje = array('msg' => 'EL CORREO NO EXISTE', 'icono' => 'warning');
                 }
@@ -82,22 +84,68 @@ class Clientes extends Controlador
 {
     // Verificar que la solicitud sea de tipo POST
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Obtener los datos del pedido desde la solicitud
-        $datos = json_decode(file_get_contents("php://input"), true);
 
-        // Realizar el registro del pedido en la base de datos
-        $resultado = $this->model->registrarPedido(
-            $datos['cod_pedido'],
-            $datos['monto'],
-            $datos['estado'],
-            $datos['fecha_pedido'],
-            $datos['cliente_rut']
+        $datos = file_get_contents('php://input');
+        $json = json_decode($datos, true);
+        $pedidos = $json['pedidos'];
+        $productos = $json['productos'];
+        $resultadoPedido = $this->model->registrarPedido(
+            $pedidos['cod_pedido'],
+            $pedidos['monto'],
+            $pedidos['estado'],
+            $pedidos['fecha_pedido'],
+            $pedidos['cliente_rut']
         );
-
+        
+        $resultadoPedido = 1;
         // Responder con el resultado
-        if ($resultado > 0) {
-            $mensaje = array('msg' => 'OK', 'icono' => 'success');
+        if ($resultadoPedido > 0) {
+            // El pedido se registró correctamente, ahora registrar el detalle
+            foreach ($productos as $producto) {
+                
+                $temp = $this->model->getProducto($producto['cod_producto']);
+                if (isset($temp[0]['nombre_producto'])) {
+                    $nombre_producto['nombre_producto'] = $temp[0]['nombre_producto'];
+                } else {
+                    $nombre_producto['nombre_producto'] = null;
+                }
+                if (isset($temp[0]['precio'])) {
+                    $precio['precio'] = $temp[0]['precio'];
+                } else {
+                    $precio['precio'] = null;
+                }
+                if (isset($temp[0]['cod_producto'])) {
+                    $cod_producto['cod_producto'] = $temp[0]['cod_producto'];
+                } else {
+                    $cod_producto['cod_producto'] = null;
+                }
+
+                $resultadoDetalle = $this->model->registrarDetalle(
+                    $nombre_producto['nombre_producto'],
+                    $precio['precio'],
+                    $producto['cantidad'],
+                    $pedidos['cod_pedido'],
+                    $cod_producto['cod_producto']
+                );
+                
+                //$this->model->actualizarStock($cod_producto['cod_producto'],$producto['cantidad']);
+
+                if ($resultadoDetalle  <= 0) {
+                    // Manejar el caso en que no se pudo registrar el detalle
+                    // Puedes lanzar un error, log o realizar acciones adicionales
+                    $mensaje = array('msg' => 'Error al registrar el detalle', 'icono' => 'error');
+                    echo json_encode($mensaje, JSON_UNESCAPED_UNICODE);
+                    die();
+                }
+            }
+
+            // El detalle se registró correctamente
+            
+            $mensaje = array('msg' => 'Pedido registrado correctamente', 'icono' => 'success');
         } else {
+            // Manejar el caso en que no se pudo registrar el pedido
+            // Puedes lanzar un error, log o realizar acciones adicionales
+            
             $mensaje = array('msg' => 'Error al registrar el pedido', 'icono' => 'error');
         }
 
@@ -107,22 +155,28 @@ class Clientes extends Controlador
 }
 
     //listar productos pendientes
-    public function listarPendientes()
-    {
-        $id_cliente = $_SESSION['idCliente'];
-        $data = $this->model->getPedidos($id_cliente);
+    public function listarPedidos()
+    {   
+        $rut = $_SESSION['rutCliente'];
+        $data = $this->model->getPedidos($rut);
         for ($i = 0; $i < count($data); $i++) {
-            $data[$i]['accion'] = '<div class="text-center"><button class="btn btn-primary" type="button" onclick="verPedido(' . $data[$i]['id'] . ')"><i class="fas fa-eye"></i></button></div>';
+            $data[$i]['accion'] = '    <div class="d-center">
+            <button class="btn btn-primary" type="button" onclick="verPedido('.$data[$i]['cod_pedido'].')"><i class="fas fa-eye"></i></button>
+        </div>';
         }
         echo json_encode($data);
         die();
     }
-    public function verPedido($idPedido)
-    {
-        $data['pedido'] = $this->model->getPedido($idPedido);
-        $data['productos'] = $this->model->verPedidos($idPedido);
-        $data['moneda'] = MONEDA;
-        echo json_encode($data);
-        die();
-    }
-}
+ 
+     public function verPedido($cod_pedido)
+     {
+         $data['producto'] = $this->model->verPedidos($cod_pedido);
+         echo json_encode($data);
+         die();
+     }
+
+     public function cerrar_sesion() {
+
+        session_destroy();
+        header('Location: ' . BASE_URL);
+}}

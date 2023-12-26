@@ -7,23 +7,23 @@ class PrincipalModel extends Query{
     }
     public function getCategorias()
     {
-        $sql = "SELECT * FROM producto";
+        $sql = "SELECT * FROM producto WHERE stock >= 1 AND estado = 1;";
         return $this->selectAll($sql);
     }
     public function getProductos()
     {
-        $sql = "SELECT * FROM producto";
+        $sql = "SELECT * FROM producto WHERE stock >= 1 AND estado = 1;";
         return $this->selectAll($sql);
     }
     public function getPaletas()
     {
-        $sql = "SELECT * FROM producto WHERE categoria = 'Paleta' ";
+        $sql = "SELECT * FROM producto WHERE stock >= 1 AND estado = 1 and categoria = 'Paleta' "; 
         return $this->selectAll($sql);
     }
 
     public function getBotes()
     {
-        $sql = "SELECT * FROM producto WHERE categoria = 'Bote' ";
+        $sql = "SELECT * FROM producto WHERE stock >= 1 AND estado = 1 and categoria = 'Bote' "; 
         return $this->selectAll($sql);
     }
 
