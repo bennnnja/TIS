@@ -11,7 +11,7 @@ class Ofertas extends Controlador
         $data['title'] = ' ofertas ';
         $this->views->getView('admin/ofertas', "index", $data);
     }
-
+    
     public function listar()
     {
         $data = $this->model->getOfertas(1);
@@ -87,4 +87,6 @@ class Ofertas extends Controlador
         }
         die();
     }
+
+
 }
