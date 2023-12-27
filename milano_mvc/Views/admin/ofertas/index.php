@@ -66,7 +66,6 @@ require __DIR__ . '/PHPMailer/Exception.php';
                             <tr>
                                 <th>#</th>
                                 <th>Descripcion</th>
-                                <th>Descuento</th>
                                 <th>Tiempo Inicio</th>
                                 <th>Tiempo Fin</th>
                                 <th>Producto</th>
@@ -97,12 +96,6 @@ require __DIR__ . '/PHPMailer/Exception.php';
                             <div class="form-group mb-2">
                                 <label for="descripcion">Descripcion</label>
                                 <input id="descripcion" class="form-control" type="text" name="descripcion" placeholder="Descripcion">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group mb-2">
-                                <label for="descuento">Descuento</label>
-                                <input id="descuento" class="form-control" type="number" name="descuento" placeholder="Descuento">
                             </div>
                         </div>
                         <div class="col-md-3">
