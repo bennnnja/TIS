@@ -8,6 +8,9 @@ class Usuarios extends Controlador
     }
     public function index()
     {
+        if(empty($_SESSION["email"])) {
+            header("Location: ". BASE_URL);
+        }
         $data['title'] = ' usuarios ';
         $this->views->getView('admin/usuarios', "index", $data);
     }

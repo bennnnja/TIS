@@ -8,6 +8,9 @@ class Ingredientes extends Controlador
     }
     public function index()
     {
+        if(empty($_SESSION["email"])) {
+            header("Location: ". BASE_URL);
+        }
         $data['title'] = ' ingredientes ';
         $this->views->getView('admin/ingredientes', "index", $data);
     }

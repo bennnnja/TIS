@@ -10,7 +10,7 @@ require  __DIR__ . '/PHPMailer/SMTP.php';
 require __DIR__ . '/PHPMailer/Exception.php';
 
 ?>
-<a class="btn btn-success mb-2" href="<?php echo BASE_URL . 'WhatsappAPI'; ?>" id="btnEnviarWhatsApp" style="margin-left: 20px;">Enviar oferta WhatsApp</a>
+<a class="btn btn-success mb-2" href="http://localhost:8080" id="btnEnviarWhatsApp" style="margin-left: 20px;">Enviar oferta WhatsApp</a>
 <button class="btn btn-primary mb-2" type="button" id="btnEnviarCorreo" data-toggle="modal" data-target="#modalEnviarCorreo" style="margin-left: 20px;">Enviar oferta Correo</button>
 <!-- Agrega esto al final de tu cuerpo HTML -->
 <div class="modal fade" id="modalEnviarCorreo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -27,7 +27,7 @@ require __DIR__ . '/PHPMailer/Exception.php';
                     <label for="destinatario">Destinatario:</label>
                     <input type="email" name="destinatario" required>
                     <br>
-
+    
                     <label for="asunto">Asunto:</label>
                     <input type="text" name="asunto" required>
                     <br>

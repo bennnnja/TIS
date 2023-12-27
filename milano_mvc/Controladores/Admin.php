@@ -8,6 +8,7 @@ class Admin extends Controlador
     }
     public function index()
     {
+
         $data['title'] = 'Acceso Admin';
         $this->views->getView('admin', "login", $data);
     }
@@ -44,7 +45,10 @@ class Admin extends Controlador
     }
 
     public function home()
-    {
+    {   
+        if(empty($_SESSION["email"])) {
+            header("Location: ". BASE_URL);
+        }
 
         $data['title'] = 'Panel Administrativo';
         $data['pendientes'] = $this->model->getPendientes();
@@ -58,4 +62,10 @@ class Admin extends Controlador
         $this->views->getView('admin/administracion', "index", $data);
         
     }
+
+    public function cerrar_sesion() {
+
+        session_destroy();
+        header('Location: ' . BASE_URL);
+}
 }

@@ -7,7 +7,12 @@ class Ofertas extends Controlador
         session_start();
     }
     public function index()
-    {
+    {  
+        
+        if(empty($_SESSION["email"])) {
+        header("Location: ". BASE_URL);
+    }
+
         $data['title'] = ' ofertas ';
         $this->views->getView('admin/ofertas', "index", $data);
     }

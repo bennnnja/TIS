@@ -8,6 +8,9 @@ class Pedidos extends Controlador
     }
     public function index()
     {
+        if(empty($_SESSION["email"])) {
+            header("Location: ". BASE_URL);
+        }
         $data['title'] = ' pedidos ';
         $this->views->getView('admin/pedidos', "index", $data);
     }
