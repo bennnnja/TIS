@@ -95,6 +95,8 @@
         <!-- Area Chart -->
 
 
+
+
         <div class="col-xl-8 col-lg-7">
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
@@ -102,7 +104,10 @@
                     <h6 class="m-0 font-weight-bold text-primary">Ventas durante los ultimos 7 dias</h6>
                     <div class="dropdown no-arrow">
                         <!-- <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <!-- <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                        </a> -->
+                        <!-- <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                         </a> -->
                         <!-- <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                             <div class="dropdown-header">Dropdown Header:</div>
@@ -110,6 +115,7 @@
                             <a class="dropdown-item" href="#">Another action</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Something else here</a>
+                        </div> -->
                         </div> -->
                     </div>
                 </div>
@@ -130,7 +136,10 @@
                     <h6 class="m-0 font-weight-bold text-primary">Productos mas vendidos</h6>
                     <div class="dropdown no-arrow">
                         <!-- <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <!-- <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                        </a> -->
+                        <!-- <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                         </a> -->
                         <!-- <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                             <div class="dropdown-header">Dropdown Header:</div>
@@ -138,6 +147,7 @@
                             <a class="dropdown-item" href="#">Another action</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Something else here</a>
+                        </div> -->
                         </div> -->
                     </div>
                 </div>
@@ -214,6 +224,8 @@
 
     <!-- Color System -->
 </div>
+    <!-- Color System -->
+</div>
 
 </div>
 <!-- /.container-fluid -->
@@ -227,6 +239,9 @@
     const ingMenorStock = <?php echo json_encode($data['ingMenorStock']); ?>;
 </script>
 
+<script src="https://acinfo.inf.unap.cl/~brojas/interfaz2/milano_mvc/Assets/js/demo/chart-area-demo.js"></script>
+<script src="https://acinfo.inf.unap.cl/~brojas/interfaz2/milano_mvc/Assets/js/demo/chart-pie-demo.js"></script>
+<script src="https://acinfo.inf.unap.cl/~brojas/interfaz2/milano_mvc/Assets/vendor/fontawesome-free/js/all.min.js"></script>
 <script src="https://acinfo.inf.unap.cl/~brojas/interfaz2/milano_mvc/Assets/js/demo/chart-area-demo.js"></script>
 <script src="https://acinfo.inf.unap.cl/~brojas/interfaz2/milano_mvc/Assets/js/demo/chart-pie-demo.js"></script>
 <script src="https://acinfo.inf.unap.cl/~brojas/interfaz2/milano_mvc/Assets/vendor/fontawesome-free/js/all.min.js"></script>

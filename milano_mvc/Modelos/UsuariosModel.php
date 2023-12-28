@@ -18,10 +18,15 @@ class UsuariosModel extends Query
         $array = array($rut, $nombre, $email, $telefono, $nom_usuario, $contrasena, $fecha_nacimiento);
         return $this->insertar($sql, $array);
     }
-
     public function verificarCorreo($email)
     {
         $sql="SELECT email FROM cliente WHERE email = '$email'";
+        return $this->select($sql);
+    }
+
+    public function verificarRUT($rut)
+    {
+        $sql="SELECT rut FROM cliente WHERE rut = '$rut'";
         return $this->select($sql);
     }
 
@@ -34,7 +39,7 @@ class UsuariosModel extends Query
 
     public function getUsuario($idUser)
     {
-        $sql = "SELECT rut, nombre, email, telefono, nom_usuario FROM cliente WHERE rut = '$idUser'";
+        $sql = "SELECT rut, nombre, email, telefono, nom_usuario, fecha_nacimiento FROM cliente WHERE rut = '$idUser'";
         return $this->select($sql);
     }
 

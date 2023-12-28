@@ -33,17 +33,17 @@ class Ingredientes extends Controlador
         if (isset($_POST['nombre_ingrediente'])) {
             $nombre_ingrediente = $_POST['nombre_ingrediente'];
             $cod_ingrediente = $_POST['cod_ingrediente'];
-            $detalle = $_POST['detalle'];
+            $unidad_de_medida = $_POST['unidad_de_medida'];
             $stock = $_POST['stock'];
             $fecha_vencimiento = $_POST['fecha_vencimiento'];
-            if (empty($cod_ingrediente) || empty($detalle) || empty($stock) || empty($fecha_vencimiento)) {
+            if (empty($cod_ingrediente) || empty($unidad_de_medida) || empty($stock) || empty($fecha_vencimiento)) {
                 $respuesta = array('msg' => 'Todos los campos son requeridos', 'icono' => 'warning');
             } else {
                 $result = $this->model->verificarIngrediente($cod_ingrediente);
 
                 if (empty($result)) {
                     // El ingrediente no existe, proceder con el registro
-                    $data = $this->model->registrar($nombre_ingrediente, $cod_ingrediente, $detalle, $stock, $fecha_vencimiento);
+                    $data = $this->model->registrar($nombre_ingrediente, $cod_ingrediente, $unidad_de_medida, $stock, $fecha_vencimiento);
                     if ($data > 0) {
                         $respuesta = array('msg' => 'Error al registrar', 'icono' => 'warning');
                     } else {
@@ -51,7 +51,7 @@ class Ingredientes extends Controlador
                     }
                 } else {
                     // El ingrediente ya existe, proceder con la modificación
-                    $data = $this->model->modificar($nombre_ingrediente, $cod_ingrediente, $detalle, $stock, $fecha_vencimiento);
+                    $data = $this->model->modificar($nombre_ingrediente, $cod_ingrediente, $unidad_de_medida, $stock, $fecha_vencimiento);
                     if ($data == 1) {
                         $respuesta = array('msg' => 'Error al modificar', 'icono' => 'warning');
                     } else {

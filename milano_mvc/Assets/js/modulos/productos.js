@@ -84,6 +84,7 @@ function editPro(idPro) {
         if (this.readyState == 4 && this.status == 200) {
             console.log(this.responseText);
             const res = JSON.parse(this.responseText);
+            // Asigna valores a los campos del formulario
             document.querySelector('#nombre_producto').value = res[0].nombre_producto;
             document.querySelector('#precio').value = res[0].precio;
             document.querySelector('#stock').value = res[0].stock;
@@ -94,6 +95,11 @@ function editPro(idPro) {
             const codInput = document.querySelector('#cod_producto');
             codInput.value = res[0].cod_producto;
             codInput.setAttribute('readonly', true); // Hacer el campo cod_producto solo lectura
+            
+            // Deshabilitar el campo de imagen
+            const imagenInput = document.querySelector('#imagen');
+            imagenInput.setAttribute('disabled', true);
+
             btnAccion.textContent = 'Actualizar';
             document.getElementById('nuevoProducto').click();
             firstTab.show();

@@ -8,8 +8,8 @@ class Usuarios extends Controlador
     }
     public function index()
     {
-        if(empty($_SESSION["email"])) {
-            header("Location: ". BASE_URL);
+        if (empty($_SESSION["email"])) {
+            header("Location: " . BASE_URL);
         }
         $data['title'] = ' usuarios ';
         $this->views->getView('admin/usuarios', "index", $data);
@@ -42,7 +42,9 @@ class Usuarios extends Controlador
             if (empty($_POST['nombre']) || empty($_POST['rut']) || empty($_POST['email']) || empty($_POST['telefono']) || empty($_POST['nom_usuario']) || empty($_POST['contrasena']) || empty($_POST['fecha_nacimiento'])) {
                 $respuesta = array('msg' => 'Todos los campos son requeridos', 'icono' => 'warning');
             } else {
-                if (empty($rut)) {
+                $rutExiste = $this->model->verificarRUT($rut);
+
+                if (!$rutExiste) {
                     $result = $this->model->verificarCorreo($email);
                     if (empty($result)) {
                         $data = $this->model->registrar($nombre, $rut, $email, $telefono, $nom_usuario, $hash, $fecha_nacimiento);
@@ -56,11 +58,11 @@ class Usuarios extends Controlador
                     }
                 } else {
                     $data = $this->model->modificar($nombre, $rut, $email, $telefono, $nom_usuario, $fecha_nacimiento);
-                        if ($data == 1) {
-                            $respuesta = array('msg' => 'Error al modificar', 'icono' => 'warning');
-                        } else {
-                            $respuesta = array('msg' => 'Usuario Modificado', 'icono' => 'success');
-                        }
+                    if ($data == 1) {
+                        $respuesta = array('msg' => 'Error al modificar', 'icono' => 'warning');
+                    } else {
+                        $respuesta = array('msg' => 'Usuario Modificado', 'icono' => 'success');
+                    }
                 }
             }
             echo json_encode($respuesta);
