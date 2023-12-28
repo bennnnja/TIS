@@ -84,7 +84,6 @@ function editOfert(idOfert) {
             console.log(this.responseText);
             const res = JSON.parse(this.responseText);
             document.querySelector('#descripcion').value = res[0].descripcion;
-            document.querySelector('#descuento').value = res[0].descuento;
             document.querySelector('#tiempo_inicio').value = res[0].tiempo_inicio;
             document.querySelector('#tiempo_fin').value = res[0].tiempo_fin;
             document.querySelector('#producto_cod_producto').value = res[0].producto_cod_producto;

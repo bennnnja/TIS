@@ -43,7 +43,7 @@ class Productos extends Controlador
             $fecha_vencimiento = $_POST['fecha_vencimiento'];
             $ruta = 'img_prod/';
             $nombreImg = date('YmdHis');
-            if (empty($nombre_producto) || empty($precio) || empty($stock) || empty($imagen) || empty($categoria) || empty($sabor) || empty($fecha_vencimiento)) {
+            if (empty($nombre_producto) || empty($precio) || empty($stock) || empty($categoria) || empty($sabor) || empty($fecha_vencimiento)) {
                 $respuesta = array('msg' => 'Todos los campos son requeridos', 'icono' => 'warning');
             } else {
                 $existeProducto = $this->model->existeProducto($cod_producto);
@@ -66,7 +66,7 @@ class Productos extends Controlador
                         $respuesta = array('msg' => 'producto registrado', 'icono' => 'success');
                     }
                 } else {
-                    $data = $this->model->modificar($nombre_producto, $cod_producto, $precio, $stock, $sabor, $fecha_vencimiento, $categoria, $imagen);
+                    $data = $this->model->modificar($nombre_producto, $cod_producto, $precio, $stock, $sabor, $fecha_vencimiento, $categoria);
                     if ($data == 1) {
                         if (!empty($imagen['name'])) {
                             move_uploaded_file($tmp_name, $destino);

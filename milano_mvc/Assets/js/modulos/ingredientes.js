@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
             { data: 'cod_ingrediente' },
             { data: 'nombre_ingrediente' },
             { data: 'stock' },
-            { data: 'detalle' },
+            { data: 'unidad_de_medida' },
             { data: 'accion' },
         ],
         language,
@@ -83,7 +83,7 @@ function editIngre(idIngre) {
             console.log(this.responseText);
             const res = JSON.parse(this.responseText);
             document.querySelector('#nombre_ingrediente').value = res[0].nombre_ingrediente;
-            document.querySelector('#detalle').value = res[0].detalle;
+            document.querySelector('#unidad_de_medida').value = res[0].unidad_de_medida;
             document.querySelector('#stock').value = res[0].stock;
             document.querySelector('#fecha_vencimiento').value = res[0].fecha_vencimiento;
             const codInput = document.querySelector('#cod_ingrediente');

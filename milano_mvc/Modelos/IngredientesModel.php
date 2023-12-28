@@ -12,10 +12,10 @@ class IngredientesModel extends Query
         return $this->selectAll($sql);
     }
 
-    public function registrar($nombre_ingrediente, $cod_ingrediente, $detalle, $stock, $fecha_vencimiento)
+    public function registrar($nombre_ingrediente, $cod_ingrediente, $unidad_de_medida, $stock, $fecha_vencimiento)
     {
-        $sql = "INSERT INTO ingrediente (nombre_ingrediente, cod_ingrediente, detalle, stock, fecha_vencimiento) VALUES (?,?,?,?,?)";
-        $array = array($nombre_ingrediente, $cod_ingrediente, $detalle, $stock, $fecha_vencimiento);
+        $sql = "INSERT INTO ingrediente (nombre_ingrediente, cod_ingrediente, unidad_de_medida, stock, fecha_vencimiento) VALUES (?,?,?,?,?)";
+        $array = array($nombre_ingrediente, $cod_ingrediente, $unidad_de_medida, $stock, $fecha_vencimiento);
         return $this->insertar($sql, $array);
     }
 
@@ -38,10 +38,10 @@ class IngredientesModel extends Query
         return $this->select($sql);
     }
 
-    public function modificar($nombre_ingrediente, $cod_ingrediente, $detalle, $stock, $fecha_vencimiento )
+    public function modificar($nombre_ingrediente, $cod_ingrediente, $unidad_de_medida, $stock, $fecha_vencimiento )
     {
-        $sql = "UPDATE ingrediente SET nombre_ingrediente=?, detalle=?, stock=?, fecha_vencimiento=? WHERE cod_ingrediente = '$cod_ingrediente'";
-        $array = array($nombre_ingrediente, $detalle, $stock, $fecha_vencimiento );
+        $sql = "UPDATE ingrediente SET nombre_ingrediente=?, unidad_de_medida=?, stock=?, fecha_vencimiento=? WHERE cod_ingrediente = '$cod_ingrediente'";
+        $array = array($nombre_ingrediente, $unidad_de_medida, $stock, $fecha_vencimiento );
         return $this->insertar($sql, $array);
     }
 }

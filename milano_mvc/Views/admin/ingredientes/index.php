@@ -19,7 +19,7 @@
                                 <th>#</th>
                                 <th>Nombre Ingrediente</th>
                                 <th>Stock</th>
-                                <th>Detalle</th>
+                                <th>Unidad de medida</th>
                                 <th>Accion</th>
                             </tr>
                         </thead>
@@ -51,8 +51,8 @@
                         </div>
                         <div class="col-md-2">
                             <div class="form-group mb-2">
-                                <label for="detalle">Detalle</label>
-                                <input id="detalle" class="form-control" type="text" name="detalle" placeholder="Detalle">
+                                <label for="unidad_de_medida">Unidad de medida</label>
+                                <input id="unidad_de_medida" class="form-control" type="text" name="unidad_de_medida" placeholder="Unidad de medida">
                             </div>
                         </div>
                         <div class="col-md-2">

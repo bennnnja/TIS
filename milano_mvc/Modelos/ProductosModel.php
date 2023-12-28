@@ -55,10 +55,10 @@ class ProductosModel extends Query
         return $this->select($sql);
     }
 
-    public function modificar($nombre_producto, $cod_producto, $precio, $stock, $sabor, $fecha_vencimiento, $categoria, $imagen)
+    public function modificar($nombre_producto, $cod_producto, $precio, $stock, $sabor, $fecha_vencimiento, $categoria)
     {
-        $sql = "UPDATE producto SET nombre_producto=?, precio=?, stock=?, sabor=?, fecha_vencimiento=?, categoria=?, imagen=? WHERE cod_producto = '$cod_producto'";
-        $array = array($nombre_producto, $precio, $stock, $sabor, $fecha_vencimiento, $categoria, $imagen);
+        $sql = "UPDATE producto SET nombre_producto=?, precio=?, stock=?, sabor=?, fecha_vencimiento=?, categoria=? WHERE cod_producto = '$cod_producto'";
+        $array = array($nombre_producto, $precio, $stock, $sabor, $fecha_vencimiento, $categoria);
         return $this->insertar($sql, $array);
     }
 }
