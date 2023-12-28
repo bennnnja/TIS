@@ -76,6 +76,20 @@ class ClientesModel extends Query{
          $sql = "SELECT * FROM pedido p INNER JOIN detalle_pedido d ON p.cod_pedido = d.pedido_cod_pedido WHERE p.cod_pedido = $cod_pedido";
          return $this->selectAll($sql);
      }
+
+     public function actualizarPerfil($nombre, $telefono, $contrasena, $rut)
+{
+    $sql = "UPDATE cliente SET nombre = ?, telefono = ?, contrasena = ? WHERE rut = ?";
+    $datos = array($nombre, $telefono, $contrasena, $rut);
+    return $this->save($sql, $datos);
+}
+
+public function getPerfil($email)
+    {
+        $sql = "SELECT nombre,email FROM cliente WHERE email = '$email'";
+        return $this->select($sql);
+    }
+
 }
  
 ?>

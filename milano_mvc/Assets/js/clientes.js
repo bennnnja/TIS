@@ -269,3 +269,41 @@ function verPedido(cod_pedido) {
     }
   };
 }
+
+// Lógica para abrir el modal
+document.getElementById('btnModificarPerfil').addEventListener('click', function () {
+  abrirModalModificarPerfil();
+});
+
+// Lógica para enviar la solicitud AJAX
+document.getElementById('formModificarPerfil').addEventListener('submit', function (event) {
+  event.preventDefault();
+  enviarSolicitudModificarPerfil();
+});
+
+const modalModificarPerfil = new bootstrap.Modal(document.getElementById("modalModificarPerfil"));
+function abrirModalModificarPerfil() {
+  // Lógica para abrir el modal (usando Bootstrap como ejemplo)
+  modalModificarPerfil.show();
+}
+
+
+const icono = 'success';
+function enviarSolicitudModificarPerfil() {
+  // Lógica para obtener los valores del formulario y enviar la solicitud AJAX
+  $.ajax({
+      type: 'POST',
+      url: base_url + 'clientes/administrar_perfil/', // Ruta al controlador
+      data: $('#formModificarPerfil').serialize(),
+      success: function (response) {
+          // Manejar la respuesta del servidor y actualizar la interfaz si es necesario
+          console.log(response);
+          Swal.fire("Aviso", "Perfil actualizado con éxito", icono);
+          if (icono == "success") {
+            setTimeout(() => {
+              window.location.reload();
+            }, 2000);
+          }
+      }
+  });
+}

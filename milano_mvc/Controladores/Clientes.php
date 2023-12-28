@@ -14,6 +14,7 @@ class Clientes extends Controlador
         }
         $data['title'] = 'Tu Perfil';
         $data['verificar'] = $this->model->getVerificar($_SESSION["emailCliente"]);
+        $data['perfil'] = $this->model->getPerfil($_SESSION["emailCliente"]);
         $this->views->getView('principal', "perfil", $data);
     }
     public function registrarse()
@@ -179,4 +180,31 @@ class Clientes extends Controlador
 
         session_destroy();
         header('Location: ' . BASE_URL);
-}}
+}
+public function administrar_perfil()
+{
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Obtener los datos del formulario
+        $nombre = $_POST['nombre'];
+        $telefono = $_POST['telefono'];
+        $contrasena = $_POST['contrasena'];
+        $hash = password_hash($contrasena,PASSWORD_DEFAULT);
+
+        // Puedes realizar validaciones de datos aquí si es necesario
+
+        // Actualizar los datos en la base de datos
+        $resultado = $this->model->actualizarPerfil($nombre, $telefono, $hash ,$_SESSION['rutCliente']);
+
+        if ($resultado > 0) {
+            $mensaje = array('msg' => 'Perfil actualizado con éxito', 'icono' => 'success');
+        } else {
+            $mensaje = array('msg' => 'Error al actualizar el perfil', 'icono' => 'error');
+        }
+
+        echo json_encode($mensaje, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+}
+
+
+}

@@ -126,3 +126,45 @@ var chart_menos_vendidos = new Chart(ctx, {
 });
 
 
+
+var nomIngStock = ingMenorStock.map(function (item) {
+  return item.nombre_ingrediente;
+});
+
+var cantIngStock = ingMenorStock.map(function (item) {
+  return item.stock;
+});
+
+var ctx = document.getElementById("chart_ingredientes_stock");
+var chart_ingredientes_stock = new Chart(ctx, {
+  type: 'pie',
+  data: {
+    labels: nomIngStock,
+    datasets: [{
+      data: cantIngStock,
+      backgroundColor: ['#ff5252', '#66bb6a', '#29b6f6', '#ffee58', '#ff7043'],
+hoverBackgroundColor: ['#d32f2f', '#388e3c', '#0277bd', '#fbc02d', '#e64a19'],
+
+      hoverBorderColor: "rgba(234, 236, 244, 1)",
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: false,
+      caretPadding: 10,
+    },
+    legend: {
+      display: true,
+      position: 'bottom'
+    },
+  },
+});
+
+

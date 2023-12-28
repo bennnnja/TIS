@@ -93,24 +93,24 @@
     <div class="row">
 
         <!-- Area Chart -->
-        
-        
+
+
         <div class="col-xl-8 col-lg-7">
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Ventas durante los ultimos 7 dias</h6>
                     <div class="dropdown no-arrow">
-                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <!-- <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                        </a> -->
+                        <!-- <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                             <div class="dropdown-header">Dropdown Header:</div>
                             <a class="dropdown-item" href="#">Action</a>
                             <a class="dropdown-item" href="#">Another action</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <!-- Card Body -->
@@ -129,16 +129,16 @@
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Productos mas vendidos</h6>
                     <div class="dropdown no-arrow">
-                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <!-- <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                        </a> -->
+                        <!-- <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                             <div class="dropdown-header">Dropdown Header:</div>
                             <a class="dropdown-item" href="#">Action</a>
                             <a class="dropdown-item" href="#">Another action</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <!-- Card Body -->
@@ -156,63 +156,80 @@
     <!-- Content Row -->
     <div class="row">
 
-    <!-- Primer Gráfico -->
-    <div class="col-lg-6 mb-3">
-        <div class="card shadow mb-4">
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Productos con poco stock</h6>
-                <!-- ... (Código de la barra de herramientas) -->
-            </div>
-            <div class="card-body">
-                <div class="chart-pie pt-4 pb-2">
-                    <canvas id="chart_poco_stock"></canvas>
+        <!-- Primer Gráfico -->
+        <div class="col-lg-4 mb-3">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Productos con poco stock</h6>
+                    <!-- ... (Código de la barra de herramientas) -->
                 </div>
-                <div class="mt-4 text-center small">
-                    <!-- ... (Cualquier otro contenido específico) -->
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Segundo Gráfico -->
-    <div class="col-lg-6 mb-3">
-        <div class="card shadow mb-4">
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Productos menos vendidos</h6>
-                <!-- ... (Código de la barra de herramientas) -->
-            </div>
-            <div class="card-body">
-                <div class="chart-pie pt-4 pb-2">
-                    <canvas id="chart_menos_vendidos"></canvas>
-                </div>
-                <div class="mt-4 text-center small">
-                    <!-- ... (Cualquier otro contenido específico) -->
+                <div class="card-body">
+                    <div class="chart-pie pt-4 pb-2">
+                        <canvas id="chart_poco_stock"></canvas>
+                    </div>
+                    <div class="mt-4 text-center small">
+                        <!-- ... (Cualquier otro contenido específico) -->
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- Segundo Gráfico -->
+        <div class="col-lg-4 mb-3">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Productos menos vendidos</h6>
+                    <!-- ... (Código de la barra de herramientas) -->
+                </div>
+                <div class="card-body">
+                    <div class="chart-pie pt-4 pb-2">
+                        <canvas id="chart_menos_vendidos"></canvas>
+                    </div>
+                    <div class="mt-4 text-center small">
+                        <!-- ... (Cualquier otro contenido específico) -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 mb-3">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Ingredientes con poco stock</h6>
+                    <!-- ... (Código de la barra de herramientas) -->
+                </div>
+                <div class="card-body">
+                    <div class="chart-pie pt-4 pb-2">
+                        <canvas id="chart_ingredientes_stock"></canvas>
+                    </div>
+                    <div class="mt-4 text-center small">
+                        <!-- ... (Cualquier otro contenido específico) -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
+
+    <!-- Color System -->
 </div>
-
-
-            <!-- Color System -->
-    </div>
 
 </div>
 <!-- /.container-fluid -->
 <!-- Page level custom scripts -->
 <script>
-    
-            const ventasPorDia = <?php echo json_encode($data['ventasPorDia']); ?>;
-            const prodMasVendido = <?php echo json_encode($data['prodMasVendido']); ?>;
-            const prodMenorStock =  <?php echo json_encode($data['prodMenorStock']); ?>;
-            const prodMenosVendido = <?php echo json_encode($data['prodMenosVendido']); ?>;
-
+     
+    const ventasPorDia = <?php echo json_encode($data['ventasPorDia']); ?>;
+    const prodMasVendido = <?php echo json_encode($data['prodMasVendido']); ?>;
+    const prodMenorStock = <?php echo json_encode($data['prodMenorStock']); ?>;
+    const prodMenosVendido = <?php echo json_encode($data['prodMenosVendido']); ?>;
+    const ingMenorStock = <?php echo json_encode($data['ingMenorStock']); ?>;
 </script>
 
-            <script src="https://acinfo.inf.unap.cl/~brojas/interfaz2/milano_mvc/Assets/js/demo/chart-area-demo.js"></script>
-            <script src="https://acinfo.inf.unap.cl/~brojas/interfaz2/milano_mvc/Assets/js/demo/chart-pie-demo.js"></script>
-            <script src="https://acinfo.inf.unap.cl/~brojas/interfaz2/milano_mvc/Assets/vendor/fontawesome-free/js/all.min.js"></script>
+<script src="https://acinfo.inf.unap.cl/~brojas/interfaz2/milano_mvc/Assets/js/demo/chart-area-demo.js"></script>
+<script src="https://acinfo.inf.unap.cl/~brojas/interfaz2/milano_mvc/Assets/js/demo/chart-pie-demo.js"></script>
+<script src="https://acinfo.inf.unap.cl/~brojas/interfaz2/milano_mvc/Assets/vendor/fontawesome-free/js/all.min.js"></script>
 
 
 

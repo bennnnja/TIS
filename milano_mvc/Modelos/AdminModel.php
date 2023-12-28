@@ -54,6 +54,11 @@ public function getProductosMenosVendidos() {
     $sql = "SELECT SUM(cantidad) AS productos_vendidos, producto AS producto_nombre FROM detalle_pedido GROUP BY producto, cantidad ORDER BY productos_vendidos ASC LIMIT 5";
     return $this->selectAll($sql);
 }
+public function getIngredientesMenorStock()
+{
+    $sql = "SELECT nombre_ingrediente,  stock FROM ingrediente ORDER BY stock ASC LIMIT 5";
+    return $this->selectAll($sql);
+}
 }
 
  

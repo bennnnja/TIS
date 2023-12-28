@@ -69,13 +69,14 @@
                                 <img class="img-thumbnail rounded-circle" src="https://st3.depositphotos.com/11742109/36001/v/450/depositphotos_360013274-stock-illustration-anonymous-gender-neutral-face-avatar.jpg" alt="" width="150">
                                 <hr>
                                 <p>
-                                <p><?php echo $_SESSION['nombreCliente']; ?></p>
+                                <p><?php echo $data['perfil'][0]['nombre']; ?></p>
                                 </p>
                                 <p>
                                 <p><?php echo $_SESSION['rutCliente']; ?></p>
                                 </p>
-                                <p><i class="fas fa-envelope"></i> <?php echo $_SESSION['emailCliente']; ?></p>
+                                <p><i class="fas fa-envelope"></i> <?php echo $data['perfil'][0]['email']; ?></p>
                             </div>
+                            <button id="btnModificarPerfil" class="btn btn-custom-orange text-white">Modificar datos del perfil</button>
                             <a class="btn btn-primary" href="<?php echo BASE_URL . 'clientes/cerrar_sesion' ?>" role="button">Cerrar sesión</a>
                         </div>
 
@@ -154,6 +155,37 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modalModificarPerfil" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalModificarPerfil" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-custom-orange text-white">
+                <h5 class="modal-title" id="modalModificarPerfil">Cambiar datos</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body col-mb-12">
+                <!-- Formulario de modificación de perfil -->
+                <form id="formModificarPerfil">
+                <div class="form-group mb-3">
+                        <label for="nombre"><i class="fas fa-user"></i>  Nombre:</label>
+                        <input type="text" name="nombre" id="nombre" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="telefono"><i class="fas fa-phone"></i>  Teléfono</label>
+                        <input type="tel" name="telefono" id="telefono" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="contrasena"><i class="fas fa-key"></i>  Contraseña</label>
+                        <input type="password" name="contrasena" id="contrasena" required>
+                    </div>
+                    <button type="submit" class="btn btn-custom-orange text-white">Guardar Cambios</button>
+                </form>
+
             </div>
         </div>
     </div>

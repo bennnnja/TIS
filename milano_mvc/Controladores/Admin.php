@@ -59,6 +59,7 @@ class Admin extends Controlador
         $data['prodMasVendido'] = $this->model->getProductosMasVendidos();
         $data['prodMenorStock'] = $this->model->getProductosMenorStock();
         $data['prodMenosVendido'] = $this->model->getProductosMenosVendidos();
+        $data['ingMenorStock'] = $this->model->getIngredientesMenorStock();
         $this->views->getView('admin/administracion', "index", $data);
         
     }
