@@ -12,7 +12,11 @@ class Principal extends Controlador
     public function productos()
     {
         $data['title'] = 'Productos';
-        $data['losProductos'] = $this->model->getProductos();
+        
+        $query = new Query();
+        $principalModel = new PrincipalModel($query);
+
+        $data['losProductos'] = $principalModel->getProductos();
         $this->views->getView('principal', "productos", $data);
     }
     
@@ -24,13 +28,17 @@ class Principal extends Controlador
     public function categoriaPal()
     {
         $data['title'] = 'Paletas';
-        $data['paletas'] = $this->model->getPaletas();
+        $query = new Query();
+        $principalModel = new PrincipalModel($query);
+        $data['paletas'] = $principalModel->getPaletas();
         $this->views->getView('principal', "categoriaPal", $data);
     }
     public function categoriaBot()
     {
         $data['title'] = 'Botes';
-        $data['botes'] = $this->model->getBotes();
+        $query = new Query();
+        $principalModel = new PrincipalModel($query);
+        $data['botes'] = $principalModel->getBotes();
         $this->views->getView('principal', "categoriaBot", $data);
     }
     
@@ -41,10 +49,13 @@ class Principal extends Controlador
     $json = json_decode($datos, true);
         $array['producto'] = array();
         $total = 0;
+        $query = new Query();
+        $principalModel = new PrincipalModel($query);
 
         if (!empty($json)) {
             foreach ($json as $producto) {
-                $result = $this->model->getListaProducto($producto['cod_producto']);
+                
+                $result = $principalModel->getListaProducto($producto['cod_producto']);
                
                 if (isset($result[0]['cod_producto'])) {
                     $data['cod_producto'] = $result[0]['cod_producto'];

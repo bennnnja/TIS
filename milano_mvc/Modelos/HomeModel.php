@@ -1,16 +1,17 @@
 <?php
-class HomeModel extends Query{
- 
-    public function __construct()
-    {
-        parent::__construct();
+require_once __DIR__ . '/../Config/Query.php';
+
+class HomeModel {
+    private $query;
+
+    public function __construct(Query $query) {
+        $this->query = $query;
     }
-    public function getTopProductos()
-    {
+
+    public function getTopProductos() {
         $sql = "SELECT * FROM producto ORDER BY stock DESC LIMIT 4";
-        return $this->selectAll($sql);
+        return $this->query->selectAll($sql);
     }
-    
 }
- 
+
 ?>

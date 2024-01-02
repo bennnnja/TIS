@@ -13,8 +13,12 @@ class Clientes extends Controlador
             header("Location: ". BASE_URL);
         }
         $data['title'] = 'Tu Perfil';
-        $data['verificar'] = $this->model->getVerificar($_SESSION["emailCliente"]);
-        $data['perfil'] = $this->model->getPerfil($_SESSION["emailCliente"]);
+
+        $query = new Query();
+        $clientesmodel = new ClientesModel($query);
+
+        $data['verificar'] = $clientesmodel->getVerificar($_SESSION["emailCliente"]);
+        $data['perfil'] = $clientesmodel->getPerfil($_SESSION["emailCliente"]);
         $this->views->getView('principal', "perfil", $data);
     }
     public function registrarse()
@@ -28,7 +32,11 @@ class Clientes extends Controlador
             $email = $_POST['email'];
             $contrasena = $_POST['contrasena'];
             $hash = password_hash($contrasena,PASSWORD_DEFAULT);
-            $data = $this->model->registroDirecto($nombre, $nom_usuario, $rut, $telefono, $fdn, $email, $hash)+1;
+            
+            $query = new Query();
+            $clientesmodel = new ClientesModel($query);
+
+            $data = $clientesmodel->registroDirecto($nombre, $nom_usuario, $rut, $telefono, $fdn, $email, $hash)+1;
 
             if ($data > 0) {
                 $_SESSION['emailCliente'] = $email;
@@ -54,7 +62,11 @@ class Clientes extends Controlador
             } else {
                 $email = $_POST['correoLogin'];
                 $contrasena = $_POST['contrasenaLogin'];
-                $verificar = $this->model->getVerificar($email);
+
+                $query = new Query();
+                $clientesmodel = new ClientesModel($query);
+
+                $verificar = $clientesmodel->getVerificar($email);
                 
                 if (!empty($verificar)) {
                     $usuarioData = $verificar[0];
@@ -86,11 +98,14 @@ class Clientes extends Controlador
     // Verificar que la solicitud sea de tipo POST
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
+        $query = new Query();
+        $clientesmodel = new ClientesModel($query);
+
         $datos = file_get_contents('php://input');
         $json = json_decode($datos, true);
         $pedidos = $json['pedidos'];
         $productos = $json['productos'];
-        $resultadoPedido = $this->model->registrarPedido(
+        $resultadoPedido = $clientesmodel->registrarPedido(
             $pedidos['cod_pedido'],
             $pedidos['monto'],
             $pedidos['estado'],
@@ -104,7 +119,7 @@ class Clientes extends Controlador
             // El pedido se registró correctamente, ahora registrar el detalle
             foreach ($productos as $producto) {
                 
-                $temp = $this->model->getProducto($producto['cod_producto']);
+                $temp = $clientesmodel->getProducto($producto['cod_producto']);
                 if (isset($temp[0]['nombre_producto'])) {
                     $nombre_producto['nombre_producto'] = $temp[0]['nombre_producto'];
                 } else {
@@ -121,7 +136,7 @@ class Clientes extends Controlador
                     $cod_producto['cod_producto'] = null;
                 }
 
-                $resultadoDetalle = $this->model->registrarDetalle(
+                $resultadoDetalle = $clientesmodel->registrarDetalle(
                     $nombre_producto['nombre_producto'],
                     $precio['precio'],
                     $producto['cantidad'],
@@ -129,7 +144,7 @@ class Clientes extends Controlador
                     $cod_producto['cod_producto']
                 );
                 
-                $this->model->actualizarStock($producto['cantidad'],$cod_producto['cod_producto']);
+                $clientesmodel->actualizarStock($producto['cantidad'],$cod_producto['cod_producto']);
 
                 if ($resultadoDetalle  <= 0) {
                     // Manejar el caso en que no se pudo registrar el detalle
@@ -159,7 +174,11 @@ class Clientes extends Controlador
     public function listarPedidos()
     {   
         $rut = $_SESSION['rutCliente'];
-        $data = $this->model->getPedidos($rut);
+
+        $query = new Query();
+        $clientesmodel = new ClientesModel($query);
+
+        $data = $clientesmodel->getPedidos($rut);
         for ($i = 0; $i < count($data); $i++) {
             $data[$i]['accion'] = '    <div class="d-center">
             <button class="btn btn-primary" type="button" onclick="verPedido('.$data[$i]['cod_pedido'].')"><i class="fas fa-eye"></i></button>
@@ -171,7 +190,10 @@ class Clientes extends Controlador
  
      public function verPedido($cod_pedido)
      {
-         $data['producto'] = $this->model->verPedidos($cod_pedido);
+        $query = new Query();
+        $clientesmodel = new ClientesModel($query);
+        
+         $data['producto'] = $clientesmodel->verPedidos($cod_pedido);
          echo json_encode($data);
          die();
      }
@@ -184,16 +206,16 @@ class Clientes extends Controlador
 public function administrar_perfil()
 {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Obtener los datos del formulario
+
         $nombre = $_POST['nombre'];
         $telefono = $_POST['telefono'];
         $contrasena = $_POST['contrasena'];
         $hash = password_hash($contrasena,PASSWORD_DEFAULT);
 
-        // Puedes realizar validaciones de datos aquí si es necesario
+        $query = new Query();
+        $clientesmodel = new ClientesModel($query);
 
-        // Actualizar los datos en la base de datos
-        $resultado = $this->model->actualizarPerfil($nombre, $telefono, $hash ,$_SESSION['rutCliente']);
+        $resultado = $clientesmodel->actualizarPerfil($nombre, $telefono, $hash ,$_SESSION['rutCliente']);
 
         if ($resultado > 0) {
             $mensaje = array('msg' => 'Perfil actualizado con éxito', 'icono' => 'success');

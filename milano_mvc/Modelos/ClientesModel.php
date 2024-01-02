@@ -1,16 +1,18 @@
 <?php
-class ClientesModel extends Query{
- 
-    public function __construct()
+
+require_once __DIR__ . '/../Config/Query.php';
+class ClientesModel {
+    private $query;
+    public function __construct(Query $query)
     {
-        parent::__construct();
+        $this->query = $query;
     }
 
     public function registroDirecto($nombre, $nom_usuario, $rut, $telefono, $fdn, $email, $contrasena)
     {
         $sql = "INSERT INTO cliente (nombre, nom_usuario, rut, telefono, fecha_nacimiento, email, contrasena) VALUES (?,?,?,?,?,?,?)";
         $datos = array($nombre, $nom_usuario, $rut, $telefono, $fdn, $email, $contrasena);
-        $data = $this->insertar($sql, $datos);
+        $data = $this->query->insertar($sql, $datos);
         if ($data > 0) {
             $res = $data;
         } else {
@@ -22,14 +24,14 @@ class ClientesModel extends Query{
     public function getVerificar($email)
     {
         $sql = "SELECT * FROM cliente WHERE email = '$email'";
-        return $this->select($sql);
+        return $this->query->select($sql);
     }
 
     public function registrarPedido($cod_pedido, $monto, $estado, $fecha_pedido, $cliente_rut)
     {
         $sql = "INSERT INTO pedido (cod_pedido, monto, estado, fecha_pedido, cliente_rut) VALUES (?,?,?,?,?)";
         $datos = array($cod_pedido, $monto, $estado, $fecha_pedido, $cliente_rut);
-        $data = $this->insertar($sql, $datos);
+        $data = $this->query->insertar($sql, $datos);
         if ($data > 0) {
             $res = $data;
         } else {
@@ -40,13 +42,13 @@ class ClientesModel extends Query{
     public function getProducto($cod_producto)
     {
         $sql = "SELECT cod_producto,nombre_producto,precio FROM producto WHERE cod_producto = '$cod_producto'";
-        return $this->select($sql);
+        return $this->query->select($sql);
     }
     public function registrarDetalle($producto, $precio, $cantidad, $pedido_cod_pedido, $producto_cod_producto)
     {
         $sql = "INSERT INTO detalle_pedido (producto, precio, cantidad, pedido_cod_pedido, producto_cod_producto) VALUES (?,?,?,?,?)";
         $datos = array($producto, $precio, $cantidad, $pedido_cod_pedido, $producto_cod_producto);
-        $data = $this->insertar($sql, $datos);
+        $data = $this->query->insertar($sql, $datos);
         if ($data > 0) {
             $res = $data;
         } else {
@@ -61,33 +63,33 @@ class ClientesModel extends Query{
     $sql = "UPDATE producto SET stock = stock - ? WHERE cod_producto = ?";
     
     $datos = array($cantidadVendida,$cod_producto);
-    return $this->save($sql, $datos);
+    return $this->query->save($sql, $datos);
 }
 
 
     public function getPedidos($cliente_rut)
     {
         $sql = "SELECT * FROM pedido WHERE cliente_rut = '$cliente_rut'";
-        return $this->selectAll($sql);
+        return $this->query->selectAll($sql);
     }
 
      public function verPedidos($cod_pedido)
      {
          $sql = "SELECT * FROM pedido p INNER JOIN detalle_pedido d ON p.cod_pedido = d.pedido_cod_pedido WHERE p.cod_pedido = $cod_pedido";
-         return $this->selectAll($sql);
+         return $this->query->selectAll($sql);
      }
 
      public function actualizarPerfil($nombre, $telefono, $contrasena, $rut)
 {
     $sql = "UPDATE cliente SET nombre = ?, telefono = ?, contrasena = ? WHERE rut = ?";
     $datos = array($nombre, $telefono, $contrasena, $rut);
-    return $this->save($sql, $datos);
+    return $this->query->save($sql, $datos);
 }
 
 public function getPerfil($email)
     {
         $sql = "SELECT nombre,email FROM cliente WHERE email = '$email'";
-        return $this->select($sql);
+        return $this->query->select($sql);
     }
 
 }
