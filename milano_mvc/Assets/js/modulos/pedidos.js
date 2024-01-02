@@ -14,7 +14,13 @@ document.addEventListener("DOMContentLoaded", function () {
             { data: 'fecha_pedido' },
             { data: 'cliente_rut' },
             { data: 'estado' },
-            { data: 'accion' },
+            {
+                data: 'cod_ingrediente',
+                render: function(data, type, row) {
+                    return '<button class="btn btn-success" onclick="verPedido(' + data + ')"><i class="fas fa-eye"></i></button>' +
+                           '<button class="btn btn-info" onclick="cambiarProceso(' + data + ', \'Aceptado\')"><i class="fas fa-check-circle"></i></button>';
+                }
+            }
         ],
         language,
         dom,
@@ -31,7 +37,13 @@ document.addEventListener("DOMContentLoaded", function () {
             { data: 'fecha_pedido' },
             { data: 'cliente_rut' },
             { data: 'estado' },
-            { data: 'accion' },
+            {
+                data: 'cod_ingrediente',
+                render: function(data, type, row) {
+                    return '<button class="btn btn-success" onclick="verPedido(' + data + ')"><i class="fas fa-eye"></i></button>' +
+                           '<button class="btn btn-info" onclick="cambiarProceso(' + data + ',\'Completado\')"><i class="fas fa-check-circle"></i></button>';
+                }
+            }
         ],
         language,
         dom,
@@ -48,7 +60,12 @@ document.addEventListener("DOMContentLoaded", function () {
             { data: 'fecha_pedido' },
             { data: 'cliente_rut' },
             { data: 'estado' },
-            { data: 'accion' },
+            {
+                data: 'cod_ingrediente',
+                render: function(data, type, row) {
+                    return '<button class="btn btn-success" onclick="verPedido(' + data + ')"><i class="fas fa-eye"></i></button>';
+                }
+            }
         ],
         language,
         dom,

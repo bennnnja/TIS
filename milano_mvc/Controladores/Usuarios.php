@@ -18,28 +18,24 @@ class Usuarios extends Controlador
     public function listar()
     {
         $data = $this->model->getUsuarios(1);
-        for ($i = 0; $i < count($data); $i++) {
-            $data[$i]['accion'] = '    <div class="d-flex">
-            <button class="btn btn-primary" type="button" onclick="editUser(' . $data[$i]['rut'] . ')"><i class="fas fa-edit"></i></button>
-            <button class="btn btn-danger" type="button" onclick="eliminarUser(' . $data[$i]['rut'] . ')"><i class="fas fa-trash"></i></button>
-        </div>';
-        }
         echo json_encode($data);
         die();
     }
 
     public function registrar()
     {
-        if (isset($_POST['nombre'])) {
-            $nombre = $_POST['nombre'];
-            $rut = $_POST['rut'];
-            $email = $_POST['email'];
-            $telefono = $_POST['telefono'];
-            $nom_usuario = $_POST['nom_usuario'];
-            $contrasena = $_POST['contrasena'];
+        $datos = json_decode(file_get_contents("php://input"), true);
+
+        if (!empty($datos)) {
+            $nombre = isset($datos['nombre']) ? $datos['nombre'] : null;
+            $rut = isset($datos['rut']) ? $datos['rut'] : null;
+            $email = isset($datos['email']) ? $datos['email'] : null;
+            $telefono = isset($datos['telefono']) ? $datos['telefono'] : null;
+            $nom_usuario = isset($datos['nom_usuario']) ? $datos['nom_usuario'] : null;
+            $contrasena = isset($datos['contrasena']) ? $datos['contrasena'] : null;
             $hash = password_hash($contrasena, PASSWORD_DEFAULT);
-            $fecha_nacimiento = $_POST['fecha_nacimiento'];
-            if (empty($_POST['nombre']) || empty($_POST['rut']) || empty($_POST['email']) || empty($_POST['telefono']) || empty($_POST['nom_usuario']) || empty($_POST['contrasena']) || empty($_POST['fecha_nacimiento'])) {
+            $fecha_nacimiento = isset($datos['fecha_nacimiento']) ? $datos['fecha_nacimiento'] : null;
+            if (empty($nombre) || empty($rut) || empty($email) || empty($telefono) || empty($nom_usuario) || empty($contrasena) || empty($fecha_nacimiento)) {
                 $respuesta = array('msg' => 'Todos los campos son requeridos', 'icono' => 'warning');
             } else {
                 $rutExiste = $this->model->verificarRUT($rut);

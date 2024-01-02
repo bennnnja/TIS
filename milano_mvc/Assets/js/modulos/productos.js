@@ -17,32 +17,41 @@ document.addEventListener("DOMContentLoaded", function () {
             { data: 'stock' },
             { data: 'precio' },
             { data: 'imagen' },
-            { data: 'accion' },
+            {
+                data: 'cod_producto',
+                render: function(data, type, row) {
+                    return '<button class="btn btn-primary" onclick="editPro(' + data + ')"><i class="fas fa-edit"></i></button>' +
+                           '<button class="btn btn-danger" onclick="eliminarPro(' + data + ')"><i class="fas fa-trash"></i></button>';
+                }
+            }
         ],
         language,
         dom,
         buttons,
     });
-    //submit usuarios
+
     frm.addEventListener('submit', function (e) {
         e.preventDefault();
-        let data = new FormData(this);
-        const url = "https://acinfo.inf.unap.cl/~brojas/interfaz2/milano_mvc/productos/registrar";
-        const http = new XMLHttpRequest();
-        http.open("POST", url, true);
-        http.send(data);
-        http.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                console.log(this.responseText);
-                const res = JSON.parse(this.responseText);
-                if (res.icono = 'sucess') {
-                    tblProductos.ajax.reload();
-                    document.querySelector('#imagen').value = '';
-                }
-                Swal.fire("Aviso", res.msg.toUpperCase(), res.icono);
+        let formData = new FormData(this);
+        let data = {};
+        formData.forEach((value, key) => data[key] = value);
+    
+        fetch('https://acinfo.inf.unap.cl/~brojas/interfaz2/milano_mvc/productos/registrar', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            Swal.fire("Aviso", data.msg.toUpperCase(), data.icono);
+            if (data.icono == 'success') {
+                tblProductos.ajax.reload();
+                frm.reset();
             }
-        };
-
+        })
+        .catch(error => console.error('Error:', error));
     });
 });
 

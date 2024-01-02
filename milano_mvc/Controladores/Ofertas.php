@@ -20,24 +20,20 @@ class Ofertas extends Controlador
     public function listar()
     {
         $data = $this->model->getOfertas(1);
-        for ($i = 0; $i < count($data); $i++) {
-            $data[$i]['accion'] = '    <div class="d-flex">
-            <button class="btn btn-primary" type="button" onclick="editOfert(' . $data[$i]['cod_oferta'] . ')"><i class="fas fa-edit"></i></button>
-            <button class="btn btn-danger" type="button" onclick="eliminarOfert(' . $data[$i]['cod_oferta'] . ')"><i class="fas fa-trash"></i></button>
-        </div>';
-        }
         echo json_encode($data);
         die();
     }
 
     public function registrar()
     {
-        if (isset($_POST['cod_oferta'])) {
-            $cod_oferta = $_POST['cod_oferta'];
-            $descripcion = $_POST['descripcion'];
-            $tiempo_inicio = $_POST['tiempo_inicio'];
-            $tiempo_fin = $_POST['tiempo_fin'];
-            $producto_cod_producto = $_POST['producto_cod_producto'];
+        $datos = json_decode(file_get_contents("php://input"), true);
+
+        if (!empty($datos)) {
+            $cod_oferta = isset($datos['cod_oferta']) ? $datos['cod_oferta'] : null;
+            $descripcion = isset($datos['descripcion']) ? $datos['descripcion'] : null;
+            $tiempo_inicio = isset($datos['tiempo_inicio']) ? $datos['tiempo_inicio'] : null;
+            $tiempo_fin = isset($datos['tiempo_fin']) ? $datos['tiempo_fin'] : null;
+            $producto_cod_producto = isset($datos['producto_cod_producto']) ? $datos['producto_cod_producto'] : null;
             if (empty($cod_oferta) || empty($descripcion) || empty($tiempo_inicio) || empty($tiempo_fin) || empty($producto_cod_producto)) {
                 $respuesta = array('msg' => 'Todos los campos son requeridos', 'icono' => 'warning');
             } else {

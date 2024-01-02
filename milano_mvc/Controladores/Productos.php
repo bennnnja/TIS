@@ -18,29 +18,24 @@ class Productos extends Controlador
     public function listar()
     {
         $data = $this->model->getProductos(1);
-        for ($i = 0; $i < count($data); $i++) {
-            $data[$i]['imagen'] = '<img class="img-thumbnail" src="' . $data[$i]['imagen'] . '" alt="' . $data[$i]['nombre_producto'] . '" width="50">';
-            $data[$i]['accion'] = '<img class="d-flex">
-            <button class="btn btn-primary" type="button" onclick="editPro(' . $data[$i]['cod_producto'] . ')"><i class="fas fa-edit"></i></button>
-            <button class="btn btn-danger" type="button" onclick="eliminarPro(' . $data[$i]['cod_producto'] . ')"><i class="fas fa-trash"></i></button>
-        </div>';
-        }
         echo json_encode($data);
         die();
     }
 
     public function registrar()
     {
-        if (isset($_POST['nombre_producto']) && isset($_POST['cod_producto'])) {
-            $nombre_producto = $_POST['nombre_producto'];
-            $cod_producto = $_POST['cod_producto'];
-            $precio = $_POST['precio'];
-            $stock = $_POST['stock'];
+        $datos = json_decode(file_get_contents("php://input"), true);
+
+        if (!empty($datos)) {
+            $nombre_producto = isset($datos['nombre_producto']) ? $datos['nombre_producto'] : null;
+            $cod_producto = isset($datos['cod_producto']) ? $datos['cod_producto'] : null;
+            $precio = isset($datos['precio']) ? $datos['precio'] : null;
+            $categoria = isset($datos['categoria']) ? $datos['categoria'] : null;
+            $sabor = isset($datos['sabor']) ? $datos['sabor'] : null;
+            $stock = isset($datos['stock']) ? $datos['stock'] : null;
+            $fecha_vencimiento = isset($datos['fecha_vencimiento']) ? $datos['fecha_vencimiento'] : null;
             $imagen = $_FILES['imagen'];
             $tmp_name = $imagen['tmp_name'];
-            $categoria = $_POST['categoria'];
-            $sabor = $_POST['sabor'];
-            $fecha_vencimiento = $_POST['fecha_vencimiento'];
             $ruta = 'img_prod/';
             $nombreImg = date('YmdHis');
             if (empty($nombre_producto) || empty($precio) || empty($stock) || empty($categoria) || empty($sabor) || empty($fecha_vencimiento)) {
