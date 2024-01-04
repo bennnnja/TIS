@@ -21,7 +21,12 @@ document.addEventListener("DOMContentLoaded", function () {
           { data: 'monto' },
           { data: 'fecha_pedido' },
           { data: 'estado' },
-          { data: 'accion' }
+          {
+            data: 'cod_pedido',
+            render: function(data, type, row) {
+                return '<button class="btn btn-primary" type="button" onclick="verPedido(' + data + ')"><i class="fas fa-eye"></i></button>';
+            }
+        }
         ],
         language, dom, buttons
       });
@@ -290,20 +295,29 @@ function abrirModalModificarPerfil() {
 
 const icono = 'success';
 function enviarSolicitudModificarPerfil() {
-  // Lógica para obtener los valores del formulario y enviar la solicitud AJAX
-  $.ajax({
-      type: 'POST',
-      url: base_url + 'clientes/administrar_perfil/', // Ruta al controlador
-      data: $('#formModificarPerfil').serialize(),
-      success: function (response) {
-          // Manejar la respuesta del servidor y actualizar la interfaz si es necesario
-          console.log(response);
-          Swal.fire("Aviso", "Perfil actualizado con éxito", icono);
-          if (icono == "success") {
-            setTimeout(() => {
+  const formElement = document.getElementById('formModificarPerfil');
+  let formData = new FormData(formElement);
+  let data = {};
+  formData.forEach((value, key) => data[key] = value);
+
+  fetch(base_url + 'clientes/administrar_perfil/', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+  })
+  .then(response => response.json())
+  .then(data => {
+      console.log(data);
+      Swal.fire("Aviso", data.msg, data.icono);
+      if (data.icono == "success") {
+          setTimeout(() => {
               window.location.reload();
-            }, 2000);
-          }
+          }, 2000);
       }
-  });
+  })
+  .catch(error => console.error('Error:', error));
 }
+
+
