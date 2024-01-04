@@ -16,7 +16,12 @@ document.addEventListener("DOMContentLoaded", function () {
             { data: 'nombre_producto' },
             { data: 'stock' },
             { data: 'precio' },
-            { data: 'imagen' },
+            {
+                data: 'imagen', 
+                render: function(data, type, row) {
+                    return '<img src="' + data + '" alt="Imagen" height="50" />';
+                } 
+            },
             {
                 data: 'cod_producto',
                 render: function(data, type, row) {
@@ -51,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 frm.reset();
             }
         })
-        .catch(error => console.error('Error:', error));
+        Swal.fire("Aviso", "Producto ingresado", "success");
     });
 });
 

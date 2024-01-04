@@ -51,8 +51,6 @@ class Productos extends Controlador
                 
                 if (!empty($imagen['name'])) {
                     $destino = $ruta . $nombreImg . '.jpg';
-                } else if (!empty($_POST['imagen_actual']) && empty($imagen['name'])) {
-                    $destino = $_POST['imagen_actual'][0];
                 } else {
                     $destino = $ruta . 'default.png';
                 }

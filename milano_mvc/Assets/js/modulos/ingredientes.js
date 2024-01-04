@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(data => {
             Swal.fire("Aviso", data.msg.toUpperCase(), data.icono);
             if (data.icono == 'success') {
-                tblProductos.ajax.reload();
+                tblIngredientes.ajax.reload();
                 frm.reset();
             }
         })

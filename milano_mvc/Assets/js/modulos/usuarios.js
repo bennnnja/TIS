@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
             {
                 data: 'rut',
                 render: function(data, type, row) {
-                    return '<button class="btn btn-primary" onclick="editUder(' + data + ')"><i class="fas fa-edit"></i></button>' +
+                    return '<button class="btn btn-primary" onclick="editUser(' + data + ')"><i class="fas fa-edit"></i></button>' +
                            '<button class="btn btn-danger" onclick="eliminarUser(' + data + ')"><i class="fas fa-trash"></i></button>';
                 }
             }
