@@ -52,8 +52,9 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(data => {
             Swal.fire("Aviso", data.msg.toUpperCase(), data.icono);
             if (data.icono == 'success') {
-                tblProductos.ajax.reload();
-                frm.reset();
+                setTimeout(() => {
+                    window.location.reload();
+                  }, 2000);
             }
         })
         .catch(error => console.error('Error:', error));

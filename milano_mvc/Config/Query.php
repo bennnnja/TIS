@@ -1,6 +1,6 @@
 <?php
-
-class Query extends Conexion {
+require_once __DIR__ . '/../Config/Conexion.php';
+class Query {
     private $pdo, $con, $sql, $datos;
     public function __construct() {
         $this->pdo = new Conexion();
