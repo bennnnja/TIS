@@ -17,13 +17,19 @@ class Productos extends Controlador
 
     public function listar()
     {
-        $data = $this->model->getProductos(1);
+        $query = new Query();
+        $productosmodel = new ProductosModel($query);
+
+        $data = $productosmodel->getProductos(1);
         echo json_encode($data);
         die();
     }
 
     public function registrar()
     {
+        $query = new Query();
+        $productosmodel = new ProductosModel($query);
+
         $datos = json_decode(file_get_contents("php://input"), true);
 
         if (!empty($datos)) {
@@ -41,7 +47,7 @@ class Productos extends Controlador
             if (empty($nombre_producto) || empty($precio) || empty($stock) || empty($categoria) || empty($sabor) || empty($fecha_vencimiento)) {
                 $respuesta = array('msg' => 'Todos los campos son requeridos', 'icono' => 'warning');
             } else {
-                $existeProducto = $this->model->existeProducto($cod_producto);
+                $existeProducto = $productosmodel->existeProducto($cod_producto);
                 
                 if (!empty($imagen['name'])) {
                     $destino = $ruta . $nombreImg . '.jpg';
@@ -51,7 +57,7 @@ class Productos extends Controlador
                     $destino = $ruta . 'default.png';
                 }
                 if (empty($existeProducto)) {
-                    $data = $this->model->registrar($nombre_producto, $cod_producto, $precio, $stock, $sabor, $fecha_vencimiento, $categoria, $destino);
+                    $data = $productosmodel->registrar($nombre_producto, $cod_producto, $precio, $stock, $sabor, $fecha_vencimiento, $categoria, $destino);
                     if ($data > 0) {
                         if (!empty($imagen['name'])) {
                             move_uploaded_file($tmp_name, $destino);
@@ -61,7 +67,7 @@ class Productos extends Controlador
                         $respuesta = array('msg' => 'producto registrado', 'icono' => 'success');
                     }
                 } else {
-                    $data = $this->model->modificar($nombre_producto, $cod_producto, $precio, $stock, $sabor, $fecha_vencimiento, $categoria);
+                    $data = $productosmodel->modificar($nombre_producto, $cod_producto, $precio, $stock, $sabor, $fecha_vencimiento, $categoria);
                     if ($data == 1) {
                         if (!empty($imagen['name'])) {
                             move_uploaded_file($tmp_name, $destino);
@@ -82,8 +88,11 @@ class Productos extends Controlador
 
     public function delete($idPro)
     {
+        $query = new Query();
+        $productosmodel = new ProductosModel($query);
+
         if (is_numeric($idPro)) {
-            $data = $this->model->eliminar($idPro);
+            $data = $productosmodel->eliminar($idPro);
             if ($data == 1) {
                 $respuesta = array('msg' => 'producto dado de baja', 'icono' => 'success');
             } else {
@@ -98,8 +107,11 @@ class Productos extends Controlador
 
     public function edit($idPro)
     {
+        $query = new Query();
+        $productosmodel = new ProductosModel($query);
+
         if (is_numeric($idPro)) {
-            $data = $this->model->getProducto($idPro);
+            $data = $productosmodel->getProducto($idPro);
             echo json_encode($data, JSON_UNESCAPED_UNICODE);
         }
         die();

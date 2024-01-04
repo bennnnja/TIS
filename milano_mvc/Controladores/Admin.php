@@ -14,11 +14,14 @@ class Admin extends Controlador
     }
     public function   validar()
     {
+        $query = new Query();
+        $adminmodel = new AdminModel($query);
+
         if (isset($_POST['email']) && isset($_POST['contrasena'])) {
             if (empty($_POST['email']) || empty($_POST['contrasena'])) {
                 $respuesta = array('msg' => 'todo los campos son requeridos', 'icono' => 'warning');
             } else {
-                $data = $this->model->getUsuario($_POST['email']);
+                $data = $adminmodel->getUsuario($_POST['email']);
                 if (empty($data)) {
                     $respuesta = array('msg' => 'el correo no existe', 'icono' => 'warning');
                 } else {
@@ -46,20 +49,23 @@ class Admin extends Controlador
 
     public function home()
     {   
+        $query = new Query();
+        $adminmodel = new AdminModel($query);
+
         if(empty($_SESSION["email"])) {
             header("Location: ". BASE_URL);
         }
 
         $data['title'] = 'Panel Administrativo';
-        $data['pendientes'] = $this->model->getPendientes();
-        $data['aceptados'] = $this->model->getAceptados();
-        $data['completados'] = $this->model->getCompletados();
-        $data['ventas'] = $this->model->getTotales();
-        $data['ventasPorDia'] = $this->model->getVentasPorUltimos7Dias();
-        $data['prodMasVendido'] = $this->model->getProductosMasVendidos();
-        $data['prodMenorStock'] = $this->model->getProductosMenorStock();
-        $data['prodMenosVendido'] = $this->model->getProductosMenosVendidos();
-        $data['ingMenorStock'] = $this->model->getIngredientesMenorStock();
+        $data['pendientes'] = $adminmodel->getPendientes();
+        $data['aceptados'] = $adminmodel->getAceptados();
+        $data['completados'] = $adminmodel->getCompletados();
+        $data['ventas'] = $adminmodel->getTotales();
+        $data['ventasPorDia'] = $adminmodel->getVentasPorUltimos7Dias();
+        $data['prodMasVendido'] = $adminmodel->getProductosMasVendidos();
+        $data['prodMenorStock'] = $adminmodel->getProductosMenorStock();
+        $data['prodMenosVendido'] = $adminmodel->getProductosMenosVendidos();
+        $data['ingMenorStock'] = $adminmodel->getIngredientesMenorStock();
         $this->views->getView('admin/administracion', "index", $data);
         
     }

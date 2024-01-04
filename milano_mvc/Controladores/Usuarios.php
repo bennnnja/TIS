@@ -17,13 +17,19 @@ class Usuarios extends Controlador
 
     public function listar()
     {
-        $data = $this->model->getUsuarios(1);
+        $query = new Query();
+        $usuariosmodel = new UsuariosModel($query);
+
+        $data = $usuariosmodel->getUsuarios(1);
         echo json_encode($data);
         die();
     }
 
     public function registrar()
     {
+        $query = new Query();
+        $usuariosmodel = new UsuariosModel($query);
+
         $datos = json_decode(file_get_contents("php://input"), true);
 
         if (!empty($datos)) {
@@ -38,12 +44,12 @@ class Usuarios extends Controlador
             if (empty($nombre) || empty($rut) || empty($email) || empty($telefono) || empty($nom_usuario) || empty($contrasena) || empty($fecha_nacimiento)) {
                 $respuesta = array('msg' => 'Todos los campos son requeridos', 'icono' => 'warning');
             } else {
-                $rutExiste = $this->model->verificarRUT($rut);
+                $rutExiste = $usuariosmodel->verificarRUT($rut);
 
                 if (!$rutExiste) {
-                    $result = $this->model->verificarCorreo($email);
+                    $result = $usuariosmodel->verificarCorreo($email);
                     if (empty($result)) {
-                        $data = $this->model->registrar($nombre, $rut, $email, $telefono, $nom_usuario, $hash, $fecha_nacimiento);
+                        $data = $usuariosmodel->registrar($nombre, $rut, $email, $telefono, $nom_usuario, $hash, $fecha_nacimiento);
                         if ($data > 0) {
                             $respuesta = array('msg' => 'Error al registrar', 'icono' => 'warning');
                         } else {
@@ -53,7 +59,7 @@ class Usuarios extends Controlador
                         $respuesta = array('msg' => 'Correo ya existe', 'icono' => 'warning');
                     }
                 } else {
-                    $data = $this->model->modificar($nombre, $rut, $email, $telefono, $nom_usuario, $fecha_nacimiento);
+                    $data = $usuariosmodel->modificar($nombre, $rut, $email, $telefono, $nom_usuario, $fecha_nacimiento);
                     if ($data == 1) {
                         $respuesta = array('msg' => 'Error al modificar', 'icono' => 'warning');
                     } else {
@@ -68,8 +74,11 @@ class Usuarios extends Controlador
 
     public function delete($idUser)
     {
+        $query = new Query();
+        $usuariosmodel = new UsuariosModel($query);
+
         if (is_numeric($idUser)) {
-            $data = $this->model->eliminar($idUser);
+            $data = $usuariosmodel->eliminar($idUser);
             if ($data == 1) {
                 $respuesta = array('msg' => 'usuario dado de baja', 'icono' => 'success');
             } else {
@@ -84,8 +93,11 @@ class Usuarios extends Controlador
 
     public function edit($idUser)
     {
+        $query = new Query();
+        $usuariosmodel = new UsuariosModel($query);
+
         if (is_numeric($idUser)) {
-            $data = $this->model->getUsuario($idUser);
+            $data = $usuariosmodel->getUsuario($idUser);
             echo json_encode($data, JSON_UNESCAPED_UNICODE);
         }
         die();

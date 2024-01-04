@@ -1,15 +1,17 @@
 <?php
-class ProductosModel extends Query
-{
 
-    public function __construct()
+require_once __DIR__ . '/../Config/Query.php';
+class ProductosModel
+{
+    private $query;
+    public function __construct(Query $query)
     {
-        parent::__construct();
+         $this->query = $query;
     }
     public function getProductos($estado)
     {
         $sql = "SELECT * FROM producto WHERE estado = $estado";
-        return $this->selectAll($sql);
+        return  $this->query->selectAll($sql);
     }
 
     public function registrar($nombre_producto, $cod_producto, $precio, $stock, $sabor, $fecha_vencimiento, $categoria, $imagen)
@@ -32,13 +34,13 @@ class ProductosModel extends Query
 
         $sql = "INSERT INTO producto (nombre_producto, cod_producto, precio, stock, sabor, fecha_vencimiento, categoria, imagen) VALUES (?,?,?,?,?,?,?,?)";
         $array = array($nombre_producto, $cod_producto, $precio, $stock, $sabor, $fecha_vencimiento, $categoria, $destino);
-        return $this->insertar($sql, $array);
+        return  $this->query->insertar($sql, $array);
     }
 
     public function existeProducto($cod_producto)
     {
         $sql = "SELECT cod_producto FROM producto WHERE cod_producto = '$cod_producto'";
-        return $this->select($sql);
+        return  $this->query->select($sql);
     }
 
 
@@ -46,19 +48,19 @@ class ProductosModel extends Query
     {
         $sql = "UPDATE producto SET estado = ? WHERE cod_producto = ?";
         $array = array(0, $idPro);
-        return $this->save($sql, $array);
+        return  $this->query->save($sql, $array);
     }
 
     public function getProducto($idPro)
     {
         $sql = "SELECT * FROM producto WHERE cod_producto = '$idPro'";
-        return $this->select($sql);
+        return  $this->query->select($sql);
     }
 
     public function modificar($nombre_producto, $cod_producto, $precio, $stock, $sabor, $fecha_vencimiento, $categoria)
     {
         $sql = "UPDATE producto SET nombre_producto=?, precio=?, stock=?, sabor=?, fecha_vencimiento=?, categoria=? WHERE cod_producto = '$cod_producto'";
         $array = array($nombre_producto, $precio, $stock, $sabor, $fecha_vencimiento, $categoria);
-        return $this->insertar($sql, $array);
+        return  $this->query->insertar($sql, $array);
     }
 }
